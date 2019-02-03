@@ -31,7 +31,7 @@
         </columns>
       </TableView>
       <Separator layoutY="54.0" prefHeight="8.0" prefWidth="1291.0" />
-      <Label alignment="CENTER_RIGHT" layoutX="1080.0" layoutY="12.0" prefHeight="30.0" prefWidth="193.0" text="هيئه الاسعاف المصرية " textAlignment="CENTER">
+      <Label alignment="CENTER_RIGHT" layoutX="562.0" layoutY="14.0" prefHeight="30.0" prefWidth="193.0" text="هيئه الاسعاف المصرية " textAlignment="CENTER">
          <font>
             <Font size="22.0" />
          </font>
@@ -162,7 +162,7 @@
             <Blend />
          </effect>
       </Button>
-      <Button cache="true" layoutX="82.0" layoutY="634.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="173.0" styleClass="Search_btn" stylesheets="@css/style.css" text="بحث" textAlignment="CENTER" underline="true">
+      <Button cache="true" layoutX="549.0" layoutY="634.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="173.0" styleClass="Search_btn" stylesheets="@css/style.css" text="بحث" textAlignment="CENTER" underline="true">
          <font>
             <Font size="15.0" />
          </font>
@@ -172,6 +172,11 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+      </Button>
+      <Button layoutX="89.0" layoutY="634.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="184.0" styleClass="Main_menu" stylesheets="@css/style.css" text="رجوع">
+         <font>
+            <Font size="15.0" />
+         </font>
       </Button>
    </children>
 </AnchorPane>

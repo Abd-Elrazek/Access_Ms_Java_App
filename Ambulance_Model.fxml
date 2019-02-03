@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -7,10 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="1291.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1295.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView layoutX="9.0" layoutY="149.0" prefHeight="527.0" prefWidth="1275.0">
+      <TableView layoutX="9.0" layoutY="153.0" prefHeight="476.0" prefWidth="1275.0">
         <columns>
           <TableColumn prefWidth="298.0" text="رقم الدفتر" />
           <TableColumn prefWidth="189.0" text="اسم السائق" />
@@ -88,5 +88,16 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <Separator layoutX="2.0" layoutY="638.0" prefHeight="8.0" prefWidth="1291.0" />
+      <Button layoutX="699.0" layoutY="646.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="184.0" styleClass="Main_menu" stylesheets="@css/style.css" text="القائمه الرئسيه " textFill="#0a6bfa">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="478.0" layoutY="646.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="184.0" styleClass="Main_menu" stylesheets="@css/style.css" text="رجوع">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
