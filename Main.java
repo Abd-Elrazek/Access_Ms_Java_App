@@ -39,6 +39,7 @@ public class Main {
 
             // Step 2.C: Executing SQL & retrieve data into ResultSet
             int result = statement.executeUpdate("insert into person (fname, lname, age, myphone)values(\"abdo\", \"nageh\", 66, 1012112505);");
+                result = statement.executeUpdate("insert into person (fname, lname, age, myphone)values(\"abdo\", \"nageh\", 66, 1012112505);");
 			if (result != 0 ){
 			    System.out.println("Inserted successfully and the result equal = "+ result);	
 		    }
