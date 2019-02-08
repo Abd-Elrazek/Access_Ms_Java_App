@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
@@ -10,24 +10,26 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="1291.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="1291.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Input_data_Controller">
    <children>
-      <TableView layoutX="8.0" layoutY="62.0" prefHeight="216.0" prefWidth="1276.0">
+      <TableView layoutX="11.0" layoutY="77.0" prefHeight="216.0" prefWidth="1276.0">
         <columns>
-          <TableColumn prefWidth="298.0" text="رقم الدفتر" />
-          <TableColumn prefWidth="189.0" text="اسم السائق" />
-            <TableColumn prefWidth="172.0" text="المسافه المقطوعه" />
+            <TableColumn minWidth="0.0" prefWidth="86.00003051757812" text="كود ألألة" />
+            <TableColumn prefWidth="132.0" text="اسم المسؤول " />
+          <TableColumn prefWidth="164.0" text="رقم الدفتر" />
+          <TableColumn prefWidth="148.0" text="اسم السائق" />
+            <TableColumn prefWidth="104.0" text="المسافه المقطوعه" />
             <TableColumn prefWidth="152.0" text="العداد" />
-            <TableColumn prefWidth="86.0" text="سعه البون" />
-            <TableColumn prefWidth="186.0" text="تاريخ الصدور" />
-            <TableColumn prefWidth="149.0" text="رقم البون" />
-            <TableColumn prefWidth="44.0" text="م" />
+            <TableColumn prefWidth="66.0" text="سعه البون" />
+            <TableColumn minWidth="0.0" prefWidth="102.0" text="نوع الوقود" />
+            <TableColumn prefWidth="133.0" text="تاريخ الصرف" />
+            <TableColumn minWidth="0.0" prefWidth="137.0" text="رقم البون" />
+            <TableColumn minWidth="0.0" prefWidth="60.0" text="م" />
         </columns>
       </TableView>
       <Separator layoutY="54.0" prefHeight="8.0" prefWidth="1291.0" />
@@ -94,16 +96,6 @@
             <Reflection fraction="0.65" />
          </effect>
       </TextField>
-      <Label alignment="TOP_RIGHT" contentDisplay="TOP" layoutX="511.0" layoutY="535.0" prefHeight="32.0" prefWidth="133.0" text=" كود السياره     : " textAlignment="RIGHT" textFill="#030303">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <TextField layoutX="89.0" layoutY="539.0" prefHeight="25.0" prefWidth="425.0">
-         <effect>
-            <Reflection fraction="0.65" />
-         </effect>
-      </TextField>
       <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="514.0" layoutY="464.0" prefHeight="32.0" prefWidth="133.0" text=" رقم الدفتر        : " textAlignment="RIGHT" textFill="#030303">
          <font>
             <Font size="20.0" />
@@ -162,21 +154,31 @@
             <Blend />
          </effect>
       </Button>
-      <Button cache="true" layoutX="549.0" layoutY="634.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="173.0" styleClass="Search_btn" stylesheets="@css/style.css" text="بحث" textAlignment="CENTER" underline="true">
-         <font>
-            <Font size="15.0" />
-         </font>
-         <effect>
-            <ColorAdjust brightness="-0.12" saturation="-0.03" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Button layoutX="89.0" layoutY="634.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="184.0" styleClass="Main_menu" stylesheets="@css/style.css" text="رجوع">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
+      <Label alignment="TOP_RIGHT" contentDisplay="TOP" layoutX="511.0" layoutY="532.0" prefHeight="32.0" prefWidth="133.0" text="اسم المسؤول    : " textAlignment="RIGHT" textFill="#030303">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField layoutX="89.0" layoutY="536.0" prefHeight="25.0" prefWidth="425.0">
+         <effect>
+            <Reflection fraction="0.65" />
+         </effect>
+      </TextField>
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="530.0" layoutY="584.0" prefHeight="25.0" prefWidth="117.0" text="كود ألألة              : ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ChoiceBox layoutX="330.0" layoutY="584.0" prefHeight="25.0" prefWidth="184.0" />
+      <TextField alignment="CENTER_RIGHT" layoutX="89.0" layoutY="584.0" prefHeight="25.0" prefWidth="227.0" promptText="رقم الكود  ">
+         <effect>
+            <Reflection fraction="0.65" />
+         </effect>
+      </TextField>
    </children>
 </AnchorPane>

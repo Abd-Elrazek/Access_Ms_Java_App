@@ -1,82 +1,34 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+// import javafx.stage.StageStyle;
 
-public class Main {
-
-    public static void main(String[] args) {
-
-        // variables
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-
-        // Step 1: Loading or registering Oracle JDBC driver class
-        try {
-
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-        }
-        catch(ClassNotFoundException cnfex) {
-
-            System.out.println("Problem in loading or "
-                    + "registering MS Access JDBC driver");
-            cnfex.printStackTrace();
-        }
-
-        // Step 2: Opening database connection
-        try {
-
-            String msAccDB = "db_main.accdb";
-            String dbURL = "jdbc:ucanaccess://" + msAccDB; 
-
-            // Step 2.A: Create and get connection using DriverManager class
-            connection = DriverManager.getConnection(dbURL); 
-
-            // Step 2.B: Creating JDBC Statement 
-            statement = connection.createStatement();
-
-            // Step 2.C: Executing SQL & retrieve data into ResultSet
-            int result = statement.executeUpdate("insert into person (fname, lname, age, myphone)values(\"abdo\", \"nageh\", 66, 1012112505);");
-                result = statement.executeUpdate("insert into person (fname, lname, age, myphone)values(\"abdo\", \"nageh\", 66, 1012112505);");
-			if (result != 0 ){
-			    System.out.println("Inserted successfully and the result equal = "+ result);	
-		    }
-            System.out.println("ID\tfname\t\tlname\tAge\tmyphone");
-            System.out.println("==\t========\t======\t===\t==========");
-
-            // processing returned data and printing into console
-			/*
-            while(resultSet.next()) {
-                System.out.println(resultSet.getInt(1) + "\t" + 
-                        resultSet.getString(2)    + "\t" + 
-                        resultSet.getString(3)    + "\t" +
-                        resultSet.getString(4)    + "\t" +
-			resultSet.getString(5)    + "\t" );
-			}*/
-		 
-        }
-        catch(SQLException sqlex){
-            sqlex.printStackTrace();
-        }
-        finally {
-
-            // Step 3: Closing database connection
-            try {
-                if(null != connection) {
-
-                    // cleanup resources, once after processing
-                    resultSet.close();
-                    statement.close();
-
-                    // and then finally close connection
-                    connection.close();
-                }
-            }
-            catch (SQLException sqlex) {
-                sqlex.printStackTrace();
-            }
-        }
+/**
+ *
+ * @author Abdelrazek
+ */
+public class Main extends Application {
+    
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        Scene scene = new Scene(root);
+        stage.setTitle("ÊÎÒíä ÇáÈíÇäÇÊ");
+		stage.setResizable(false);
+		stage.sizeToScene();
+		// stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.show();
     }
+
+
+
+   public static void main(String[] args) {
+         java.awt.EventQueue.invokeLater(() -> {
+             launch(args);
+          });
+    }
+    
 }

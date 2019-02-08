@@ -8,20 +8,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1295.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1295.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ambulance_Model_Controller">
    <children>
-      <TableView layoutX="9.0" layoutY="153.0" prefHeight="476.0" prefWidth="1275.0">
-        <columns>
-          <TableColumn prefWidth="298.0" text="رقم الدفتر" />
-          <TableColumn prefWidth="189.0" text="اسم السائق" />
-            <TableColumn prefWidth="172.0" text="المسافه المقطوعه" />
-            <TableColumn prefWidth="152.0" text="العداد" />
-            <TableColumn prefWidth="86.0" text="سعه البون" />
-            <TableColumn prefWidth="186.0" text="تاريخ الصدور" />
-            <TableColumn prefWidth="149.0" text="رقم البون" />
-            <TableColumn prefWidth="44.0" text="م" />
-        </columns>
-      </TableView>
       <Separator layoutX="-2.0" layoutY="137.0" prefHeight="8.0" prefWidth="1291.0" />
       <Label alignment="CENTER_RIGHT" layoutX="1080.0" layoutY="12.0" prefHeight="30.0" prefWidth="193.0" text="هيئه الاسعاف المصرية " textAlignment="CENTER">
          <font>
@@ -99,5 +87,20 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <TableView layoutX="5.0" layoutY="152.0" prefHeight="482.0" prefWidth="1284.0">
+         <columns>
+            <TableColumn minWidth="0.0" prefWidth="86.00003051757812" text="كود ألألة" />
+            <TableColumn prefWidth="132.0" text="اسم المسؤول " />
+            <TableColumn prefWidth="164.0" text="رقم الدفتر" />
+            <TableColumn prefWidth="148.0" text="اسم السائق" />
+            <TableColumn prefWidth="104.0" text="المسافه المقطوعه" />
+            <TableColumn prefWidth="152.0" text="العداد" />
+            <TableColumn prefWidth="66.0" text="سعه البون" />
+            <TableColumn minWidth="0.0" prefWidth="102.0" text="نوع الوقود" />
+            <TableColumn prefWidth="133.0" text="تاريخ الصرف" />
+            <TableColumn minWidth="0.0" prefWidth="137.0" text="رقم البون" />
+            <TableColumn minWidth="0.0" prefWidth="60.0" text="م" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

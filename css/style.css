@@ -1,0 +1,27 @@
+ /* .parent{ */
+	/* -fx-background-image: url(../imgs/background.jpg); */
+	/* -fx-background-repeat: no-repeat; */
+	/* -fx-position: center; */
+/* } */
+
+ /* .Button_Login{ */
+	 /* -fx-background-color: #67E4D3; */
+ /* } */
+ 
+ /* .User_Field , .User_Pass{ */
+	 /* -fx-text-inner-color: white; */
+	 /* -fx-prompt-text-fill: white; */
+ /* } */
+ 
+ .Update_btn:hover, .Delete_btn:hover, .Save_btn:hover, .Search_btn:hover, .Main_menu:hover, .Search_main:hover{
+	 -fx-border-color:#0381ff;
+	 -fx-background-color:RGB(9, 113, 166, 0.05);
+	 
+	}
+ .Search_btn:hover{
+	 -fx-text-fill:blue; 
+	}
+ .Search_main{
+	 -fx-background-color:#CDCDCD;
+	 -fx-border-color: #1AA765;
+	}

@@ -3,15 +3,17 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Search_Controller">
    <children>
       <Label alignment="CENTER_RIGHT" layoutX="1080.0" layoutY="12.0" prefHeight="30.0" prefWidth="193.0" text="هيئه الاسعاف المصرية " textAlignment="CENTER">
          <font>
@@ -45,14 +47,8 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField alignment="CENTER_RIGHT" layoutX="477.0" layoutY="152.0" prefHeight="25.0" prefWidth="208.0" />
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="700.0" layoutY="152.0" prefHeight="25.0" prefWidth="94.0" text="كود السياره   : ">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <TextField alignment="CENTER_RIGHT" layoutX="477.0" layoutY="205.0" prefHeight="25.0" prefWidth="208.0" />
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="700.0" layoutY="205.0" prefHeight="25.0" prefWidth="94.0" text="العداد           : ">
+      <TextField alignment="CENTER_RIGHT" layoutX="476.0" layoutY="152.0" prefHeight="25.0" prefWidth="208.0" />
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="699.0" layoutY="152.0" prefHeight="25.0" prefWidth="94.0" text="اسم المسؤول : ">
          <font>
             <Font size="16.0" />
          </font>
@@ -62,14 +58,14 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <DatePicker editable="false" layoutX="475.0" layoutY="246.0" prefHeight="25.0" prefWidth="181.0" />
-      <DatePicker editable="false" layoutX="212.0" layoutY="246.0" prefHeight="25.0" prefWidth="208.0" />
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="646.0" layoutY="246.0" prefHeight="25.0" prefWidth="54.0" text="    من :  ">
+      <DatePicker editable="false" layoutX="491.0" layoutY="246.0" prefHeight="25.0" prefWidth="165.0" />
+      <DatePicker editable="false" layoutX="273.0" layoutY="246.0" prefHeight="25.0" prefWidth="165.0" />
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="646.0" layoutY="246.0" prefHeight="25.0" prefWidth="60.0" text="    من :  ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="420.0" layoutY="246.0" prefHeight="25.0" prefWidth="36.0" text="الى  : ">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="446.0" layoutY="246.0" prefHeight="25.0" prefWidth="36.0" text="الى  : ">
          <font>
             <Font size="16.0" />
          </font>
@@ -98,5 +94,16 @@
       </Label>
       <Separator layoutX="8.0" layoutY="295.0" prefHeight="8.0" prefWidth="822.0" />
       <Separator layoutX="3.0" layoutY="75.0" prefHeight="8.0" prefWidth="822.0" />
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="720.0" layoutY="193.0" prefHeight="25.0" prefWidth="79.0" text="كود ألألة  :">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ChoiceBox layoutX="603.0" layoutY="195.0" prefHeight="25.0" prefWidth="86.0" />
+      <TextField alignment="CENTER_RIGHT" layoutX="474.0" layoutY="193.0" prefHeight="25.0" prefWidth="122.0" promptText="رقم الكود  ">
+         <effect>
+            <Reflection fraction="0.65" />
+         </effect>
+      </TextField>
    </children>
 </AnchorPane>
