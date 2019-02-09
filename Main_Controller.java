@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+
 import javafx.scene.Cursor;
 import javafx.fxml.Initializable;
 import java.net.URL;
@@ -21,7 +22,7 @@ public class Main_Controller implements Initializable{
 	
 	//Variables
 	private Stage Input_data_stage;
-	private Stage Search_stage;
+	public Stage Search_stage;
 	@FXML
 	private AnchorPane Input_data_Anch;
 	@FXML
