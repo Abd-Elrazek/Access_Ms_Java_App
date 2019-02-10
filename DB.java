@@ -6,17 +6,20 @@ import java.sql.Date;
 import java.util.Properties;
 
 public class DB {
+//Variables handle with database
+	private Connection connection = null;
+	private PreparedStatement ps = null;
 //Variables of Inputs
-	private long Nbon = 457575757l;
+	private long Nbon = 0;
 	private Date Dateexchange = null;
-	private String Typefuel = "”Ê·«—";
-	private long Quantitybon = 33l;
-	private long Counter     = 33334l;
-	private long Distance = 7855875l;
-	private String Namedriver = "⁄»œ«·—«“ﬁ";
-	private long Nnote  = 34757534l;
-	private String Nameresponsible = "⁄»œ«··Â";
-	private String Codemachine = "„Ê·œ 33ﬂ";
+	private String Typefuel = "";
+	private long Quantitybon = 0;
+	private long Counter     = 0;
+	private long Distance = 0;
+	private String Namedriver = "";
+	private long Nnote  = 0;
+	private String Nameresponsible = "";
+	private String Codemachine = "";
 	
 //Constructor
 	public DB (){
@@ -37,10 +40,8 @@ public class DB {
 	 this.Codemachine = Codemachine;
 	}
 //Functions
-   //setConnection func
+//setConnection func
     public void setConnection(){
-	Connection connection = null;
-	PreparedStatement ps = null;
    //Step 1: Loading or registering Oracle JDBC driver class with ucanaccess
 	try {
 	  Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -56,8 +57,19 @@ public class DB {
 		String dbURL = "jdbc:ucanaccess://" + msAccDB; 
 
        //Step 2.A: Create and get connection using DriverManager class
-		connection = DriverManager.getConnection(dbURL); 
+		connection = DriverManager.getConnection(dbURL);
+		if (connection != null){
+		 System.out.println("Connected to db...");
+		}
 
+	}catch(SQLException e){
+	  e.printStackTrace();
+	}
+	}
+	
+//func InsertDate and retrieve True if data is inserted False if data not inserted 
+	public boolean insertData(){
+        try{
         //Step 2.B: Creating JDBC PreparedStatement class 
 		ps = connection.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
 		ps.setLong(1, Nbon);
@@ -70,14 +82,12 @@ public class DB {
 		ps.setLong(8, Nnote);
 		ps.setString(9, Nameresponsible);
 		ps.setString(10, Codemachine);
-        // Step 2.C: Executing SQL & retrieve data into ResultSet
+        // Step 2.C: Executing SQL 
 		int result = ps.executeUpdate();
 		if (result != 0){
-		 System.out.println("Result is " + result );
-		 System.out.println("Database inserted");
+		 return true;
 		}
-        }
-        catch(SQLException sqlex){
+	    }catch(SQLException sqlex){
             sqlex.printStackTrace();
         }
         finally {
@@ -88,19 +98,49 @@ public class DB {
 
                     // cleanup resources, once after processing
                     ps.close();
-
+                    System.out.println("Data inserted ...");
                     // and then finally close connection
                     connection.close();
+                    System.out.println("Connection closed");
                 }
-            }
-            catch (SQLException sqlex) {
+            }catch (SQLException sqlex) {
                 sqlex.printStackTrace();
             }
         }
-	}//End setConnection func
- 
-    public static void main(String []para){
-	 DB db = new DB();
-	 db.setConnection();
+		return false;
 	}
+	
+    //funcs of get Vars
+	public long getNbon(){
+	 return Nbon;
+	}
+	public Date getDateexchange(){
+	 return Dateexchange;	
+	}
+	public String getTypefuel(){
+	  return Typefuel;	
+	}
+	public long getQuantitybon(){
+	  return Quantitybon;	
+	}
+	public long getCounter(){
+	  return Counter;
+	}
+	public long getDistance(){
+	  return Distance;
+	}
+	public String getNamedriver(){
+	  return Namedriver;
+	}
+	public long getNnote(){
+		return Nnote;
+	}
+	public String getNameresponsible(){
+	 return Nameresponsible;	
+	}
+	public String getCodemachine(){
+	 return Codemachine;	
+	}
+	//End funcs Set and Get 
+	
 }
