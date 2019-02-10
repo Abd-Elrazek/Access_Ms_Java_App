@@ -33,6 +33,10 @@ public class Main extends Application {
 	  System.out.println("Gui running...");
 	 //DB  Run
 	 db.setConnection();
+	 boolean dbr =  db.insertData();
+	if (dbr){
+		System.out.println(dbr);
+	}
     }
     
 }
