@@ -13,7 +13,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="564.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main_Controller">
    <children>
       <Separator layoutX="268.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="447.0" prefWidth="14.0" />
-      <Pane fx:id="searchPane" layoutX="324.0" layoutY="25.0" onMousePressed="#showSearch" prefHeight="200.0" prefWidth="200.0" styleClass="Search_main" stylesheets="@css/style.css">
+      <Pane fx:id="searchPane" layoutX="324.0" layoutY="25.0" onMouseMoved="#defaultCursor" onMouseReleased="#showSearch" prefHeight="200.0" prefWidth="200.0" styleClass="Search_main" stylesheets="@css/style.css">
          <children>
             <Label alignment="CENTER" layoutX="35.0" layoutY="27.0" prefHeight="44.0" prefWidth="131.0" text="بحث" textAlignment="RIGHT">
                <font>
@@ -33,7 +33,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Pane>
-      <Pane fx:id="inputPane" layoutX="324.0" layoutY="232.0" onMousePressed="#showInputData" prefHeight="200.0" prefWidth="200.0" styleClass="Search_main" stylesheets="@css/style.css">
+      <Pane fx:id="inputPane" layoutX="324.0" layoutY="232.0" onMouseMoved="#defaultCursor" onMouseReleased="#showInputData" prefHeight="200.0" prefWidth="200.0" styleClass="Search_main" stylesheets="@css/style.css">
          <children>
             <Label alignment="CENTER" layoutX="23.0" layoutY="27.0" prefHeight="44.0" prefWidth="151.0" text="ادخل بيانات" textAlignment="RIGHT">
                <font>

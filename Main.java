@@ -24,11 +24,15 @@ public class Main extends Application {
     }
 
 
-
-   public static void main(String[] args) {
-         java.awt.EventQueue.invokeLater(() -> {
-             launch(args);
-          });
+    public static void main(String[] args) {
+	 DB db = new DB();
+     //GUI Run 
+	 java.awt.EventQueue.invokeLater(() -> {
+		 launch(args);
+	  });
+	  System.out.println("Gui running...");
+	 //DB  Run
+	 db.setConnection();
     }
     
 }

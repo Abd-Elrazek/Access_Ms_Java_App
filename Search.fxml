@@ -20,7 +20,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Button cache="true" layoutX="342.0" layoutY="326.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="193.0" styleClass="Search_btn" stylesheets="@css/style.css" text="عرض البيانات" textAlignment="CENTER" underline="true">
+      <Button fx:id="viewData" cache="true" layoutX="342.0" layoutY="326.0" mnemonicParsing="false" onMouseReleased="#showAmbulanceModel" prefHeight="32.0" prefWidth="193.0" styleClass="Search_btn" stylesheets="@css/style.css" text="عرض البيانات" textAlignment="CENTER" underline="true">
          <font>
             <Font size="15.0" />
          </font>

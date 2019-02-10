@@ -38,7 +38,7 @@
       </Label>
       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="872.0" layoutY="82.0" prefHeight="20.0" prefWidth="87.0" text="(هنا يرجع الكود)">
          <font>
-            <Font size="14.0" />
+			 <Font size="14.0" />
          </font>
       </Label>
       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="789.0" layoutY="84.0" prefHeight="20.0" prefWidth="63.0" text="عن شهر :  ">
@@ -77,12 +77,7 @@
          </font>
       </Label>
       <Separator layoutX="2.0" layoutY="638.0" prefHeight="8.0" prefWidth="1291.0" />
-      <Button layoutX="699.0" layoutY="646.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="184.0" styleClass="Main_menu" stylesheets="@css/style.css" text="القائمه الرئسيه " textFill="#0a6bfa">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button layoutX="478.0" layoutY="646.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="184.0" styleClass="Main_menu" stylesheets="@css/style.css" text="رجوع">
+      <Button fx:id="backBtn" layoutX="563.0" layoutY="646.0" mnemonicParsing="false" onMouseReleased="#showBackSearch" prefHeight="32.0" prefWidth="184.0" styleClass="Main_menu" stylesheets="@css/style.css" text="رجوع">
          <font>
             <Font size="15.0" />
          </font>

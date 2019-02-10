@@ -5,7 +5,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-import javafx.scene.layout.Pane;
 
 import javafx.scene.Cursor;
 import javafx.fxml.Initializable;
@@ -47,7 +46,7 @@ public class Ambulance_Model_Controller  implements Initializable{
 	 getAmbulance_Model_StageByBtn = (Stage) backBtn.getScene().getWindow();
 	 getAmbulance_Model_StageByBtn.close();
 	 try{
-	      searchAnch = FXMLLoader.load(getClass().getResource("Search.fxml"));
+	      searchAnch= FXMLLoader.load(getClass().getResource("Search.fxml"));
           getSearchStage.setScene(new Scene(searchAnch));
 	      getSearchStage.show();
 		}catch(IOException e){
