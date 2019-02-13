@@ -7,32 +7,92 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.Reflection;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 
+import java.sql.ResultSet;
+import java.sql.Connection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import java.sql.Date;
 import javafx.scene.Cursor;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.io.IOException;
+import java.sql.SQLException;
 //import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
+
 public class Input_data_Controller implements Initializable{
-
-
+	private Connection con_db = null;
+	
+//Variables
+    @FXML
+    private TableView<Table_View> viewtable;
+	@FXML
+    private TableColumn<Table_View,Integer> serialn_col;
+	@FXML
+    private TableColumn<Table_View,Integer> nbon_col;
+	@FXML
+    private TableColumn<Table_View,Date> dateexchane_col;
+	@FXML
+    private TableColumn<Table_View,String> typefuel_col;
+	@FXML
+    private TableColumn<Table_View,Integer> quantitybon_col;
+	@FXML
+    private TableColumn<Table_View,Integer> counter_col;
+	@FXML
+    private TableColumn<Table_View,Integer> distance_col;
+	@FXML
+    private TableColumn<Table_View,String> namedriver_col;
+	@FXML
+    private TableColumn<Table_View,Integer> nnote_col;
+	@FXML
+    private TableColumn<Table_View,String> nameresponsible_col;
+	@FXML
+    private TableColumn<Table_View,String> codemachine_col;
+	
+	ObservableList<Table_View> table_view_list = FXCollections.observableArrayList();
+	
 	
 //funcions 
     // this function used to initialize my variables
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-	}//end initialize variables
+	  
+	  con_db = new DB().getConnection_F_DB();
+	  try{ 
+		ResultSet rs =con_db.createStatement().executeQuery("SELECT * FROM General_db");
+		while(rs.next()){
+		table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getInt("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getInt("Quantitybon"),rs.getInt("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getInt("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
+		//System.out.println(rs.getInt("Serialn")+" "+rs.getDate("Dateexchange"));
+		}
+	  }catch(SQLException e){
+		e.printStackTrace();
+	  }
+      serialn_col.setCellValueFactory(new PropertyValueFactory<>("Serialn"));
+      nbon_col.setCellValueFactory(new PropertyValueFactory<>("Nbon"));
+     // dateexchane_col.setCellValueFactory(new PropertyValueFactory<>("Dateexchange"));
+      typefuel_col.setCellValueFactory(new PropertyValueFactory<>("Typefuel"));
+      quantitybon_col.setCellValueFactory(new PropertyValueFactory<>("Quantitybon"));
+      counter_col.setCellValueFactory(new PropertyValueFactory<>("Counter"));
+      distance_col.setCellValueFactory(new PropertyValueFactory<>("Distance"));
+      namedriver_col.setCellValueFactory(new PropertyValueFactory<>("Namedriver"));
+      nnote_col.setCellValueFactory(new PropertyValueFactory<>("Nnote"));
+      nameresponsible_col.setCellValueFactory(new PropertyValueFactory<>("Nameresponsible"));
+      codemachine_col.setCellValueFactory(new PropertyValueFactory<>("Codemachine"));
+	  viewtable.setItems(table_view_list);
+	  
+	  	}//end initialize variables
 	
 	
 	

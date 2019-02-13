@@ -1,0 +1,39 @@
+--class DB:
+              PreparedStatement class for setColumns
+              --> setConnection();
+              --> setData();
+              -->viewData(()
+              --> setVariables(); it possibe to make but it's there Constructor that's enough
+              --> getVariables();
+--class TableView:
+   Constructor --> (all variables)
+   getFunctions --> (all variables)
+   
+--input_data.fxml and class Input_data_Controller:
+   ViewTable its variable --> viewtable  
+   All their Names of Columns are--> small(var)_small(col)
+
+
+https://github.com/Abd-Elrazek/javafxexample
+https://github.com/Abd-Elrazek/tutorial-javafx-8
+=====================================
+/*
+			if (result != 0 ){
+			    System.out.println("Inserted successfully and the result equal = "+ result);	
+		    }
+            System.out.println("ID\tfname\t\tlname\tAge\tmyphone");
+            System.out.println("==\t========\t======\t===\t==========");
+
+            //processing returned data and printing into console
+			*/
+			
+			/*
+            while(resultSet.next()) {
+                System.out.println(resultSet.getInt(1) + "\t" + 
+                        resultSet.getString(2)    + "\t" + 
+                        resultSet.getString(3)    + "\t" +
+                        resultSet.getString(4)    + "\t" +
+			resultSet.getString(5)    + "\t" );
+			}*/
+=====================================
+ps = connection.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values("+Nbon+","+Dateexchange+",'"+Typefuel+"',"+Quantitybon+","+Counter+","+Distance+",'"+Namedriver+"',"+Nnote+",'"+Nameresponsible+"','"+Codemachine+"');");

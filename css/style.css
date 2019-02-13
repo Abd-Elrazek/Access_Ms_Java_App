@@ -25,3 +25,8 @@
 	 -fx-background-color:#CDCDCD;
 	 -fx-border-color: #1AA765;
 	}
+	
+  .Column_X{
+     -fx-alignment: CENTER_RIGHT;
+     -fx-text-fill: red;
+	}

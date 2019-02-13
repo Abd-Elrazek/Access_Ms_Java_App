@@ -41,7 +41,7 @@ public class DB {
 	}
 //Functions
 //setConnection func
-    public void setConnection(){
+    public Connection getConnection_F_DB(){
    //Step 1: Loading or registering Oracle JDBC driver class with ucanaccess
 	try {
 	  Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -65,6 +65,7 @@ public class DB {
 	}catch(SQLException e){
 	  e.printStackTrace();
 	}
+	return connection;
 	}
 	
 //func InsertDate and retrieve True if data is inserted False if data not inserted 

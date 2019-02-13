@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -17,20 +18,23 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="1291.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Input_data_Controller">
    <children>
-      <TableView layoutX="11.0" layoutY="77.0" prefHeight="216.0" prefWidth="1276.0">
+      <TableView fx:id="viewtable" layoutX="3.0" layoutY="79.0" prefHeight="216.0" prefWidth="1285.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
-            <TableColumn minWidth="0.0" prefWidth="86.00003051757812" text="كود ألألة" />
-            <TableColumn prefWidth="132.0" text="اسم المسؤول " />
-          <TableColumn prefWidth="164.0" text="رقم الدفتر" />
-          <TableColumn prefWidth="148.0" text="اسم السائق" />
-            <TableColumn prefWidth="104.0" text="المسافه المقطوعه" />
-            <TableColumn prefWidth="152.0" text="العداد" />
-            <TableColumn prefWidth="66.0" text="سعه البون" />
-            <TableColumn minWidth="0.0" prefWidth="102.0" text="نوع الوقود" />
-            <TableColumn prefWidth="133.0" text="تاريخ الصرف" />
-            <TableColumn minWidth="0.0" prefWidth="137.0" text="رقم البون" />
-            <TableColumn minWidth="0.0" prefWidth="60.0" text="م" />
+            <TableColumn fx:id="codemachine_col" minWidth="0.0" prefWidth="86.00003051757812" style="-fx-alignment: center-right;" styleClass="Column_X" text="كود ألألة" />
+            <TableColumn fx:id="nameresponsible_col" prefWidth="132.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم المسؤول " />
+            <TableColumn fx:id="nnote_col" prefWidth="164.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم الدفتر" />
+            <TableColumn fx:id="namedriver_col" prefWidth="148.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم السائق" />
+            <TableColumn fx:id="distance_col" prefWidth="104.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="المسافه المقطوعه" />
+            <TableColumn fx:id="counter_col" prefWidth="152.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="العداد" />
+            <TableColumn fx:id="quantitybon_col" prefWidth="66.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="سعه البون" />
+            <TableColumn fx:id="typefuel_col" minWidth="0.0" prefWidth="102.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="نوع الوقود" />
+            <TableColumn fx:id="dateexchange_col" prefWidth="133.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="تاريخ الصرف" />
+            <TableColumn fx:id="nbon_col" minWidth="0.0" prefWidth="137.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم البون" />
+            <TableColumn fx:id="serialn_col" minWidth="0.0" prefWidth="60.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="م" />
         </columns>
+         <effect>
+            <InnerShadow color="#63ffae" />
+         </effect>
       </TableView>
       <Separator layoutY="54.0" prefHeight="8.0" prefWidth="1291.0" />
       <Label alignment="CENTER_RIGHT" layoutX="562.0" layoutY="14.0" prefHeight="30.0" prefWidth="193.0" text="هيئه الاسعاف المصرية " textAlignment="CENTER">
