@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 
 import java.time.LocalDate;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import javafx.collections.FXCollections;
@@ -91,6 +92,7 @@ public class Input_data_Controller implements Initializable{
 	ObservableList<Table_View> table_view_list = FXCollections.observableArrayList();
 	
 	private DB db = new DB();
+	private PreparedStatement ps = null;
 	
 	
 //funcions 
@@ -103,7 +105,6 @@ public class Input_data_Controller implements Initializable{
 		ResultSet rs =con_db.createStatement().executeQuery("SELECT * FROM General_db");
 		while(rs.next()){
 		table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getInt("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getInt("Quantitybon"),rs.getInt("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getInt("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
-		//System.out.println(rs.getInt("Serialn")+" "+rs.getDate("Dateexchange"));
 		}
 		System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
 		
@@ -112,7 +113,6 @@ public class Input_data_Controller implements Initializable{
 	  }
       serialn_col.setCellValueFactory(new PropertyValueFactory<>("Serialn"));
       nbon_col.setCellValueFactory(new PropertyValueFactory<>("Nbon"));
-     // dateexchane_col.setCellValueFactory(new PropertyValueFactory<>("Dateexchange"));
       typefuel_col.setCellValueFactory(new PropertyValueFactory<>("Typefuel"));
       quantitybon_col.setCellValueFactory(new PropertyValueFactory<>("Quantitybon"));
       counter_col.setCellValueFactory(new PropertyValueFactory<>("Counter"));
@@ -129,24 +129,46 @@ public class Input_data_Controller implements Initializable{
 	//Save func
 	@FXML
 	public void saveData(){
-	  LocalDate date_ = dateexchange_datepicker.getValue();
-	  
-	 // db = new DB(Integer.valueOf(nbon_txt.getText()),date_,"”Ê·«—",Integer.valueOf(quantitybon_txt.getText()), Integer.valueOf(counter_txt.getText()), Integer.valueOf(counter_txt.getText()),namedriver_txt.getText(),Integer.valueOf(nnote_txt.getText()),nameresponsible_txt.getText(),codemachine_txt.getText());
-	  db.setNbon(33333);
-	  db.setDateexchange(date_);  
-	  db.setTypefuel("solar");
-	  db.setQuantitybon(333334);
-	  db.setCounter(343444);
-	  db.setDistance(34342);
-	  db.setNamedriver("ali");
-	  db.setNnote(334);
-	  db.setNameresponsible("mahmoud");
-	  db.setCodemachine("33k");
-	 
-	 System.err.println("Selected date: " + date_);
-	  System.out.println("date_ from db.getDateexchange --> " + db.getDateexchange());
-	  boolean db_db = db.insertData();
-	  System.out.println("db.insertData return --> " + db_db);  
+	 try{
+        //Step 2.B: Creating JDBC PreparedStatement class 
+		ps = db.getConnection_F_DB().prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
+		ps.setLong(1, Integer.valueOf(nbon_txt.getText()));
+		ps.setDate(2,new Date(119,5,2));
+		ps.setString(3, "”Ê·«—");
+		ps.setLong(4, Integer.valueOf(quantitybon_txt.getText()));
+		ps.setLong(5, Integer.valueOf(counter_txt.getText()));
+		ps.setLong(6, Integer.valueOf(quantitybon_txt.getText()));
+		ps.setString(7,namedriver_txt.getText());
+		ps.setLong(8, Integer.valueOf(nnote_txt.getText()));
+		ps.setString(9, nameresponsible_txt.getText());
+		ps.setString(10, codemachine_txt.getText());
+        // Step 2.C: Executing SQL 
+		int result = ps.executeUpdate();
+		if (result != 0){
+		  System.out.println("Data inserted correctly");
+		}
+	    }catch(SQLException sqlex){
+            sqlex.printStackTrace();
+        }
+        finally {
+
+            // Step 3: Closing database connection
+            try {
+                if(null != db.getConnection_F_DB()) {
+
+                    // cleanup resources, once after processing
+                    ps.close();
+                    System.out.println("Data inserted ...");
+                    // and then finally close connection
+                    db.getConnection_F_DB().close();
+                    System.out.println("Connection closed");
+                }
+            }catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+	
+	  //LocalDate date_ = dateexchange_datepicker.getValue();
 	}
 	@FXML
 	//Update func

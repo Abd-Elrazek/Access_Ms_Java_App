@@ -45,4 +45,9 @@ https://github.com/Abd-Elrazek/tutorial-javafx-8
 			resultSet.getString(5)    + "\t" );
 			}*/
 =====================================
+Hi ,
+* The Date stored in Access as a wrong date like "05/03/3900" when I Declared in Class DB as `ps.setDate(2,  new Date(2000, 02,05));`  the format of (Date/Time Type) is Short Date I defined it in   Access 2007, I know The` Date of java.sql.Date;` is Deprecated <strong> Why stored a wrong date </strong> ,   The Class DB when I compilled it separated  with ` static void main()` it's run correctly <strong> But </strong> record as a wrong
+* when I use LocalDate and DatePicker and passes values with set func and I used ps.setObject(2,)
+
+
 ps = connection.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values("+Nbon+","+Dateexchange+",'"+Typefuel+"',"+Quantitybon+","+Counter+","+Distance+",'"+Namedriver+"',"+Nnote+",'"+Nameresponsible+"','"+Codemachine+"');");
