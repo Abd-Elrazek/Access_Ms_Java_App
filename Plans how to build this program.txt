@@ -20,7 +20,9 @@
    ViewTable its variable --> viewtable  
    All their Names of Columns are--> small(var)_small(col)
 
-
+==== In github write that :
+                               ---what's you function you added to.
+                               ---this func is run okey.
 https://github.com/Abd-Elrazek/javafxexample
 https://github.com/Abd-Elrazek/tutorial-javafx-8
 =====================================

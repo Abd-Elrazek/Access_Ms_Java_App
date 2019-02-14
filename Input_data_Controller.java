@@ -97,7 +97,7 @@ public class Input_data_Controller implements Initializable{
     // this function used to initialize my variables
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-	  
+	  long t0 = System.nanoTime();
 	  con_db = db.getConnection_F_DB();
 	  try{ 
 		ResultSet rs =con_db.createStatement().executeQuery("SELECT * FROM General_db");
@@ -105,6 +105,8 @@ public class Input_data_Controller implements Initializable{
 		table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getInt("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getInt("Quantitybon"),rs.getInt("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getInt("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
 		//System.out.println(rs.getInt("Serialn")+" "+rs.getDate("Dateexchange"));
 		}
+		System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
+		
 	  }catch(SQLException e){
 		e.printStackTrace();
 	  }
@@ -121,6 +123,7 @@ public class Input_data_Controller implements Initializable{
       codemachine_col.setCellValueFactory(new PropertyValueFactory<>("Codemachine"));
 	  
 	  viewtable.setItems(table_view_list);
+	  
 	}//end initialize variables
 	
 	//Save func

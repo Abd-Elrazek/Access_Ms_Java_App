@@ -2,8 +2,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-// import java.sql.Date;
-import java.util.Date;
+import java.sql.Date;
+// import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Properties;
 
@@ -14,6 +15,7 @@ public class DB {
 //Variables of Inputs
 	private long Nbon = 2;
 	private LocalDate Dateexchange = null;
+	private Date date__;
 	private String Typefuel = "dffdff";
 	private long Quantitybon =3;
 	private long Counter     = 4;
@@ -22,11 +24,13 @@ public class DB {
 	private long Nnote  = 6;
 	private String Nameresponsible = "daaaaa";
 	private String Codemachine = "dfdf33434";
+
+    
 	
 //Constructor
 	public DB (){
 	//variables of classes handle with database 
-
+        date__ = new Date(2019, 2, 10);
 	}
 	//we can use either Constructor or set function for insert dat in this class 
     // public DB(long Nbon,Date Dateexchange,String Typefuel, long Quantitybon,long Counter,long Distance, String Namedriver,long Nnote, String Nameresponsible,String Codemachine)
@@ -77,7 +81,7 @@ public class DB {
         //Step 2.B: Creating JDBC PreparedStatement class 
 		ps = connection.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
 		ps.setLong(1, Nbon);
-		ps.setObject(2, new Date().valueOf(Dateexchange));
+		ps.setDate(2, new Date(2000, 02,05));
 		ps.setString(3, Typefuel);
 		ps.setLong(4, Quantitybon);
 		ps.setLong(5, Counter);
@@ -179,5 +183,12 @@ public class DB {
 	 return Codemachine;	
 	}
 	//End funcs Get 
+	
+	// public static void main(String args []){
+	   // DB db = new DB();
+	   // if (db.getConnection_F_DB() != null && db.insertData()){
+		 
+		// }	
+	// }
 	
 }
