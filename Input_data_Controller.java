@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 
+import java.time.LocalDate;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import javafx.collections.FXCollections;
@@ -60,8 +61,36 @@ public class Input_data_Controller implements Initializable{
     private TableColumn<Table_View,String> nameresponsible_col;
 	@FXML
     private TableColumn<Table_View,String> codemachine_col;
+	//TextField vars
+	@FXML
+	private TextField nbon_txt;
+	@FXML
+	private TextField quantitybon_txt;
+	@FXML
+	private TextField counter_txt;
+	@FXML
+	private TextField namedriver_txt;
+	@FXML
+	private TextField nnote_txt;
+	@FXML
+	private TextField nameresponsible_txt;
+	@FXML
+	private TextField codemachine_txt;
+	//DatePicker var
+	@FXML
+	private DatePicker dateexchange_datepicker;
+	//Radio Button vars
+	@FXML
+	private RadioButton gas_radiobtn;
+	@FXML
+	private RadioButton solar_radiobtn;
+	//ChoiceBox var
+	@FXML
+    private ChoiceBox codemachine_choicebox;
 	
 	ObservableList<Table_View> table_view_list = FXCollections.observableArrayList();
+	
+	private DB db = new DB();
 	
 	
 //funcions 
@@ -69,7 +98,7 @@ public class Input_data_Controller implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 	  
-	  con_db = new DB().getConnection_F_DB();
+	  con_db = db.getConnection_F_DB();
 	  try{ 
 		ResultSet rs =con_db.createStatement().executeQuery("SELECT * FROM General_db");
 		while(rs.next()){
@@ -90,10 +119,41 @@ public class Input_data_Controller implements Initializable{
       nnote_col.setCellValueFactory(new PropertyValueFactory<>("Nnote"));
       nameresponsible_col.setCellValueFactory(new PropertyValueFactory<>("Nameresponsible"));
       codemachine_col.setCellValueFactory(new PropertyValueFactory<>("Codemachine"));
-	  viewtable.setItems(table_view_list);
 	  
-	  	}//end initialize variables
+	  viewtable.setItems(table_view_list);
+	}//end initialize variables
 	
-	
+	//Save func
+	@FXML
+	public void saveData(){
+	  LocalDate date_ = dateexchange_datepicker.getValue();
+	  
+	 // db = new DB(Integer.valueOf(nbon_txt.getText()),date_,"ÓæáÇÑ",Integer.valueOf(quantitybon_txt.getText()), Integer.valueOf(counter_txt.getText()), Integer.valueOf(counter_txt.getText()),namedriver_txt.getText(),Integer.valueOf(nnote_txt.getText()),nameresponsible_txt.getText(),codemachine_txt.getText());
+	  db.setNbon(33333);
+	  db.setDateexchange(date_);  
+	  db.setTypefuel("solar");
+	  db.setQuantitybon(333334);
+	  db.setCounter(343444);
+	  db.setDistance(34342);
+	  db.setNamedriver("ali");
+	  db.setNnote(334);
+	  db.setNameresponsible("mahmoud");
+	  db.setCodemachine("33k");
+	 
+	 System.err.println("Selected date: " + date_);
+	  System.out.println("date_ from db.getDateexchange --> " + db.getDateexchange());
+	  boolean db_db = db.insertData();
+	  System.out.println("db.insertData return --> " + db_db);  
+	}
+	@FXML
+	//Update func
+	public void updateData(){
+		
+	}
+	@FXML
+	//Delete func
+	public void deleteData(){
+		
+	}
 	
 }

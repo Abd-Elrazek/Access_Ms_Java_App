@@ -2,7 +2,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Date;
+// import java.sql.Date;
+import java.util.Date;
+import java.time.LocalDate;
 import java.util.Properties;
 
 public class DB {
@@ -10,35 +12,36 @@ public class DB {
 	private Connection connection = null;
 	private PreparedStatement ps = null;
 //Variables of Inputs
-	private long Nbon = 0;
-	private Date Dateexchange = null;
-	private String Typefuel = "";
-	private long Quantitybon = 0;
-	private long Counter     = 0;
-	private long Distance = 0;
-	private String Namedriver = "";
-	private long Nnote  = 0;
-	private String Nameresponsible = "";
-	private String Codemachine = "";
+	private long Nbon = 2;
+	private LocalDate Dateexchange = null;
+	private String Typefuel = "dffdff";
+	private long Quantitybon =3;
+	private long Counter     = 4;
+	private long Distance = 5;
+	private String Namedriver = "dfdf";
+	private long Nnote  = 6;
+	private String Nameresponsible = "daaaaa";
+	private String Codemachine = "dfdf33434";
 	
 //Constructor
 	public DB (){
 	//variables of classes handle with database 
-	Dateexchange = new Date(2019, 2, 10);
+
 	}
-    public DB(long Nbon,Date Dateexchange,String Typefuel, long Quantitybon,long Counter,long Distance, String Namedriver,long Nnote, String Nameresponsible,String Codemachine)
-    {
-	 this.Nbon = Nbon;
-	 this.Dateexchange = Dateexchange;
-	 this.Typefuel = Typefuel;
-	 this.Quantitybon = Quantitybon;
-	 this.Counter = Counter;
-	 this.Distance = Distance;
-	 this.Namedriver = Namedriver;
-	 this.Nnote = Nnote;
-	 this.Nameresponsible = Nameresponsible;
-	 this.Codemachine = Codemachine;
-	}
+	//we can use either Constructor or set function for insert dat in this class 
+    // public DB(long Nbon,Date Dateexchange,String Typefuel, long Quantitybon,long Counter,long Distance, String Namedriver,long Nnote, String Nameresponsible,String Codemachine)
+    // {
+	 // this.Nbon = Nbon;
+	 // this.Dateexchange = Dateexchange;
+	 // this.Typefuel = Typefuel;
+	 // this.Quantitybon = Quantitybon;
+	 // this.Counter = Counter;
+	 // this.Distance = Distance;
+	 // this.Namedriver = Namedriver;
+	 // this.Nnote = Nnote;
+	 // this.Nameresponsible = Nameresponsible;
+	 // this.Codemachine = Codemachine;
+	// }
 //Functions
 //setConnection func
     public Connection getConnection_F_DB(){
@@ -74,7 +77,7 @@ public class DB {
         //Step 2.B: Creating JDBC PreparedStatement class 
 		ps = connection.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
 		ps.setLong(1, Nbon);
-		ps.setDate(2, Dateexchange);
+		ps.setObject(2, new Date().valueOf(Dateexchange));
 		ps.setString(3, Typefuel);
 		ps.setLong(4, Quantitybon);
 		ps.setLong(5, Counter);
@@ -111,11 +114,44 @@ public class DB {
 		return false;
 	}
 	
+	 //funcs of set Vars
+	public void setNbon(long nb){
+	 this.Nbon = nb;
+	}
+	public void setDateexchange(LocalDate da){
+	 this.Dateexchange =da;	
+	}
+	public void setTypefuel(String ty){
+	 this.Typefuel = ty;	
+	}
+	public void setQuantitybon(long qu){
+	 this.Quantitybon =  qu;	
+	}
+	public void setCounter(long co){
+	 this.Counter = co;
+	}
+	public void setDistance(long co){
+	 this.Distance = co;
+	}
+	public void setNamedriver(String na){
+	 this.Namedriver = na;
+	}
+	public void setNnote(long nn){
+	 this.Nnote = nn;
+	}
+	public void setNameresponsible(String naa){
+	 this.Nameresponsible = naa;	
+	}
+	public void setCodemachine(String co){
+	 this.Codemachine = co;	
+	}
+	//End funcs Set  
+	
     //funcs of get Vars
 	public long getNbon(){
 	 return Nbon;
 	}
-	public Date getDateexchange(){
+	public LocalDate getDateexchange(){
 	 return Dateexchange;	
 	}
 	public String getTypefuel(){
@@ -142,6 +178,6 @@ public class DB {
 	public String getCodemachine(){
 	 return Codemachine;	
 	}
-	//End funcs Set and Get 
+	//End funcs Get 
 	
 }

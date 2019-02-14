@@ -8,6 +8,13 @@
 --class TableView:
    Constructor --> (all variables)
    getFunctions --> (all variables)
+--Class Input_data_Controller:
+      --for buttons we name them with -> name_txt,naeme_btn,dateexchange_datepicker,
+                                                  -> gas_radiobtn,solar_radiobtn,codemachine_choicebox
+      --functions: 
+                     --> saveData();
+                     --> updateData();
+                     --> deleteData();
    
 --input_data.fxml and class Input_data_Controller:
    ViewTable its variable --> viewtable  
