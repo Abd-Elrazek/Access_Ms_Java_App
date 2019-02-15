@@ -36,6 +36,7 @@ import javafx.fxml.FXMLLoader;
 
 public class Input_data_Controller implements Initializable{
 	private Connection con_db = null;
+	private Connection con_db_savedata = null;
 	
 //Variables
     @FXML
@@ -96,10 +97,9 @@ public class Input_data_Controller implements Initializable{
 	Date date_ob = null;
 	LocalDate date_ = null;
 	private DB db = new DB();
-	
 	private PreparedStatement ps = null;
 	
-	
+//Constructor
 //funcions 
     // this function used to initialize my variables
     @Override
@@ -135,16 +135,14 @@ public class Input_data_Controller implements Initializable{
 	//Save func
 	@FXML
 	public void saveData(){
+	 con_db_savedata = db.getConnection_F_DB();
 	 date_ = dateexchange_datepicker.getValue();
-	 System.out.println("year "+ date_.getYear());
-	 System.out.println("Month "+ date_.getMonthValue());
-	 System.out.println("day "+ date_.getDayOfMonth());
 	 date_ob = new Date((date_.getYear()-1900), date_.getMonthValue()-1,date_.getDayOfMonth());
 	 try{
         //Step 2.B: Creating JDBC PreparedStatement class 
-		ps = con_db.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
+		ps = con_db_savedata.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
 		ps.setLong(1, Integer.valueOf(nbon_txt.getText()));
-		ps.setDate(2,date_ob);
+		ps.setDate(2,Date.valueOf(date_));
 		ps.setString(3, store_radio_val);
 		ps.setLong(4, Integer.valueOf(quantitybon_txt.getText()));
 		ps.setLong(5, Integer.valueOf(counter_txt.getText()));
@@ -155,9 +153,6 @@ public class Input_data_Controller implements Initializable{
 		ps.setString(10, codemachine_txt.getText());
         // Step 2.C: Executing SQL 
 		int result = ps.executeUpdate();
-		if (result != 0){
-		  System.out.println("Data inserted correctly");
-		}
 	    }catch(SQLException sqlex){
             sqlex.printStackTrace();
         }
@@ -165,14 +160,12 @@ public class Input_data_Controller implements Initializable{
 
             // Step 3: Closing database connection
             try {
-                if(null != db.getConnection_F_DB()) {
+                if(null != con_db_savedata) {
 
                     // cleanup resources, once after processing
                     ps.close();
-                    System.out.println("Data inserted ...");
                     // and then finally close connection
-                    db.getConnection_F_DB().close();
-                    System.out.println("Connection closed");
+                    con_db_savedata.close();
                 }
             }catch (SQLException sqlex) {
                 sqlex.printStackTrace();
