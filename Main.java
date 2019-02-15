@@ -25,7 +25,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-	 DB db = new DB();
      //GUI Run 
 	 java.awt.EventQueue.invokeLater(() -> {
 		 launch(args);

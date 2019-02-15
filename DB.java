@@ -38,7 +38,6 @@ public class DB {
 	  this.Nameresponsible =  "";
 	  this.Codemachine = "";
 	  this.connection = null;
-	  this.ps = null;
 	}
 
 //Functions

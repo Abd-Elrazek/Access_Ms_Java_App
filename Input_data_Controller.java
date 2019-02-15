@@ -107,7 +107,6 @@ public class Input_data_Controller implements Initializable{
 		table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getInt("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getInt("Quantitybon"),rs.getInt("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getInt("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
 		}
 		System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
-		
 	  }catch(SQLException e){
 		e.printStackTrace();
 	  }
@@ -121,19 +120,18 @@ public class Input_data_Controller implements Initializable{
       nnote_col.setCellValueFactory(new PropertyValueFactory<>("Nnote"));
       nameresponsible_col.setCellValueFactory(new PropertyValueFactory<>("Nameresponsible"));
       codemachine_col.setCellValueFactory(new PropertyValueFactory<>("Codemachine"));
-	  
 	  viewtable.setItems(table_view_list);
-	  
 	}//end initialize variables
 	
 	//Save func
 	@FXML
 	public void saveData(){
+	 LocalDate date_ = dateexchange_datepicker.getValue();
 	 try{
         //Step 2.B: Creating JDBC PreparedStatement class 
 		ps = db.getConnection_F_DB().prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
 		ps.setLong(1, Integer.valueOf(nbon_txt.getText()));
-		ps.setDate(2,new Date(119,5,2));
+		ps.setDate(2, new Date(119,5,3));
 		ps.setString(3, "”Ê·«—");
 		ps.setLong(4, Integer.valueOf(quantitybon_txt.getText()));
 		ps.setLong(5, Integer.valueOf(counter_txt.getText()));
@@ -167,8 +165,6 @@ public class Input_data_Controller implements Initializable{
                 sqlex.printStackTrace();
             }
         }
-	
-	  //LocalDate date_ = dateexchange_datepicker.getValue();
 	}
 	@FXML
 	//Update func
