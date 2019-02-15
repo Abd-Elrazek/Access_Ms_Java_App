@@ -13,7 +13,7 @@ import javafx.scene.effect.Reflection;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-
+import javafx.scene.control.ToggleGroup;
 import java.time.LocalDate;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -85,13 +85,18 @@ public class Input_data_Controller implements Initializable{
 	private RadioButton gas_radiobtn;
 	@FXML
 	private RadioButton solar_radiobtn;
+	private ToggleGroup group = new ToggleGroup();
+	private String store_radio_val = "initialize";
+	
 	//ChoiceBox var
 	@FXML
     private ChoiceBox codemachine_choicebox;
 	
 	ObservableList<Table_View> table_view_list = FXCollections.observableArrayList();
-	
+	Date date_ob = null;
+	LocalDate date_ = null;
 	private DB db = new DB();
+	
 	private PreparedStatement ps = null;
 	
 	
@@ -121,18 +126,26 @@ public class Input_data_Controller implements Initializable{
       nameresponsible_col.setCellValueFactory(new PropertyValueFactory<>("Nameresponsible"));
       codemachine_col.setCellValueFactory(new PropertyValueFactory<>("Codemachine"));
 	  viewtable.setItems(table_view_list);
+	  
+	  //initialize of store_radio_val by Banzeeen
+	  gas_radiobtn.setSelected(true);
+	  store_radio_val = "»‰“Ì‰";
 	}//end initialize variables
 	
 	//Save func
 	@FXML
 	public void saveData(){
-	 LocalDate date_ = dateexchange_datepicker.getValue();
+	 date_ = dateexchange_datepicker.getValue();
+	 System.out.println("year "+ date_.getYear());
+	 System.out.println("Month "+ date_.getMonthValue());
+	 System.out.println("day "+ date_.getDayOfMonth());
+	 date_ob = new Date((date_.getYear()-1900), date_.getMonthValue()-1,date_.getDayOfMonth());
 	 try{
         //Step 2.B: Creating JDBC PreparedStatement class 
-		ps = db.getConnection_F_DB().prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
+		ps = con_db.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
 		ps.setLong(1, Integer.valueOf(nbon_txt.getText()));
-		ps.setDate(2, new Date(119,5,3));
-		ps.setString(3, "”Ê·«—");
+		ps.setDate(2,date_ob);
+		ps.setString(3, store_radio_val);
 		ps.setLong(4, Integer.valueOf(quantitybon_txt.getText()));
 		ps.setLong(5, Integer.valueOf(counter_txt.getText()));
 		ps.setLong(6, Integer.valueOf(quantitybon_txt.getText()));
