@@ -2,5 +2,5 @@ ucanaccess-4.0.1.jar    > lib.jar
   /lib/
     commons-lang-2.6.jar        > libfour.jar
     commons-logging-1.1.1.jar  > libone.jar
-    hsqldb.jar                        > libtwo.jar
+    hsqldb.jar 2.3.1                        > libtwo.jar
     jackcess-2.1.6.jar               > libthree.jar

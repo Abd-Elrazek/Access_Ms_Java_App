@@ -30,7 +30,7 @@
             <TableColumn fx:id="typefuel_col" minWidth="0.0" prefWidth="102.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="نوع الوقود" />
             <TableColumn fx:id="dateexchange_col" prefWidth="133.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="تاريخ الصرف" />
             <TableColumn fx:id="nbon_col" minWidth="0.0" prefWidth="137.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم البون" />
-            <TableColumn fx:id="serialn_col" minWidth="0.0" prefWidth="65.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="م" />
+            <TableColumn fx:id="serialn_col" minWidth="0.0" prefWidth="65.0" style="-fx-alignment: center;" styleClass="Column_X" text="م" />
         </columns>
          <effect>
             <InnerShadow color="#63ffae" />

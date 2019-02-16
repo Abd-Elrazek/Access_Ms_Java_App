@@ -1,24 +1,26 @@
 --class DB:
-              PreparedStatement class for setColumns
-              --> setConnection();
-              --> setData();
-              -->viewData(()
-              --> setVariables(); it possibe to make but it's there Constructor that's enough
-              --> getVariables();
+  --> setConnection();
+  --> setVariables(); it possibe to make but it's there Constructor that's enough
+  --> getVariables();
+  
 --class TableView:
-   Constructor --> (all variables)
-   getFunctions --> (all variables)
+	Constructor --> (all variables)
+	getFunctions --> (all variables)
 --Class Input_data_Controller:
-      --for buttons we name them with -> name_txt,naeme_btn,dateexchange_datepicker,
-                                                  -> gas_radiobtn,solar_radiobtn,codemachine_choicebox
-      --functions: 
-                     --> saveData();
-                     --> updateData();
-                     --> deleteData();
-   
+      --for Variables fx:id we name them with
+	    -> [name_txt],[name_btn],dateexchange_datepicker,
+        -> gas_radiobtn,solar_radiobtn,codemachine_choicebox
+      --Functions: 
+	     --> saveData();
+	     --> updateData();
+	     --> deleteData();
+ -- Every func initialize and func saveDat() has connection specialized with every function; 
+		 
 --input_data.fxml and class Input_data_Controller:
    ViewTable its variable --> viewtable  
    All their Names of Columns are--> small(var)_small(col)
+
+
 
 ==== In github write that :
                                ---what's you function you added to.
@@ -26,28 +28,7 @@
 https://github.com/Abd-Elrazek/javafxexample
 https://github.com/Abd-Elrazek/tutorial-javafx-8
 =====================================
-/*
-			if (result != 0 ){
-			    System.out.println("Inserted successfully and the result equal = "+ result);	
-		    }
-            System.out.println("ID\tfname\t\tlname\tAge\tmyphone");
-            System.out.println("==\t========\t======\t===\t==========");
-
-            //processing returned data and printing into console
-			*/
-			
-			/*
-            while(resultSet.next()) {
-                System.out.println(resultSet.getInt(1) + "\t" + 
-                        resultSet.getString(2)    + "\t" + 
-                        resultSet.getString(3)    + "\t" +
-                        resultSet.getString(4)    + "\t" +
-			resultSet.getString(5)    + "\t" );
-			}*/
+    gas_radiobtn.setToggleGroup(group);
+    gas_radiobtn.setSelected(true);
+    solar_radiobtn.setToggleGroup(group);
 =====================================
-Hi ,
-* The Date stored in Access as a wrong date like "05/03/3900" when I Declared in Class DB as `ps.setDate(2,  new Date(2000, 02,05));`  the format of (Date/Time Type) is Short Date I defined it in   Access 2007, I know The` Date of java.sql.Date;` is Deprecated <strong> Why stored a wrong date </strong> ,   The Class DB when I compilled it separated  with ` static void main()` it's run correctly <strong> But </strong> record as a wrong
-* when I use LocalDate and DatePicker and passes values with set func and I used ps.setObject(2,)
-
-
-ps = connection.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values("+Nbon+","+Dateexchange+",'"+Typefuel+"',"+Quantitybon+","+Counter+","+Distance+",'"+Namedriver+"',"+Nnote+",'"+Nameresponsible+"','"+Codemachine+"');");
