@@ -20,17 +20,17 @@
    <children>
       <TableView fx:id="viewtable" layoutX="3.0" layoutY="79.0" prefHeight="216.0" prefWidth="1285.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <columns>
-            <TableColumn fx:id="codemachine_col" minWidth="0.0" prefWidth="86.00003051757812" style="-fx-alignment: center-right;" styleClass="Column_X" text="كود ألألة" />
-            <TableColumn fx:id="nameresponsible_col" prefWidth="132.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم المسؤول " />
-            <TableColumn fx:id="nnote_col" prefWidth="164.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم الدفتر" />
-            <TableColumn fx:id="namedriver_col" prefWidth="148.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم السائق" />
-            <TableColumn fx:id="distance_col" prefWidth="104.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="المسافه المقطوعه" />
-            <TableColumn fx:id="counter_col" prefWidth="152.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="العداد" />
-            <TableColumn fx:id="quantitybon_col" prefWidth="66.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="سعه البون" />
-            <TableColumn fx:id="typefuel_col" minWidth="0.0" prefWidth="102.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="نوع الوقود" />
-            <TableColumn fx:id="dateexchange_col" prefWidth="133.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="تاريخ الصرف" />
-            <TableColumn fx:id="nbon_col" minWidth="0.0" prefWidth="137.0" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم البون" />
-            <TableColumn fx:id="serialn_col" minWidth="0.0" prefWidth="65.0" style="-fx-alignment: center;" styleClass="Column_X" text="م" />
+            <TableColumn fx:id="codemachine_col" minWidth="0.0" prefWidth="86.00003051757812" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="كود ألألة" />
+            <TableColumn fx:id="nameresponsible_col" prefWidth="132.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم المسؤول " />
+            <TableColumn fx:id="nnote_col" prefWidth="164.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم الدفتر" />
+            <TableColumn fx:id="namedriver_col" prefWidth="148.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم السائق" />
+            <TableColumn fx:id="distance_col" prefWidth="104.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="المسافه المقطوعه" />
+            <TableColumn fx:id="counter_col" prefWidth="152.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="العداد" />
+            <TableColumn fx:id="quantitybon_col" prefWidth="66.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="سعه البون" />
+            <TableColumn fx:id="typefuel_col" minWidth="0.0" prefWidth="102.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="نوع الوقود" />
+            <TableColumn fx:id="dateexchange_col" prefWidth="133.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="تاريخ الصرف" />
+            <TableColumn fx:id="nbon_col" minWidth="0.0" prefWidth="137.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم البون" />
+            <TableColumn fx:id="serialn_col" minWidth="0.0" prefWidth="65.0" resizable="false" style="-fx-alignment: center;" styleClass="Column_X" text="م" />
         </columns>
          <effect>
             <InnerShadow color="#63ffae" />

@@ -46,7 +46,7 @@ public class Input_data_Controller implements Initializable{
 	@FXML
     private TableColumn<Table_View,Integer> nbon_col;
 	@FXML
-    private TableColumn<Table_View,Date> dateexchane_col;
+    private TableColumn<Table_View,Date> dateexchange_col;
 	@FXML
     private TableColumn<Table_View,String> typefuel_col;
 	@FXML
@@ -117,6 +117,7 @@ public class Input_data_Controller implements Initializable{
 	  }
       serialn_col.setCellValueFactory(new PropertyValueFactory<>("Serialn"));
       nbon_col.setCellValueFactory(new PropertyValueFactory<>("Nbon"));
+	  dateexchange_col.setCellValueFactory(new PropertyValueFactory<>("Dateexchange"));
       typefuel_col.setCellValueFactory(new PropertyValueFactory<>("Typefuel"));
       quantitybon_col.setCellValueFactory(new PropertyValueFactory<>("Quantitybon"));
       counter_col.setCellValueFactory(new PropertyValueFactory<>("Counter"));
