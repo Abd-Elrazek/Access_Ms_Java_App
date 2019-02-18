@@ -8,12 +8,28 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Tooltip;
+import javafx.util.Duration;
+import javafx.beans.property.ObjectProperty;
+
+
+
+
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.scene.control.SelectionModel;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
+
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.Reflection;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.control.ToggleGroup;
+
+
 import java.time.LocalDate;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,6 +44,7 @@ import java.util.ResourceBundle;
 import java.io.IOException;
 import java.sql.SQLException;
 //import javafx.scene.Parent;
+
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
@@ -76,8 +93,6 @@ public class Input_data_Controller implements Initializable{
 	private TextField nnote_txt;
 	@FXML
 	private TextField nameresponsible_txt;
-	@FXML
-	private TextField codemachine_txt;
 	//DatePicker var
 	@FXML
 	private DatePicker dateexchange_datepicker;
@@ -86,25 +101,69 @@ public class Input_data_Controller implements Initializable{
 	private RadioButton gas_radiobtn;
 	@FXML
 	private RadioButton solar_radiobtn;
-	private ToggleGroup group = new ToggleGroup();
 	private String store_radio_val = "initialize";
 	
-	//ChoiceBox var
+	//Codemachine vars
+	@FXML
+	private TextField codemachine_txt;
 	@FXML
     private ChoiceBox codemachine_choicebox;
+	//number and number's code of  machine
+	private String codemachine_val = "initialize";
+	//name of machine 
+	private String nmachine = "";
+	//number's machine
+	//private String n_machine = "";
 	
-	ObservableList<Table_View> table_view_list = FXCollections.observableArrayList();
-	Date date_ob = null;
+	ObservableList<Table_View> table_view_list ;
+	//Date date_ob = null;
 	LocalDate date_ = null;
 	private DB db = new DB();
 	private PreparedStatement ps = null;
 	
 //Constructor
+public Input_data_Controller(){
+  
+	
+}
 //funcions 
     // this function used to initialize my variables
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+	  table_view_list = FXCollections.observableArrayList();
+	  
+	  //initialize of store_radio_val by Banzeeen
+	  gas_radiobtn.setSelected(true);
+	  solar_radiobtn.setSelected(false);
+	  store_radio_val = "»‰“Ì‰";
+	  
+	  // initialize of codemachine_val
+	  Tooltip tip = new Tooltip(" «Œ — «”„ «·√·… ");
+	  tip.setFont(new Font(14));
+	  //codemachine_choicebox.setValue("choose name of machine");
+	  codemachine_choicebox.setTooltip(tip); 
+	  final SelectionModel<String> sm = codemachine_choicebox.getSelectionModel();
+        sm.selectedItemProperty().addListener(new InvalidationListener() {
+            @Override public void invalidated(Observable o) {
+			    int index = sm.getSelectedIndex();
+				String cmachine_ = sm.getSelectedItem();
+               if (index == 0){
+					System.out.println("item -> " + index);
+			        nmachine =cmachine_ ;
+				}else if (index == 1){
+				    System.out.println("item -> " + index);
+				    nmachine = cmachine_;
+				}else{
+				    System.out.println("item -> " + index);
+				    nmachine = cmachine_;
+				}
+            }
+        });
+	  
+	  //getTimeCurrent with nanoTime
 	  long t0 = System.nanoTime();
+	  
+	  //get connection of this.DB
 	  con_db = db.getConnection_F_DB();
 	  try{ 
 		ResultSet rs =con_db.createStatement().executeQuery("SELECT * FROM General_db");
@@ -115,6 +174,7 @@ public class Input_data_Controller implements Initializable{
 	  }catch(SQLException e){
 		e.printStackTrace();
 	  }
+	  
       serialn_col.setCellValueFactory(new PropertyValueFactory<>("Serialn"));
       nbon_col.setCellValueFactory(new PropertyValueFactory<>("Nbon"));
 	  dateexchange_col.setCellValueFactory(new PropertyValueFactory<>("Dateexchange"));
@@ -127,10 +187,6 @@ public class Input_data_Controller implements Initializable{
       nameresponsible_col.setCellValueFactory(new PropertyValueFactory<>("Nameresponsible"));
       codemachine_col.setCellValueFactory(new PropertyValueFactory<>("Codemachine"));
 	  viewtable.setItems(table_view_list);
-	  
-	  //initialize of store_radio_val by Banzeeen
-	  gas_radiobtn.setSelected(true);
-	  store_radio_val = "»‰“Ì‰";
 	}//end initialize variables
 	
 	//Save func
@@ -138,30 +194,87 @@ public class Input_data_Controller implements Initializable{
 	public void saveData(){
 	 con_db_savedata = db.getConnection_F_DB();
 	 date_ = dateexchange_datepicker.getValue();
-	 date_ob = new Date((date_.getYear()-1900), date_.getMonthValue()-1,date_.getDayOfMonth());
+	 // date_ob= new Date((date_.getYear()-1900), date_.getMonthValue()-1,date_.getDayOfMonth());
+	 
+	 //Validation of inputs vars
+		String nbon_txt_ = nbon_txt.getText();
+		String quantitybon_txt_ = quantitybon_txt.getText();
+		String counter_txt_ = counter_txt.getText();
+		String namedriver_txt_= namedriver_txt.getText();
+		String nnote_txt_= nnote_txt.getText();
+		String nameresponsible_txt_= nameresponsible_txt.getText();
+		String codemachine_txt_= codemachine_txt.getText();
+		int y = 0;
+	    String formErrors[] = new String[6];
+		System.out.println(formErrors.length);
+		while (true){
+			if (!nbon_txt_.matches("[0-9]+")){
+			 formErrors[y] = " «·—Ã«¡ «œŒ«· —ﬁ„ «·»Ê‰";
+			}
+			
+			if (quantitybon_txt_.matches("[0-9]+")){
+				if (Integer.valueOf(quantitybon_txt_) > 254 || Integer.valueOf(quantitybon_txt_) < 0){
+				if (y == 0){
+				y = 0;
+				}else{
+				y = y + 1;
+				}
+				formErrors[y] = "«œŒ· «—ﬁ«„ ›ﬁÿ Ê«·«—ﬁ«„ „‰ 1 «·Ï 254";	
+				}
+			}else{
+			y = y +1;
+			formErrors[y] = "«œŒ· «—ﬁ«„ ›ﬁÿ Ê«·«—ﬁ«„ „‰ 1 «·Ï 254";
+			}
+			
+			if (!counter_txt_.matches("[0-9]+")){
+			 y = y +1;
+			 formErrors[y] = "«œŒ· —ﬁ„ «·⁄œ«œ «—ﬁ«„ ›ﬁÿ";
+			}
+			
+			if (!nnote_txt_.matches("[0-9]+")){
+			 y = y +1;
+			 formErrors[y] = " «œŒ· —ﬁ„ «·œ› — —ﬁ„ ›ﬁÿ ";
+			}
+			
+			if (!codemachine_txt_.matches("[0-9]+")){
+			 y = y +1;
+			 formErrors[y] = "«œŒ· ﬂÊœ «·√·… «—ﬁ«„ ›ﬁÿ";
+			}
+			break;
+		} 
+		//Concatenation every of name of machine and its number of code 
+		codemachine_val = nmachine +" "+codemachine_txt_.getText()+"ﬂ";
+	 
 	 try{
-        //Step 2.B: Creating JDBC PreparedStatement class 
-		ps = con_db_savedata.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
-		ps.setLong(1, Integer.valueOf(nbon_txt.getText()));
-		ps.setDate(2,Date.valueOf(date_));
-		ps.setString(3, store_radio_val);
-		ps.setLong(4, Integer.valueOf(quantitybon_txt.getText()));
-		ps.setLong(5, Integer.valueOf(counter_txt.getText()));
-		ps.setLong(6, Integer.valueOf(quantitybon_txt.getText()));
-		ps.setString(7,namedriver_txt.getText());
-		ps.setLong(8, Integer.valueOf(nnote_txt.getText()));
-		ps.setString(9, nameresponsible_txt.getText());
-		ps.setString(10, codemachine_txt.getText());
-        // Step 2.C: Executing SQL 
-		int result = ps.executeUpdate();
+	    if (formErrors[0] == null && formErrors[1] == null && formErrors[2] == null && formErrors[3] == null && formErrors[4] == null && formErrors[5] == null){
+			//Creating JDBC PreparedStatement class 
+			ps = con_db_savedata.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
+			ps.setLong(1, Integer.valueOf(nbon_txt_));
+			ps.setDate(2,Date.valueOf(date_));
+			ps.setString(3, store_radio_val);
+			ps.setLong(4, Integer.valueOf(quantitybon_txt_));
+			ps.setLong(5, Integer.valueOf(counter_txt_));
+			ps.setLong(6, Integer.valueOf(counter_txt_)); // this for distance calculator instead of counter_txt_
+			ps.setString(7,namedriver_txt_);
+			ps.setLong(8, Integer.valueOf(nnote_txt_));
+			ps.setString(9, nameresponsible_txt_);
+			ps.setString(10, codemachine_val);//codemachine_txt.getText());
+			//Executing SQL 
+			int result = ps.executeUpdate();
+			}else{
+				for (int i = 0; i < formErrors.length; i++){
+					System.out.println(formErrors[i]);	
+					if (formErrors[i] == null){break;}
+				}
+		    }
 	    }catch(SQLException sqlex){
             sqlex.printStackTrace();
         }
         finally {
 
-            // Step 3: Closing database connection
+            //Closing database connection
             try {
-                if(null != con_db_savedata) {
+                if( con_db_savedata != null && formErrors[0] == null && formErrors[1] == null && formErrors[2] == null && formErrors[3] == null && formErrors[4] == null && formErrors[5] == null) {
 
                     // cleanup resources, once after processing
                     ps.close();
@@ -183,5 +296,18 @@ public class Input_data_Controller implements Initializable{
 	public void deleteData(){
 		
 	}
-	
+	@FXML //this way isn't correct way , the correct way using by Group and toggle classes
+	public void setSelectedRadioBtnSolar(){
+		if (gas_radiobtn.isSelected()){
+		    gas_radiobtn.setSelected(false);
+			store_radio_val = "”Ê·«—";
+	    }
+	}
+   @FXML //this way isn't correct way , the correct way using by Group and toggle classes
+	public void setSelectedRadioBtnGas(){
+		if (solar_radiobtn.isSelected()){
+		    solar_radiobtn.setSelected(false);
+			store_radio_val = "»‰“Ì‰";
+	    }
+	}
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -50,7 +52,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="nbon_txt" alignment="CENTER_RIGHT" layoutX="755.0" layoutY="305.0" prefHeight="25.0" prefWidth="402.0">
+      <TextField fx:id="nbon_txt" alignment="CENTER_RIGHT" layoutX="755.0" layoutY="305.0" prefHeight="25.0" prefWidth="402.0" promptText="ارقام فقط ">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
@@ -60,12 +62,12 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="quantitybon_txt" alignment="CENTER_RIGHT" layoutX="755.0" layoutY="360.0" prefHeight="25.0" prefWidth="402.0">
+      <TextField fx:id="quantitybon_txt" alignment="CENTER_RIGHT" layoutX="755.0" layoutY="360.0" prefHeight="25.0" prefWidth="402.0" promptText="سعه البون بالرقم من 1 الى 254 فقط ">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
       </TextField>
-      <Label alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="1157.0" layoutY="531.0" prefHeight="32.0" prefWidth="124.0" text="نوع الوقود    : " textAlignment="RIGHT" textFill="#030303">
+      <Label alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="1163.0" layoutY="530.0" prefHeight="32.0" prefWidth="124.0" text="نوع الوقود     : " textAlignment="RIGHT" textFill="#030303">
          <font>
             <Font size="20.0" />
          </font>
@@ -80,12 +82,12 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="namedriver_txt" alignment="CENTER_RIGHT" layoutX="77.0" layoutY="310.0" prefHeight="25.0" prefWidth="425.0">
+      <TextField fx:id="namedriver_txt" alignment="CENTER_RIGHT" layoutX="77.0" layoutY="310.0" prefHeight="25.0" prefWidth="425.0" promptText="اسم السائق ">
          <effect>
             <Reflection fraction="0.65" />
          </effect>
       </TextField>
-      <TextField fx:id="nnote_txt" alignment="CENTER_RIGHT" layoutX="77.0" layoutY="389.0" prefHeight="25.0" prefWidth="425.0">
+      <TextField fx:id="nnote_txt" alignment="CENTER_RIGHT" layoutX="77.0" layoutY="389.0" prefHeight="25.0" prefWidth="425.0" promptText="ارقام فقط">
          <effect>
             <Reflection fraction="0.65" />
          </effect>
@@ -100,19 +102,19 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="counter_txt" alignment="CENTER_RIGHT" layoutX="755.0" layoutY="415.0" prefHeight="25.0" prefWidth="402.0">
+      <TextField fx:id="counter_txt" alignment="CENTER_RIGHT" layoutX="755.0" layoutY="415.0" prefHeight="25.0" prefWidth="402.0" promptText="ارقام فقط">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
       </TextField>
-      <Pane layoutX="755.0" layoutY="525.0" prefHeight="42.0" prefWidth="402.0" style="-fx-background-color: #CDCDCD; -fx-border-color: #107EEB;">
+      <Pane layoutX="755.0" layoutY="525.0" prefHeight="42.0" prefWidth="402.0" style="-fx-border-color: #107EEB;">
          <children>
-            <RadioButton fx:id="solar_radiobtn" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="112.0" layoutY="11.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="76.0" style="-fx-font-weight: bold;" text="سولار" textFill="#00f5c9">
+            <RadioButton fx:id="solar_radiobtn" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="112.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#setSelectedRadioBtnSolar" prefHeight="21.0" prefWidth="76.0" style="-fx-font-weight: bold;" text="سولار" textFill="#545454">
                <font>
                   <Font size="15.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="gas_radiobtn" alignment="TOP_CENTER" contentDisplay="RIGHT" layoutX="255.0" layoutY="13.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="61.0" style="-fx-font-weight: bold;" text="بنزين" textFill="#1ba44e">
+            <RadioButton fx:id="gas_radiobtn" alignment="TOP_CENTER" contentDisplay="RIGHT" layoutX="255.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#setSelectedRadioBtnGas" prefHeight="21.0" prefWidth="61.0" style="-fx-font-weight: bold;" text="بنزين">
                <font>
                   <Font size="15.0" />
                </font>
@@ -122,7 +124,7 @@
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
       </Pane>
-      <DatePicker fx:id="dateexchange_datepicker" editable="false" layoutX="755.0" layoutY="470.0" prefHeight="28.0" prefWidth="402.0" showWeekNumbers="true">
+      <DatePicker fx:id="dateexchange_datepicker" editable="false" layoutX="755.0" layoutY="470.0" prefHeight="28.0" prefWidth="402.0" promptText="اختر تاريح الصرف " showWeekNumbers="true">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
@@ -153,7 +155,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="nameresponsible_txt" alignment="CENTER_RIGHT" layoutX="77.0" layoutY="468.0" prefHeight="25.0" prefWidth="425.0">
+      <TextField fx:id="nameresponsible_txt" alignment="CENTER_RIGHT" layoutX="77.0" layoutY="468.0" prefHeight="25.0" prefWidth="425.0" promptText="اسم المسؤول ">
          <effect>
             <Reflection fraction="0.65" />
          </effect>
@@ -163,8 +165,18 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="codemachine_choicebox" layoutX="320.0" layoutY="534.0" prefHeight="25.0" prefWidth="184.0" />
-      <TextField fx:id="codemachine_txt" alignment="CENTER_RIGHT" layoutX="77.0" layoutY="534.0" prefHeight="25.0" prefWidth="237.0" promptText="رقم الكود  ">
+      <ChoiceBox fx:id="codemachine_choicebox" layoutX="421.0" layoutY="534.0" prefHeight="25.0" prefWidth="83.0" value="ادخل كود السياره">
+           <items>
+               <FXCollections fx:factory="observableArrayList">
+					<String fx:value="سياره" />
+					<Separator />
+					<String fx:value="مولد" />
+					<Separator />
+					<String fx:value="لنش" />
+               </FXCollections>
+            </items>
+      </ChoiceBox>
+      <TextField fx:id="codemachine_txt" alignment="CENTER_RIGHT" layoutX="77.0" layoutY="534.0" prefHeight="25.0" prefWidth="344.0" promptText="ارقام فقط">
          <effect>
             <Reflection fraction="0.65" />
          </effect>
