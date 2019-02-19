@@ -21,7 +21,15 @@
    All their Names of Columns are--> small(var)_small(col)
 
 
-
+==========================
+0-alerts 
+1- refresh table 
+   --when select row retrieve all data from this row in insert them into 
+   input table for modified and update 
+2- calculate distance 
+3- update 
+4- delete
+==========================
 ==== In github write that :
                                ---what's you function you added to.
                                ---this func is run okey.

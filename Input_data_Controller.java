@@ -50,6 +50,7 @@ import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+import org.controlsfx.control.Notifications;
 
 public class Input_data_Controller implements Initializable{
 	private Connection con_db = null;
@@ -192,6 +193,8 @@ public Input_data_Controller(){
 	//Save func
 	@FXML
 	public void saveData(){
+	 Notification noti = new Notification();
+	 noti.create().title("Error").text("Hellor World abdelrazek nageh").showWarning();
 	 con_db_savedata = db.getConnection_F_DB();
 	 date_ = dateexchange_datepicker.getValue();
 	 // date_ob= new Date((date_.getYear()-1900), date_.getMonthValue()-1,date_.getDayOfMonth());
@@ -226,6 +229,11 @@ public Input_data_Controller(){
 			formErrors[y] = "«œŒ· «—ﬁ«„ ›ﬁÿ Ê«·«—ﬁ«„ „‰ 1 «·Ï 254";
 			}
 			
+			if (!gas_radiobtn.isSelected() && !solar_radiobtn.isSelected()){
+			 y = y +1;
+			 formErrors[y] = "«Œ — ‰Ê⁄ «·ÊﬁÊœ";
+			}
+			
 			if (!counter_txt_.matches("[0-9]+")){
 			 y = y +1;
 			 formErrors[y] = "«œŒ· —ﬁ„ «·⁄œ«œ «—ﬁ«„ ›ﬁÿ";
@@ -243,7 +251,7 @@ public Input_data_Controller(){
 			break;
 		} 
 		//Concatenation every of name of machine and its number of code 
-		codemachine_val = nmachine +" "+codemachine_txt_.getText()+"ﬂ";
+		codemachine_val = nmachine +" "+codemachine_txt_+"ﬂ";
 	 
 	 try{
 	    if (formErrors[0] == null && formErrors[1] == null && formErrors[2] == null && formErrors[3] == null && formErrors[4] == null && formErrors[5] == null){
