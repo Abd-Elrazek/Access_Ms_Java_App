@@ -193,8 +193,6 @@ public Input_data_Controller(){
 	//Save func
 	@FXML
 	public void saveData(){
-	 Notification noti = new Notification();
-	 noti.create().title("Error").text("Hellor World abdelrazek nageh").showWarning();
 	 con_db_savedata = db.getConnection_F_DB();
 	 date_ = dateexchange_datepicker.getValue();
 	 // date_ob= new Date((date_.getYear()-1900), date_.getMonthValue()-1,date_.getDayOfMonth());
@@ -207,46 +205,41 @@ public Input_data_Controller(){
 		String nnote_txt_= nnote_txt.getText();
 		String nameresponsible_txt_= nameresponsible_txt.getText();
 		String codemachine_txt_= codemachine_txt.getText();
-		int y = 0;
-	    String formErrors[] = new String[6];
+	    String formErrors[] = new String[7];
 		System.out.println(formErrors.length);
 		while (true){
 			if (!nbon_txt_.matches("[0-9]+")){
-			 formErrors[y] = " ÇáÑÌÇÁ ÇÏÎÇá ÑÞã ÇáÈæä";
+			 formErrors[0] = " ÇáÑÌÇÁ ÇÏÎÇá ÑÞã ÇáÈæä";
 			}
 			
 			if (quantitybon_txt_.matches("[0-9]+")){
 				if (Integer.valueOf(quantitybon_txt_) > 254 || Integer.valueOf(quantitybon_txt_) < 0){
-				if (y == 0){
-				y = 0;
-				}else{
-				y = y + 1;
-				}
-				formErrors[y] = "ÇÏÎá ÇÑÞÇã ÝÞØ æÇáÇÑÞÇã ãä 1 Çáì 254";	
+					
+					formErrors[1] = "ÇáÇÑÞÇã Êßæä ãä 1 Çáì 254 Ýì ÇáÓÚå";
 				}
 			}else{
-			y = y +1;
-			formErrors[y] = "ÇÏÎá ÇÑÞÇã ÝÞØ æÇáÇÑÞÇã ãä 1 Çáì 254";
+			    
+			    formErrors[2] = "ÇÏÎá ÇÑÞÇã ÝÞØ æÇáÇÑÞÇã ãä 1 Çáì 254";
 			}
 			
 			if (!gas_radiobtn.isSelected() && !solar_radiobtn.isSelected()){
-			 y = y +1;
-			 formErrors[y] = "ÇÎÊÑ äæÚ ÇáæÞæÏ";
+			 
+			 formErrors[3] = "ÇÎÊÑ äæÚ ÇáæÞæÏ";
 			}
 			
 			if (!counter_txt_.matches("[0-9]+")){
-			 y = y +1;
-			 formErrors[y] = "ÇÏÎá ÑÞã ÇáÚÏÇÏ ÇÑÞÇã ÝÞØ";
+			 
+			 formErrors[4] = "ÇÏÎá ÑÞã ÇáÚÏÇÏ ÇÑÞÇã ÝÞØ";
 			}
 			
 			if (!nnote_txt_.matches("[0-9]+")){
-			 y = y +1;
-			 formErrors[y] = " ÇÏÎá ÑÞã ÇáÏÝÊÑ ÑÞã ÝÞØ ";
+			 
+			 formErrors[5] = " ÇÏÎá ÑÞã ÇáÏÝÊÑ ÑÞã ÝÞØ ";
 			}
 			
 			if (!codemachine_txt_.matches("[0-9]+")){
-			 y = y +1;
-			 formErrors[y] = "ÇÏÎá ßæÏ ÇáÃáÉ ÇÑÞÇã ÝÞØ";
+			
+			 formErrors[6] = "ÇÏÎá ßæÏ ÇáÃáÉ ÇÑÞÇã ÝÞØ";
 			}
 			break;
 		} 
@@ -254,7 +247,7 @@ public Input_data_Controller(){
 		codemachine_val = nmachine +" "+codemachine_txt_+"ß";
 	 
 	 try{
-	    if (formErrors[0] == null && formErrors[1] == null && formErrors[2] == null && formErrors[3] == null && formErrors[4] == null && formErrors[5] == null){
+	    if (formErrors[0] == null && formErrors[1] == null && formErrors[2] == null && formErrors[3] == null && formErrors[4] == null && formErrors[5] == null&& formErrors[6] == null){
 			//Creating JDBC PreparedStatement class 
 			ps = con_db_savedata.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
 			ps.setLong(1, Integer.valueOf(nbon_txt_));
@@ -270,10 +263,12 @@ public Input_data_Controller(){
 			//Executing SQL 
 			int result = ps.executeUpdate();
 			}else{
+			    String collectErrors = "";
 				for (int i = 0; i < formErrors.length; i++){
 					System.out.println(formErrors[i]);	
-					if (formErrors[i] == null){break;}
+					collectErrors += formErrors[i]+"                   \n\n"; 
 				}
+				Notifications.create().title("Error").text(collectErrors).showError();
 		    }
 	    }catch(SQLException sqlex){
             sqlex.printStackTrace();
