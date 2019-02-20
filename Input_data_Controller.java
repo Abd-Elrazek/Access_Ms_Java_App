@@ -9,7 +9,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Tooltip;
-import javafx.util.Duration;
 import javafx.beans.property.ObjectProperty;
 
 
@@ -50,6 +49,11 @@ import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+
+import javafx.geometry.Pos;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
 public class Input_data_Controller implements Initializable{
@@ -122,6 +126,10 @@ public class Input_data_Controller implements Initializable{
 	private DB db = new DB();
 	private PreparedStatement ps = null;
 	
+	//getStage varls
+	//private Stage stageOfThis = null;
+	//@FXML
+	//private AnchorPane input_data_anch = null;
 //Constructor
 public Input_data_Controller(){
   
@@ -146,21 +154,14 @@ public Input_data_Controller(){
 	  final SelectionModel<String> sm = codemachine_choicebox.getSelectionModel();
         sm.selectedItemProperty().addListener(new InvalidationListener() {
             @Override public void invalidated(Observable o) {
-			    int index = sm.getSelectedIndex();
-				String cmachine_ = sm.getSelectedItem();
-               if (index == 0){
-					System.out.println("item -> " + index);
-			        nmachine =cmachine_ ;
-				}else if (index == 1){
-				    System.out.println("item -> " + index);
-				    nmachine = cmachine_;
-				}else{
-				    System.out.println("item -> " + index);
-				    nmachine = cmachine_;
-				}
+				nmachine = sm.getSelectedItem();
+				int index = sm.getSelectedIndex();
+				System.out.println("item -> " + index);
+			
             }
         });
-	  
+	  //initialize of DatePicker 
+	  dateexchange_datepicker.setPromptText(" ÇÎÊÑ ÇáÊÇÑíÎ ãä åäÇ ");
 	  //getTimeCurrent with nanoTime
 	  long t0 = System.nanoTime();
 	  
@@ -205,41 +206,69 @@ public Input_data_Controller(){
 		String nnote_txt_= nnote_txt.getText();
 		String nameresponsible_txt_= nameresponsible_txt.getText();
 		String codemachine_txt_= codemachine_txt.getText();
-	    String formErrors[] = new String[7];
+		//String date_valid = date_.toString();
+	    String formErrors[] = new String[11];
 		System.out.println(formErrors.length);
+		boolean valid = true;
 		while (true){
 			if (!nbon_txt_.matches("[0-9]+")){
 			 formErrors[0] = " ÇáÑÌÇÁ ÇÏÎÇá ÑÞã ÇáÈæä";
+			 valid = false;
 			}
 			
 			if (quantitybon_txt_.matches("[0-9]+")){
 				if (Integer.valueOf(quantitybon_txt_) > 254 || Integer.valueOf(quantitybon_txt_) < 0){
 					
 					formErrors[1] = "ÇáÇÑÞÇã Êßæä ãä 1 Çáì 254 Ýì ÇáÓÚå";
+					valid = false;
 				}
 			}else{
 			    
 			    formErrors[2] = "ÇÏÎá ÇÑÞÇã ÝÞØ æÇáÇÑÞÇã ãä 1 Çáì 254";
+			    valid = false;
 			}
 			
 			if (!gas_radiobtn.isSelected() && !solar_radiobtn.isSelected()){
 			 
 			 formErrors[3] = "ÇÎÊÑ äæÚ ÇáæÞæÏ";
+			 valid = false;
 			}
 			
 			if (!counter_txt_.matches("[0-9]+")){
 			 
 			 formErrors[4] = "ÇÏÎá ÑÞã ÇáÚÏÇÏ ÇÑÞÇã ÝÞØ";
+			 valid = false;
 			}
+
 			
 			if (!nnote_txt_.matches("[0-9]+")){
 			 
 			 formErrors[5] = " ÇÏÎá ÑÞã ÇáÏÝÊÑ ÑÞã ÝÞØ ";
+			 valid = false;
 			}
 			
 			if (!codemachine_txt_.matches("[0-9]+")){
-			
 			 formErrors[6] = "ÇÏÎá ßæÏ ÇáÃáÉ ÇÑÞÇã ÝÞØ";
+			 valid = false;		
+			}
+			
+			if (namedriver_txt_.isEmpty()){
+			 formErrors[7] = "ÇÏÎá ÇÓã ÇáÓÇÆÞ";
+			 valid = false;
+			}
+			
+			if(nameresponsible_txt_.isEmpty()){
+			  formErrors[8] = "ÇÏÎá ÇÓã ÇáãÓÆæá";	
+			  valid = false;
+			}
+			
+			if (date_ == null){
+			  formErrors[9] = "ÇÎÊÑ ÇáÊÇÑíÎ ãä ÇáÞÇÆãå";
+			  valid = false;
+			}
+			if (nmachine.equals("")){
+				formErrors[10] =  "ÇÎÊÑ äæÚ ÇáÃáÉ";
+				valid = false;
 			}
 			break;
 		} 
@@ -247,7 +276,7 @@ public Input_data_Controller(){
 		codemachine_val = nmachine +" "+codemachine_txt_+"ß";
 	 
 	 try{
-	    if (formErrors[0] == null && formErrors[1] == null && formErrors[2] == null && formErrors[3] == null && formErrors[4] == null && formErrors[5] == null&& formErrors[6] == null){
+	    if (valid){
 			//Creating JDBC PreparedStatement class 
 			ps = con_db_savedata.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
 			ps.setLong(1, Integer.valueOf(nbon_txt_));
@@ -265,10 +294,27 @@ public Input_data_Controller(){
 			}else{
 			    String collectErrors = "";
 				for (int i = 0; i < formErrors.length; i++){
+				    if (formErrors[i] != null){
+					collectErrors += formErrors[i]+"      \n\n"; 
+					}else{
 					System.out.println(formErrors[i]);	
-					collectErrors += formErrors[i]+"                   \n\n"; 
+					}
 				}
-				Notifications.create().title("Error").text(collectErrors).showError();
+				//stageOfThis = (Stage) input_data_anch.getScene().getWindow();
+				Notifications notificationBuilder = Notifications.create()
+                .title("  ÇÏÎá ÇáÈíÇäÇÊ ÕÍíÍå ")
+                .text(collectErrors)
+                .graphic(new ImageView(new Image("/images/Error1.PNG")))
+                .hideAfter(Duration.seconds(15))
+                .position(Pos.BOTTOM_LEFT)
+                .onAction(new EventHandler<ActionEvent>() {
+                    @Override public void handle(ActionEvent arg0) {
+                        System.out.println("Notification clicked on!");
+                    }
+                });
+				//notificationBuilder.owner(stageOfThis);
+				notificationBuilder.darkStyle();
+				notificationBuilder.show();
 		    }
 	    }catch(SQLException sqlex){
             sqlex.printStackTrace();
@@ -277,7 +323,7 @@ public Input_data_Controller(){
 
             //Closing database connection
             try {
-                if( con_db_savedata != null && formErrors[0] == null && formErrors[1] == null && formErrors[2] == null && formErrors[3] == null && formErrors[4] == null && formErrors[5] == null) {
+                if( con_db_savedata != null && valid) {
 
                     // cleanup resources, once after processing
                     ps.close();
