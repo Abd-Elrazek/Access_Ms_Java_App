@@ -176,6 +176,9 @@ public Input_data_Controller(){
 		table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getInt("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getInt("Quantitybon"),rs.getInt("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getInt("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
 		}
 		System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
+		//cut connect
+		rs.close();
+		con_db.close();
 	  }catch(SQLException e){
 		e.printStackTrace();
 	  }
@@ -210,67 +213,88 @@ public Input_data_Controller(){
 		String nameresponsible_txt_= nameresponsible_txt.getText();
 		String codemachine_txt_= codemachine_txt.getText();
 		//String date_valid = date_.toString();
-	    String formErrors[] = new String[11];
+	    String formErrors[] = new String[12];
 		System.out.println("length of formErrors are -> "+formErrors.length);
 		boolean valid = true;
+		boolean no_distinct = true;
 		while (true){
 			if (!nbon_txt_.matches("[0-9]+")){
 			 formErrors[0] = " «·—Ã«¡ «œŒ«· —ﬁ„ «·»Ê‰";
 			 valid = false;
+			}else{
+			    try{
+					long nbon_check = Integer.valueOf(nbon_txt_);
+					long nbon_distict = 0;
+					long retrive_serialn_of_distinct = 0;
+					ResultSet rs =con_db_savedata.createStatement().executeQuery("SELECT Serialn, Nbon FROM General_db");
+					while(rs.next()){
+						retrive_serialn_of_distinct = rs.getLong("Serialn");
+						nbon_distict = rs.getLong("Nbon");
+						System.out.println("nbon_distict -> "+rs.getLong("Nbon"));
+						if (nbon_distict == nbon_check){
+						    String concat = " : «·»Ê‰ «·–Ï  Õ«Ê· «œŒ«·Â „ﬂ—— ›Ï «·„”·”· —ﬁ„  " + retrive_serialn_of_distinct;
+					        setAlert(AlertType.INFORMATION, "Œÿ√ ›«œÕ","—«Ã⁄ «·»Ì«‰«  ÃÌœ«",concat);
+							no_distinct = false;
+						} 
+						
+					}
+			    }catch(SQLException e){
+			        e.printStackTrace();
+			    }
 			}
 			
 			if (quantitybon_txt_.matches("[0-9]+")){
 				if (Integer.valueOf(quantitybon_txt_) > 254 || Integer.valueOf(quantitybon_txt_) < 0){
 					
-					formErrors[1] = "«·«—ﬁ«„  ﬂÊ‰ „‰ 1 «·Ï 254 ›Ï «·”⁄Â";
+					formErrors[2] = "«·«—ﬁ«„  ﬂÊ‰ „‰ 1 «·Ï 254 ›Ï «·”⁄Â";
 					valid = false;
 				}
 			}else{
 			    
-			    formErrors[2] = "«œŒ· «—ﬁ«„ ›ﬁÿ Ê«·«—ﬁ«„ „‰ 1 «·Ï 254";
+			    formErrors[3] = "«œŒ· «—ﬁ«„ ›ﬁÿ Ê«·«—ﬁ«„ „‰ 1 «·Ï 254";
 			    valid = false;
 			}
 			
 			if (!gas_radiobtn.isSelected() && !solar_radiobtn.isSelected()){
 			 
-			 formErrors[3] = "«Œ — ‰Ê⁄ «·ÊﬁÊœ";
+			 formErrors[4] = "«Œ — ‰Ê⁄ «·ÊﬁÊœ";
 			 valid = false;
 			}
 			
 			if (!counter_txt_.matches("[0-9]+")){
 			 
-			 formErrors[4] = "«œŒ· —ﬁ„ «·⁄œ«œ «—ﬁ«„ ›ﬁÿ";
+			 formErrors[5] = "«œŒ· —ﬁ„ «·⁄œ«œ «—ﬁ«„ ›ﬁÿ";
 			 valid = false;
 			}
 
 			
 			if (!nnote_txt_.matches("[0-9]+")){
 			 
-			 formErrors[5] = " «œŒ· —ﬁ„ «·œ› — —ﬁ„ ›ﬁÿ ";
+			 formErrors[6] = " «œŒ· —ﬁ„ «·œ› — —ﬁ„ ›ﬁÿ ";
 			 valid = false;
 			}
 			
 			if (!codemachine_txt_.matches("[0-9]+")){
-			 formErrors[6] = "«œŒ· ﬂÊœ «·√·… «—ﬁ«„ ›ﬁÿ";
+			 formErrors[7] = "«œŒ· ﬂÊœ «·√·… «—ﬁ«„ ›ﬁÿ";
 			 valid = false;		
 			}
 			
 			if (namedriver_txt_.isEmpty()){
-			 formErrors[7] = "«œŒ· «”„ «·”«∆ﬁ";
+			 formErrors[8] = "«œŒ· «”„ «·”«∆ﬁ";
 			 valid = false;
 			}
 			
 			if(nameresponsible_txt_.isEmpty()){
-			  formErrors[8] = "«œŒ· «”„ «·„”∆Ê·";	
+			  formErrors[9] = "«œŒ· «”„ «·„”∆Ê·";	
 			  valid = false;
 			}
 			
 			if (date_ == null){
-			  formErrors[9] = "«Œ — «· «—ÌŒ „‰ «·ﬁ«∆„Â";
+			  formErrors[10] = "«Œ — «· «—ÌŒ „‰ «·ﬁ«∆„Â";
 			  valid = false;
 			}
 			if (nmachine.equals("")){
-				formErrors[10] =  "«Œ — ‰Ê⁄ «·√·…";
+				formErrors[11] =  "«Œ — ‰Ê⁄ «·√·…";
 				valid = false;
 			}
 			break;
@@ -279,7 +303,7 @@ public Input_data_Controller(){
 		codemachine_val = nmachine +" "+codemachine_txt_+"ﬂ";
 	 
 	 try{
-	    if (valid){
+	    if (valid && no_distinct){
 			//Creating JDBC PreparedStatement class 
 			ps = con_db_savedata.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
 			ps.setLong(1, Integer.valueOf(nbon_txt_));
@@ -294,8 +318,25 @@ public Input_data_Controller(){
 			ps.setString(10, codemachine_val);//codemachine_txt.getText());
 			//Executing SQL 
 			int result = ps.executeUpdate();
-			System.out.println("result of ps.executeUpdate -> "  + result);
-			}else{
+			if (result != 0 ){
+				System.out.println("result of ps.executeUpdate -> "  + result);
+				Notifications notificationBuilder = Notifications.create()
+				.title(" „ »‰Ã«Õ")
+				.text(" „ «÷«›Â «·»Ì«‰«  »‰Ã«Õ")
+				.graphic(new ImageView(new Image("/images/inserted.PNG")))
+				.hideAfter(Duration.seconds(1))
+				.position(Pos.BOTTOM_LEFT)
+				.onAction(new EventHandler<ActionEvent>() {
+					@Override public void handle(ActionEvent arg0) {
+						System.out.println("Notification clicked on!");
+					}
+				});
+				//notificationBuilder.owner(stageOfThis);
+				notificationBuilder.show();
+				//clear TextField
+				clear();
+			}
+			}else if (!valid){
 			    String collectErrors = "";
 				for (int i = 0; i < formErrors.length; i++){
 				    if (formErrors[i] != null){
@@ -327,7 +368,7 @@ public Input_data_Controller(){
 
             //Closing database connection
             try {
-                if( con_db_savedata != null && valid) {
+                if( con_db_savedata != null && valid && no_distinct) {
 
                     // cleanup resources, once after processing
                     ps.close();
@@ -362,5 +403,25 @@ public Input_data_Controller(){
 		    solar_radiobtn.setSelected(false);
 			store_radio_val = "»‰“Ì‰";
 	    }
+	}
+	
+	//func to set Alert (AlertType , title , header , content)
+	public void setAlert(Alert.AlertType alertType, String title , String header , String Content){
+		Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(Content);
+        alert.showAndWait();
+	}
+	
+	public void clear(){
+        nbon_txt.clear();	
+        quantitybon_txt.clear();	
+        counter_txt.clear();	
+        dateexchange_datepicker.setValue(null);	
+        namedriver_txt.clear();	
+        nameresponsible_txt.clear();	
+        nnote_txt.clear();	
+        codemachine_txt.clear();	
 	}
 }
