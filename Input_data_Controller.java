@@ -145,17 +145,16 @@ public Input_data_Controller(){
     // this function used to initialize my variables
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-	  table_view_list = FXCollections.observableArrayList();
-	  
+	  //initialize of DatePicker 
+	  dateexchange_datepicker.setPromptText(" «Œ — «· «—ÌŒ „‰ Â‰« ");
 	  //initialize of store_radio_val by Banzeeen
 	  gas_radiobtn.setSelected(true);
 	  solar_radiobtn.setSelected(false);
 	  store_radio_val = "»‰“Ì‰";
 	  
-	  // initialize of codemachine_val
+	  //Event of nmachine'ChoiceBox
 	  Tooltip tip = new Tooltip(" «Œ — «”„ «·√·… ");
 	  tip.setFont(new Font(14));
-	  //codemachine_choicebox.setValue("choose name of machine");
 	  codemachine_choicebox.setTooltip(tip); 
 	  final SelectionModel<String> sm = codemachine_choicebox.getSelectionModel();
         sm.selectedItemProperty().addListener(new InvalidationListener() {
@@ -163,42 +162,14 @@ public Input_data_Controller(){
 				nmachine = sm.getSelectedItem();
 				int index = sm.getSelectedIndex();
 				System.out.println("item -> " + index);
-			
             }
         });
-	  //initialize of DatePicker 
-	  dateexchange_datepicker.setPromptText(" «Œ — «· «—ÌŒ „‰ Â‰« ");
-	  //getTimeCurrent with nanoTime
-	  long t0 = System.nanoTime();
-	  
-	  //get connection of this.DB
-	  con_db = db.getConnection_F_DB();
-	  try{ 
-		ResultSet rs =con_db.createStatement().executeQuery("SELECT * FROM General_db");
-		while(rs.next()){
-		table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getInt("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getInt("Quantitybon"),rs.getInt("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getInt("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
-		}
-		System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
-		//cut connect
-		rs.close();
-		con_db.close();
-	  }catch(SQLException e){
-		e.printStackTrace();
-	  }
-	  
-      serialn_col.setCellValueFactory(new PropertyValueFactory<>("Serialn"));
-      nbon_col.setCellValueFactory(new PropertyValueFactory<>("Nbon"));
-	  dateexchange_col.setCellValueFactory(new PropertyValueFactory<>("Dateexchange"));
-      typefuel_col.setCellValueFactory(new PropertyValueFactory<>("Typefuel"));
-      quantitybon_col.setCellValueFactory(new PropertyValueFactory<>("Quantitybon"));
-      counter_col.setCellValueFactory(new PropertyValueFactory<>("Counter"));
-      distance_col.setCellValueFactory(new PropertyValueFactory<>("Distance"));
-      namedriver_col.setCellValueFactory(new PropertyValueFactory<>("Namedriver"));
-      nnote_col.setCellValueFactory(new PropertyValueFactory<>("Nnote"));
-      nameresponsible_col.setCellValueFactory(new PropertyValueFactory<>("Nameresponsible"));
-      codemachine_col.setCellValueFactory(new PropertyValueFactory<>("Codemachine"));
-	  viewtable.setItems(table_view_list);
-	}//end initialize variables
+		//End Event 
+		
+		//First view data from database
+		setViewTable();
+		
+	}//end initialize variables Func
 	
 	
 	//Set and get validation of inputs
@@ -306,12 +277,7 @@ public Input_data_Controller(){
 		return false;
 	}	
 	
-	
-	
-	
-	
-	
-	
+    
 	//Save func
 	@FXML
 	public void saveData(){
@@ -335,7 +301,9 @@ public Input_data_Controller(){
 			int result = ps.executeUpdate();
 			if (result != 0 ){
 				System.out.println("result of ps.executeUpdate -> "  + result);
+				//setNotification here pass "info" 
 				setNotification("Info");
+				
 				//clear TextField
 				clear();
 			}
@@ -347,6 +315,7 @@ public Input_data_Controller(){
 					System.out.println(formErrors[i]);	
 					}
 				}
+				//setNotification here pass "Error" 
 				setNotification("Error");
 		    }
 	    }catch(SQLException sqlex){
@@ -379,6 +348,40 @@ public Input_data_Controller(){
 	//Delete func
 	public void deleteData(){
 		
+	}
+	
+	//View Table in TableView
+	public void setViewTable(){
+	  //getTimeCurrent with nanoTime
+	  long t0 = System.nanoTime();
+	  table_view_list = FXCollections.observableArrayList();
+	  //get connection of this.DB
+	  con_db = db.getConnection_F_DB();
+	  try{ 
+		ResultSet rs =con_db.createStatement().executeQuery("SELECT * FROM General_db");
+		while(rs.next()){
+		table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getInt("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getInt("Quantitybon"),rs.getInt("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getInt("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
+		}
+		System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
+		//cut connect
+		rs.close();
+		con_db.close();
+	  }catch(SQLException e){
+		e.printStackTrace();
+	  }
+	  
+      serialn_col.setCellValueFactory(new PropertyValueFactory<>("Serialn"));
+      nbon_col.setCellValueFactory(new PropertyValueFactory<>("Nbon"));
+	  dateexchange_col.setCellValueFactory(new PropertyValueFactory<>("Dateexchange"));
+      typefuel_col.setCellValueFactory(new PropertyValueFactory<>("Typefuel"));
+      quantitybon_col.setCellValueFactory(new PropertyValueFactory<>("Quantitybon"));
+      counter_col.setCellValueFactory(new PropertyValueFactory<>("Counter"));
+      distance_col.setCellValueFactory(new PropertyValueFactory<>("Distance"));
+      namedriver_col.setCellValueFactory(new PropertyValueFactory<>("Namedriver"));
+      nnote_col.setCellValueFactory(new PropertyValueFactory<>("Nnote"));
+      nameresponsible_col.setCellValueFactory(new PropertyValueFactory<>("Nameresponsible"));
+      codemachine_col.setCellValueFactory(new PropertyValueFactory<>("Codemachine"));
+	  viewtable.setItems(table_view_list);
 	}
 	
 	@FXML //this way isn't correct way , the correct way using by Group and toggle classes
