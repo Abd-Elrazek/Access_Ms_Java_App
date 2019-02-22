@@ -135,6 +135,7 @@ public class Input_data_Controller implements Initializable{
 		LocalDate date_ = null;
 		//set formErrors length
 		String formErrors[] = new String[11];
+		String collectErrors = "";
 //Constructor
 public Input_data_Controller(){
   
@@ -212,6 +213,7 @@ public Input_data_Controller(){
 		nameresponsible_txt_= nameresponsible_txt.getText();
 		codemachine_txt_= codemachine_txt.getText();
 		System.out.println("length of formErrors are -> "+formErrors.length);
+		collectErrors = "";
 		boolean valid = true;
 		boolean no_distinct = true;
 		while (true){
@@ -229,7 +231,7 @@ public Input_data_Controller(){
 						nbon_distict = rs.getLong("Nbon");
 						System.out.println("nbon_distict -> "+rs.getLong("Nbon"));
 						if (nbon_distict == nbon_check){
-						    String concat = " : «·»Ê‰ «·–Ï  Õ«Ê· «œŒ«·Â „ﬂ—— ›Ï «·„”·”· —ﬁ„  " + retrive_serialn_of_distinct;
+						    String concat = "  «·»Ê‰ «·–Ï  Õ«Ê· «œŒ«·Â „ﬂ—— ›Ï «·„”·”· —ﬁ„  " + retrive_serialn_of_distinct;
 					        setAlert(AlertType.INFORMATION, "Œÿ√ ›«œÕ","—«Ã⁄ «·»Ì«‰«  ÃÌœ«",concat);
 							no_distinct = false;
 						} 
@@ -333,24 +335,11 @@ public Input_data_Controller(){
 			int result = ps.executeUpdate();
 			if (result != 0 ){
 				System.out.println("result of ps.executeUpdate -> "  + result);
-				Notifications notificationBuilder = Notifications.create()
-				.title(" „ »‰Ã«Õ")
-				.text(" „ «÷«›Â «·»Ì«‰«  »‰Ã«Õ")
-				.graphic(new ImageView(new Image("/images/inserted.PNG")))
-				.hideAfter(Duration.seconds(1))
-				.position(Pos.BOTTOM_LEFT)
-				.onAction(new EventHandler<ActionEvent>() {
-					@Override public void handle(ActionEvent arg0) {
-						System.out.println("Notification clicked on!");
-					}
-				});
-				//notificationBuilder.owner(stageOfThis);
-				notificationBuilder.show();
+				setNotification("Info");
 				//clear TextField
 				clear();
 			}
 			}else if (!getValid_Func){
-			    String collectErrors = "";
 				for (int i = 0; i < formErrors.length; i++){
 				    if (formErrors[i] != null){
 					collectErrors += formErrors[i]+"      \n\n"; 
@@ -358,21 +347,7 @@ public Input_data_Controller(){
 					System.out.println(formErrors[i]);	
 					}
 				}
-				//stageOfThis = (Stage) input_data_anch.getScene().getWindow();
-				Notifications notificationBuilder = Notifications.create()
-                .title("  «œŒ· «·»Ì«‰«  ’ÕÌÕÂ ")
-                .text(collectErrors)
-                .graphic(new ImageView(new Image("/images/Error1.PNG")))
-                .hideAfter(Duration.seconds(15))
-                .position(Pos.BOTTOM_LEFT)
-                .onAction(new EventHandler<ActionEvent>() {
-                    @Override public void handle(ActionEvent arg0) {
-                        System.out.println("Notification clicked on!");
-                    }
-                });
-				//notificationBuilder.owner(stageOfThis);
-				notificationBuilder.darkStyle();
-				notificationBuilder.show();
+				setNotification("Error");
 		    }
 	    }catch(SQLException sqlex){
             sqlex.printStackTrace();
@@ -420,6 +395,39 @@ public Input_data_Controller(){
 		    solar_radiobtn.setSelected(false);
 			store_radio_val = "»‰“Ì‰";
 	    }
+	}
+	//type either "Info" or "Error"
+	public void setNotification(String type){
+		if (type.equals("Info")){
+			Notifications notificationBuilder = Notifications.create()
+			.title(" „ »‰Ã«Õ")
+			.text(" „ «÷«›Â «·»Ì«‰«  »‰Ã«Õ")
+			.graphic(new ImageView(new Image("/images/inserted.PNG")))
+			.hideAfter(Duration.seconds(2))
+			.position(Pos.BOTTOM_LEFT)
+			.onAction(new EventHandler<ActionEvent>() {
+				@Override public void handle(ActionEvent arg0) {
+					System.out.println("Notification clicked on!");
+				}
+			});
+			//notificationBuilder.owner(stageOfThis);
+			notificationBuilder.show();
+		}else if (type.equals("Error")){
+			Notifications notificationBuilder = Notifications.create()
+			.title("  «œŒ· «·»Ì«‰«  ’ÕÌÕÂ ")
+			.text(collectErrors)
+			.graphic(new ImageView(new Image("/images/Error1.PNG")))
+			.hideAfter(Duration.seconds(15))
+			.position(Pos.BOTTOM_LEFT)
+			.onAction(new EventHandler<ActionEvent>() {
+				@Override public void handle(ActionEvent arg0) {
+					System.out.println("Notification clicked on!");
+				}
+			});
+			//notificationBuilder.owner(stageOfThis);
+			notificationBuilder.darkStyle();
+			notificationBuilder.show();
+		}
 	}
 	
 	//func to set Alert (AlertType , title , header , content)
