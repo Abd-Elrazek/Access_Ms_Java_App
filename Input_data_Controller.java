@@ -42,6 +42,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 //import javafx.scene.Parent;
 
 import javafx.scene.Scene;
@@ -208,7 +211,7 @@ public Input_data_Controller(){
 		String codemachine_txt_= codemachine_txt.getText();
 		//String date_valid = date_.toString();
 	    String formErrors[] = new String[11];
-		System.out.println(formErrors.length);
+		System.out.println("length of formErrors are -> "+formErrors.length);
 		boolean valid = true;
 		while (true){
 			if (!nbon_txt_.matches("[0-9]+")){
@@ -291,6 +294,7 @@ public Input_data_Controller(){
 			ps.setString(10, codemachine_val);//codemachine_txt.getText());
 			//Executing SQL 
 			int result = ps.executeUpdate();
+			System.out.println("result of ps.executeUpdate -> "  + result);
 			}else{
 			    String collectErrors = "";
 				for (int i = 0; i < formErrors.length; i++){
