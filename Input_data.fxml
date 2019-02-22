@@ -20,7 +20,7 @@
 
 <AnchorPane fx:id="input_data_anch" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="1291.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Input_data_Controller">
    <children>
-      <TableView fx:id="viewtable" layoutX="3.0" layoutY="79.0" prefHeight="216.0" prefWidth="1285.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <TableView fx:id="viewtable" layoutX="3.0" layoutY="6.0" prefHeight="289.0" prefWidth="1291.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
             <TableColumn fx:id="codemachine_col" minWidth="0.0" prefWidth="86.00003051757812" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="كود ألألة" />
             <TableColumn fx:id="nameresponsible_col" prefWidth="132.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم المسؤول " />
@@ -38,12 +38,6 @@
             <InnerShadow color="#63ffae" />
          </effect>
       </TableView>
-      <Separator layoutY="54.0" prefHeight="8.0" prefWidth="1291.0" />
-      <Label alignment="CENTER_RIGHT" layoutX="562.0" layoutY="14.0" prefHeight="30.0" prefWidth="193.0" text="هيئه الاسعاف المصرية " textAlignment="CENTER">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
       <Separator layoutX="687.0" layoutY="299.0" orientation="VERTICAL" prefHeight="319.0" prefWidth="7.0" />
       <Separator layoutX="8.0" layoutY="617.0" prefHeight="8.0" prefWidth="674.0" />
       <Separator layoutX="695.0" layoutY="617.0" prefHeight="8.0" prefWidth="592.0" />

@@ -11,7 +11,7 @@ public class Test{
 	DB db = new DB();
 	con_db = db.getConnection_F_DB();
 	try{ 
-		ResultSet rs =con_db.createStatement().executeQuery("SELECT SerialN,Nbon FROM General_db");
+		ResultSet rs =con_db.createStatement().executeQuery("SELECT Serialn FROM General_db");
 		int count = 0;
 		while(rs.next()){
 		    count++;

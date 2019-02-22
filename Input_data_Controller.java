@@ -9,61 +9,63 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Tooltip;
-import javafx.beans.property.ObjectProperty;
-
-
-
-
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.scene.control.SelectionModel;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-
-
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.Reflection;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.Cursor;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 
-import java.time.LocalDate;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import java.sql.Date;
-import javafx.scene.Cursor;
-import javafx.fxml.Initializable;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-//import javafx.scene.Parent;
 
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
-
-import javafx.geometry.Pos;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 import javafx.util.Duration;
+import java.io.IOException;
+//import javafx.scene.Parent;
+import javafx.stage.Stage;
+import javafx.geometry.Pos;
 import org.controlsfx.control.Notifications;
 
 public class Input_data_Controller implements Initializable{
+
+//Global Variables
+    //this Connection for View table
 	private Connection con_db = null;
 	private Connection con_db_savedata = null;
+	private PreparedStatement ps = null;
+	private DB db = new DB();
+	//list of Table_View class 
+	ObservableList<Table_View> table_view_list ;
 	
-//Variables
+	//variables of columns in TableView(1) and TableColumn( 11 cols )
     @FXML
     private TableView<Table_View> viewtable;
 	@FXML
@@ -88,51 +90,51 @@ public class Input_data_Controller implements Initializable{
     private TableColumn<Table_View,String> nameresponsible_col;
 	@FXML
     private TableColumn<Table_View,String> codemachine_col;
-	//TextField vars
-	@FXML
-	private TextField nbon_txt;
-	@FXML
-	private TextField quantitybon_txt;
-	@FXML
-	private TextField counter_txt;
-	@FXML
-	private TextField namedriver_txt;
-	@FXML
-	private TextField nnote_txt;
-	@FXML
-	private TextField nameresponsible_txt;
-	//DatePicker var
-	@FXML
-	private DatePicker dateexchange_datepicker;
-	//Radio Button vars
-	@FXML
-	private RadioButton gas_radiobtn;
-	@FXML
-	private RadioButton solar_radiobtn;
-	private String store_radio_val = "initialize";
 	
-	//Codemachine vars
-	@FXML
-	private TextField codemachine_txt;
-	@FXML
-    private ChoiceBox codemachine_choicebox;
-	//number and number's code of  machine
-	private String codemachine_val = "initialize";
-	//name of machine 
-	private String nmachine = "";
-	//number's machine
-	//private String n_machine = "";
-	
-	ObservableList<Table_View> table_view_list ;
-	//Date date_ob = null;
-	LocalDate date_ = null;
-	private DB db = new DB();
-	private PreparedStatement ps = null;
-	
-	//getStage varls
-	//private Stage stageOfThis = null;
-	//@FXML
-	//private AnchorPane input_data_anch = null;
+	//Declaration of TextField vars only
+		@FXML
+		private TextField nbon_txt;
+		@FXML
+		private TextField quantitybon_txt;
+		@FXML
+		private TextField counter_txt;
+		@FXML
+		private TextField namedriver_txt;
+		@FXML
+		private TextField nnote_txt;
+		@FXML
+		private TextField nameresponsible_txt;
+		@FXML
+		private TextField codemachine_txt;
+		//DatePicker var
+		@FXML
+		private DatePicker dateexchange_datepicker;
+		//Radio Button vars
+		@FXML
+		private RadioButton gas_radiobtn;
+		@FXML
+		private RadioButton solar_radiobtn;
+		//Codemachine ChoiceBox
+		@FXML
+		private ChoiceBox codemachine_choicebox;
+	//These vars for getText from TextField and initialize some of them
+		String nbon_txt_           = "";
+		String quantitybon_txt_    = "";
+		String counter_txt_        = "";
+		String namedriver_txt_     = "";
+		String nnote_txt_          = "";
+		String nameresponsible_txt_= "";
+		String codemachine_txt_    = "";
+		//initialize of value of radio option
+		private String store_radio_val = "initialize";
+		//initialize and Concatenation of name and number's code of  machine from choice_box and textfield
+		private String codemachine_val = "initialize";
+		//name of machine_ChoiceBox
+		private String nmachine = "";
+		//data_ receive of Object from DatePicker its type is LocalDate
+		LocalDate date_ = null;
+		//set formErrors length
+		String formErrors[] = new String[11];
 //Constructor
 public Input_data_Controller(){
   
@@ -197,23 +199,18 @@ public Input_data_Controller(){
 	  viewtable.setItems(table_view_list);
 	}//end initialize variables
 	
-	//Save func
-	@FXML
-	public void saveData(){
-	 con_db_savedata = db.getConnection_F_DB();
-	 date_ = dateexchange_datepicker.getValue();
-	 // date_ob= new Date((date_.getYear()-1900), date_.getMonthValue()-1,date_.getDayOfMonth());
-	 
-	 //Validation of inputs vars
-		String nbon_txt_ = nbon_txt.getText();
-		String quantitybon_txt_ = quantitybon_txt.getText();
-		String counter_txt_ = counter_txt.getText();
-		String namedriver_txt_= namedriver_txt.getText();
-		String nnote_txt_= nnote_txt.getText();
-		String nameresponsible_txt_= nameresponsible_txt.getText();
-		String codemachine_txt_= codemachine_txt.getText();
-		//String date_valid = date_.toString();
-	    String formErrors[] = new String[12];
+	
+	//Set and get validation of inputs
+    public boolean getValidation(){
+        //Validation of inputs vars
+	    date_ = dateexchange_datepicker.getValue();
+		nbon_txt_ = nbon_txt.getText();
+		quantitybon_txt_ = quantitybon_txt.getText();
+		counter_txt_ = counter_txt.getText();
+		namedriver_txt_= namedriver_txt.getText();
+		nnote_txt_= nnote_txt.getText();
+		nameresponsible_txt_= nameresponsible_txt.getText();
+		codemachine_txt_= codemachine_txt.getText();
 		System.out.println("length of formErrors are -> "+formErrors.length);
 		boolean valid = true;
 		boolean no_distinct = true;
@@ -246,64 +243,80 @@ public Input_data_Controller(){
 			if (quantitybon_txt_.matches("[0-9]+")){
 				if (Integer.valueOf(quantitybon_txt_) > 254 || Integer.valueOf(quantitybon_txt_) < 0){
 					
-					formErrors[2] = "ÇáÇÑÞÇã Êßæä ãä 1 Çáì 254 Ýì ÇáÓÚå";
+					formErrors[1] = "ÇáÇÑÞÇã Êßæä ãä 1 Çáì 254 Ýì ÇáÓÚå";
 					valid = false;
 				}
 			}else{
 			    
-			    formErrors[3] = "ÇÏÎá ÇÑÞÇã ÝÞØ æÇáÇÑÞÇã ãä 1 Çáì 254";
+			    formErrors[2] = "ÇÏÎá ÇÑÞÇã ÝÞØ æÇáÇÑÞÇã ãä 1 Çáì 254";
 			    valid = false;
 			}
 			
 			if (!gas_radiobtn.isSelected() && !solar_radiobtn.isSelected()){
 			 
-			 formErrors[4] = "ÇÎÊÑ äæÚ ÇáæÞæÏ";
+			 formErrors[3] = "ÇÎÊÑ äæÚ ÇáæÞæÏ";
 			 valid = false;
 			}
 			
 			if (!counter_txt_.matches("[0-9]+")){
 			 
-			 formErrors[5] = "ÇÏÎá ÑÞã ÇáÚÏÇÏ ÇÑÞÇã ÝÞØ";
+			 formErrors[4] = "ÇÏÎá ÑÞã ÇáÚÏÇÏ ÇÑÞÇã ÝÞØ";
 			 valid = false;
 			}
 
 			
 			if (!nnote_txt_.matches("[0-9]+")){
 			 
-			 formErrors[6] = " ÇÏÎá ÑÞã ÇáÏÝÊÑ ÑÞã ÝÞØ ";
+			 formErrors[5] = " ÇÏÎá ÑÞã ÇáÏÝÊÑ ÑÞã ÝÞØ ";
 			 valid = false;
 			}
 			
 			if (!codemachine_txt_.matches("[0-9]+")){
-			 formErrors[7] = "ÇÏÎá ßæÏ ÇáÃáÉ ÇÑÞÇã ÝÞØ";
+			 formErrors[6] = "ÇÏÎá ßæÏ ÇáÃáÉ ÇÑÞÇã ÝÞØ";
 			 valid = false;		
 			}
 			
 			if (namedriver_txt_.isEmpty()){
-			 formErrors[8] = "ÇÏÎá ÇÓã ÇáÓÇÆÞ";
+			 formErrors[7] = "ÇÏÎá ÇÓã ÇáÓÇÆÞ";
 			 valid = false;
 			}
 			
 			if(nameresponsible_txt_.isEmpty()){
-			  formErrors[9] = "ÇÏÎá ÇÓã ÇáãÓÆæá";	
+			  formErrors[8] = "ÇÏÎá ÇÓã ÇáãÓÆæá";	
 			  valid = false;
 			}
 			
 			if (date_ == null){
-			  formErrors[10] = "ÇÎÊÑ ÇáÊÇÑíÎ ãä ÇáÞÇÆãå";
+			  formErrors[9] = "ÇÎÊÑ ÇáÊÇÑíÎ ãä ÇáÞÇÆãå";
 			  valid = false;
 			}
 			if (nmachine.equals("")){
-				formErrors[11] =  "ÇÎÊÑ äæÚ ÇáÃáÉ";
+				formErrors[10] =  "ÇÎÊÑ äæÚ ÇáÃáÉ";
 				valid = false;
 			}
 			break;
 		} 
 		//Concatenation every of name of machine and its number of code 
 		codemachine_val = nmachine +" "+codemachine_txt_+"ß";
-	 
+		if (valid && no_distinct){
+			return true;
+		}
+		return false;
+	}	
+	
+	
+	
+	
+	
+	
+	
+	//Save func
+	@FXML
+	public void saveData(){
+	 con_db_savedata = db.getConnection_F_DB();
+	 boolean getValid_Func = getValidation();
 	 try{
-	    if (valid && no_distinct){
+	    if (getValid_Func){
 			//Creating JDBC PreparedStatement class 
 			ps = con_db_savedata.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
 			ps.setLong(1, Integer.valueOf(nbon_txt_));
@@ -336,7 +349,7 @@ public Input_data_Controller(){
 				//clear TextField
 				clear();
 			}
-			}else if (!valid){
+			}else if (!getValid_Func){
 			    String collectErrors = "";
 				for (int i = 0; i < formErrors.length; i++){
 				    if (formErrors[i] != null){
@@ -368,7 +381,7 @@ public Input_data_Controller(){
 
             //Closing database connection
             try {
-                if( con_db_savedata != null && valid && no_distinct) {
+                if( con_db_savedata != null && getValid_Func) {
 
                     // cleanup resources, once after processing
                     ps.close();
@@ -380,16 +393,19 @@ public Input_data_Controller(){
             }
         }
 	}
+	
 	@FXML
 	//Update func
 	public void updateData(){
 		
 	}
+	
 	@FXML
 	//Delete func
 	public void deleteData(){
 		
 	}
+	
 	@FXML //this way isn't correct way , the correct way using by Group and toggle classes
 	public void setSelectedRadioBtnSolar(){
 		if (gas_radiobtn.isSelected()){
@@ -397,6 +413,7 @@ public Input_data_Controller(){
 			store_radio_val = "ÓæáÇÑ";
 	    }
 	}
+	
    @FXML //this way isn't correct way , the correct way using by Group and toggle classes
 	public void setSelectedRadioBtnGas(){
 		if (solar_radiobtn.isSelected()){
@@ -414,6 +431,7 @@ public Input_data_Controller(){
         alert.showAndWait();
 	}
 	
+	//clear for Input TextFields
 	public void clear(){
         nbon_txt.clear();	
         quantitybon_txt.clear();	
