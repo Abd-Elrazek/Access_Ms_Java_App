@@ -149,14 +149,14 @@ public Input_data_Controller(){
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 	  //initialize of DatePicker 
-	  dateexchange_datepicker.setPromptText(" ÇÎÊÑ ÇáÊÇÑíÎ ãä åäÇ ");
+	  dateexchange_datepicker.setPromptText(" Ø§Ø®ØªØ± Ø§Ù„ØªØ§Ø±ÙŠØ® Ù…Ù† Ù‡Ù†Ø§ ");
 	  //initialize of store_radio_val by Banzeeen
 	  gas_radiobtn.setSelected(true);
 	  solar_radiobtn.setSelected(false);
-	  store_radio_val = "ÈäÒíä";
+	  store_radio_val = "Ø¨Ù†Ø²ÙŠÙ†";
 	  
 	  //Event of nmachine'ChoiceBox
-	  Tooltip tip = new Tooltip(" ÇÎÊÑ ÇÓã ÇáÃáÉ ");
+	  Tooltip tip = new Tooltip(" Ø§Ø®ØªØ± Ø§Ø³Ù… Ø§Ù„Ø£Ù„Ø© ");
 	  tip.setFont(new Font(14));
 	  codemachine_choicebox.setTooltip(tip); 
 	  final SelectionModel<String> sm = codemachine_choicebox.getSelectionModel();
@@ -209,7 +209,7 @@ public Input_data_Controller(){
 		boolean no_distinct = true;
 		while (true){
 			if (!nbon_txt_.matches("[0-9]+")){
-			 formErrors[0] = " ÇáÑÌÇÁ ÇÏÎÇá ÑŞã ÇáÈæä";
+			 formErrors[0] = " Ø§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ø¯Ø®Ø§Ù„ Ø±Ù‚Ù… Ø§Ù„Ø¨ÙˆÙ†";
 			 System.out.println("please inter number of nbon");
 			 valid = false;
 			}else{
@@ -223,8 +223,8 @@ public Input_data_Controller(){
 						nbon_distict = rs.getLong("Nbon");
 						System.out.println("nbon_distict -> "+rs.getLong("Nbon"));
 						if (nbon_distict == nbon_check){
-						    String concat = "  ÇáÈæä ÇáĞì ÊÍÇæá ÇÏÎÇáå ãßÑÑ İì ÇáãÓáÓá ÑŞã  " + retrive_serialn_of_distinct;
-					        setAlert(AlertType.INFORMATION, "ÎØÃ İÇÏÍ","ÑÇÌÚ ÇáÈíÇäÇÊ ÌíÏÇ",concat);
+						    String concat = "  Ø§Ù„Ø¨ÙˆÙ† Ø§Ù„Ø°Ù‰ ØªØ­Ø§ÙˆÙ„ Ø§Ø¯Ø®Ø§Ù„Ù‡ Ù…ÙƒØ±Ø± ÙÙ‰ Ø§Ù„Ù…Ø³Ù„Ø³Ù„ Ø±Ù‚Ù…  " + retrive_serialn_of_distinct;
+					        setAlert(AlertType.INFORMATION, "Ø®Ø·Ø£ ÙØ§Ø¯Ø­","Ø±Ø§Ø¬Ø¹ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø¬ÙŠØ¯Ø§",concat);
 							no_distinct = false;
 						} 
 						
@@ -238,7 +238,7 @@ public Input_data_Controller(){
 			if (quantitybon_txt_.matches("[0-9]+")){
 				if (Integer.valueOf(quantitybon_txt_) > 254 || Integer.valueOf(quantitybon_txt_) < 0){
 					
-					formErrors[1] = "ÇáÇÑŞÇã Êßæä ãä 1 Çáì 254 İì ÇáÓÚå";
+					formErrors[1] = "Ø§Ù„Ø§Ø±Ù‚Ø§Ù… ØªÙƒÙˆÙ† Ù…Ù† 1 Ø§Ù„Ù‰ 254 ÙÙ‰ Ø§Ù„Ø³Ø¹Ù‡";
 					valid = false;
 					
 				}else{
@@ -246,13 +246,13 @@ public Input_data_Controller(){
 				}
 				 formErrors[2] = null;
 			}else{
-			    formErrors[2] = "ÇÑŞÇã İŞØ İì ÎÇäå ÇáÓÚå ";
+			    formErrors[2] = "Ø§Ø±Ù‚Ø§Ù… ÙÙ‚Ø· ÙÙ‰ Ø®Ø§Ù†Ù‡ Ø§Ù„Ø³Ø¹Ù‡ ";
 			    valid = false;
 			}
 			
 			if (!gas_radiobtn.isSelected() && !solar_radiobtn.isSelected()){
 			 
-			 formErrors[3] = "ÇÎÊÑ äæÚ ÇáæŞæÏ";
+			 formErrors[3] = "Ø§Ø®ØªØ± Ù†ÙˆØ¹ Ø§Ù„ÙˆÙ‚ÙˆØ¯";
 			 valid = false;
 			}else{
 			    formErrors[3] = null;
@@ -260,7 +260,7 @@ public Input_data_Controller(){
 			
 			if (!counter_txt_.matches("[0-9]+")){
 			 
-			 formErrors[4] = "ÇÏÎá ÑŞã ÇáÚÏÇÏ ÇÑŞÇã İŞØ";
+			 formErrors[4] = "Ø§Ø¯Ø®Ù„ Ø±Ù‚Ù… Ø§Ù„Ø¹Ø¯Ø§Ø¯ Ø§Ø±Ù‚Ø§Ù… ÙÙ‚Ø·";
 			 valid = false;
 			}else{
 			  formErrors[4] = null;
@@ -269,41 +269,41 @@ public Input_data_Controller(){
 			
 			if (!nnote_txt_.matches("[0-9]+")){
 			 
-			 formErrors[5] = " ÇÏÎá ÑŞã ÇáÏİÊÑ ÑŞã İŞØ ";
+			 formErrors[5] = " Ø§Ø¯Ø®Ù„ Ø±Ù‚Ù… Ø§Ù„Ø¯ÙØªØ± Ø±Ù‚Ù… ÙÙ‚Ø· ";
 			 valid = false;
 			}else{
 			formErrors[5] = null;
 			}
 			
 			if (!codemachine_txt_.matches("[0-9]+")){
-			 formErrors[6] = "ÇÏÎá ßæÏ ÇáÃáÉ ÇÑŞÇã İŞØ";
+			 formErrors[6] = "Ø§Ø¯Ø®Ù„ ÙƒÙˆØ¯ Ø§Ù„Ø£Ù„Ø© Ø§Ø±Ù‚Ø§Ù… ÙÙ‚Ø·";
 			 valid = false;		
 			}else{
 			    formErrors[6] = null;
 			}
 			
 			if (namedriver_txt_.isEmpty()){
-			 formErrors[7] = "ÇÏÎá ÇÓã ÇáÓÇÆŞ";
+			 formErrors[7] = "Ø§Ø¯Ø®Ù„ Ø§Ø³Ù… Ø§Ù„Ø³Ø§Ø¦Ù‚";
 			 valid = false;
 			}else{
 			    formErrors[7] = null;
 			}
 			
 			if(nameresponsible_txt_.isEmpty()){
-			  formErrors[8] = "ÇÏÎá ÇÓã ÇáãÓÆæá";	
+			  formErrors[8] = "Ø§Ø¯Ø®Ù„ Ø§Ø³Ù… Ø§Ù„Ù…Ø³Ø¦ÙˆÙ„";	
 			  valid = false;
 			}else{
 			    formErrors[8] = null;
 			}
 			
 			if (date_ == null){
-			  formErrors[9] = "ÇÎÊÑ ÇáÊÇÑíÎ ãä ÇáŞÇÆãå";
+			  formErrors[9] = "Ø§Ø®ØªØ± Ø§Ù„ØªØ§Ø±ÙŠØ® Ù…Ù† Ø§Ù„Ù‚Ø§Ø¦Ù…Ù‡";
 			  valid = false;
 			}else{
 			    formErrors[9] = null;
 			}
 			if (nmachine.equals("")){
-				formErrors[10] =  "ÇÎÊÑ äæÚ ÇáÃáÉ";
+				formErrors[10] =  "Ø§Ø®ØªØ± Ù†ÙˆØ¹ Ø§Ù„Ø£Ù„Ø©";
 				valid = false;
 			}else{
 			   formErrors[10] = null;
@@ -311,7 +311,7 @@ public Input_data_Controller(){
 			break;
 		} 
 		//Concatenation every of name of machine and its number of code 
-		codemachine_val = nmachine +" "+codemachine_txt_+"ß";
+		codemachine_val = nmachine +" "+codemachine_txt_+"Ùƒ";
 		if (valid && no_distinct){
 			return true;
 		}
@@ -434,7 +434,7 @@ public Input_data_Controller(){
 	public void setSelectedRadioBtnSolar(){
 		if (gas_radiobtn.isSelected()){
 		    gas_radiobtn.setSelected(false);
-			store_radio_val = "ÓæáÇÑ";
+			store_radio_val = "Ø³ÙˆÙ„Ø§Ø±";
 	    }
 	}
 	
@@ -442,15 +442,15 @@ public Input_data_Controller(){
 	public void setSelectedRadioBtnGas(){
 		if (solar_radiobtn.isSelected()){
 		    solar_radiobtn.setSelected(false);
-			store_radio_val = "ÈäÒíä";
+			store_radio_val = "Ø¨Ù†Ø²ÙŠÙ†";
 	    }
 	}
 	//type either "Info" or "Error"
 	public void setNotification(String type,String content){
 		if (type.equals("Info")){
 			Notifications notificationBuilder = Notifications.create()
-			.title("Êã ÈäÌÇÍ")
-			.text("Êã ÇÖÇİå ÇáÈíÇäÇÊ ÈäÌÇÍ")
+			.title("ØªÙ… Ø¨Ù†Ø¬Ø§Ø­")
+			.text("ØªÙ… Ø§Ø¶Ø§ÙÙ‡ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø¨Ù†Ø¬Ø§Ø­")
 			.graphic(new ImageView(new Image("/images/inserted.PNG")))
 			.hideAfter(Duration.seconds(2))
 			.position(Pos.BOTTOM_LEFT)
@@ -463,7 +463,7 @@ public Input_data_Controller(){
 			notificationBuilder.show();
 		}else if (type.equals("Error")){
 			Notifications notificationBuilder = Notifications.create()
-			.title("  ÇÏÎá ÇáÈíÇäÇÊ ÕÍíÍå ")
+			.title("  Ø§Ø¯Ø®Ù„ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª ØµØ­ÙŠØ­Ù‡ ")
 			.text(content)
 			.graphic(new ImageView(new Image("/images/Error1.PNG")))
 			.hideAfter(Duration.seconds(15))
@@ -496,10 +496,10 @@ public Input_data_Controller(){
 		Date date = list_view.get(0).getDateexchange();
 		dateexchange_datepicker.setValue(date.toLocalDate());
 		String type_fuel = list_view.get(0).getTypefuel().toString();
-		if (type_fuel.equals("ÈäÒíä")){
+		if (type_fuel.equals("Ø¨Ù†Ø²ÙŠÙ†")){
 			gas_radiobtn.setSelected(true);
 			solar_radiobtn.setSelected(false);
-		}else if (type_fuel.equals("ÓæáÇÑ")){
+		}else if (type_fuel.equals("Ø³ÙˆÙ„Ø§Ø±")){
 		    solar_radiobtn.setSelected(true);
 			gas_radiobtn.setSelected(false);
  	    }
