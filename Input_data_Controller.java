@@ -6,6 +6,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Tooltip;
@@ -136,6 +137,8 @@ public class Input_data_Controller implements Initializable{
 		//set formErrors length
 		String formErrors[] = new String[11];
 		String collectErrors = "";
+		
+		private TableViewSelectionModel<Table_View> selectedModel ;
 //Constructor
 public Input_data_Controller(){
   
@@ -161,10 +164,26 @@ public Input_data_Controller(){
             @Override public void invalidated(Observable o) {
 				nmachine = sm.getSelectedItem();
 				int index = sm.getSelectedIndex();
-				System.out.println("item -> " + index);
+				System.out.println("item -> " + index + " : itmem -> "+ nmachine);
             }
         });
-		//End Event 
+		//End Event
+		
+		//initialize of TableViewSelectionModel
+	   // selectedModel = viewtable.getSelectionModel();
+	   
+       /* 	   
+		 //getSelectedItem with Event
+		 selectedModel = viewtable.getSelectionModel();
+		 InvalidationListener listener = new InvalidationListener(){
+		    @Override public void invalidated(Observable o) {
+               System.out.println("row clicked..");
+			   setTextFG();
+            }
+		};
+		selectedModel.selectedItemProperty().addListener(listener); 
+		
+		 */
 		
 		//First view data from database
 		setViewTable();
@@ -184,12 +203,14 @@ public Input_data_Controller(){
 		nameresponsible_txt_= nameresponsible_txt.getText();
 		codemachine_txt_= codemachine_txt.getText();
 		System.out.println("length of formErrors are -> "+formErrors.length);
+		
 		collectErrors = "";
 		boolean valid = true;
 		boolean no_distinct = true;
 		while (true){
 			if (!nbon_txt_.matches("[0-9]+")){
 			 formErrors[0] = " «·—Ã«¡ «œŒ«· —ﬁ„ «·»Ê‰";
+			 System.out.println("please inter number of nbon");
 			 valid = false;
 			}else{
 			    try{
@@ -211,6 +232,7 @@ public Input_data_Controller(){
 			    }catch(SQLException e){
 			        e.printStackTrace();
 			    }
+				formErrors[0] = null;
 			}
 			
 			if (quantitybon_txt_.matches("[0-9]+")){
@@ -218,10 +240,13 @@ public Input_data_Controller(){
 					
 					formErrors[1] = "«·«—ﬁ«„  ﬂÊ‰ „‰ 1 «·Ï 254 ›Ï «·”⁄Â";
 					valid = false;
+					
+				}else{
+				    formErrors[1] = null;
 				}
+				 formErrors[2] = null;
 			}else{
-			    
-			    formErrors[2] = "«œŒ· «—ﬁ«„ ›ﬁÿ Ê«·«—ﬁ«„ „‰ 1 «·Ï 254";
+			    formErrors[2] = "«—ﬁ«„ ›ﬁÿ ›Ï Œ«‰Â «·”⁄Â ";
 			    valid = false;
 			}
 			
@@ -229,12 +254,16 @@ public Input_data_Controller(){
 			 
 			 formErrors[3] = "«Œ — ‰Ê⁄ «·ÊﬁÊœ";
 			 valid = false;
+			}else{
+			    formErrors[3] = null;
 			}
 			
 			if (!counter_txt_.matches("[0-9]+")){
 			 
 			 formErrors[4] = "«œŒ· —ﬁ„ «·⁄œ«œ «—ﬁ«„ ›ﬁÿ";
 			 valid = false;
+			}else{
+			  formErrors[4] = null;
 			}
 
 			
@@ -242,30 +271,42 @@ public Input_data_Controller(){
 			 
 			 formErrors[5] = " «œŒ· —ﬁ„ «·œ› — —ﬁ„ ›ﬁÿ ";
 			 valid = false;
+			}else{
+			formErrors[5] = null;
 			}
 			
 			if (!codemachine_txt_.matches("[0-9]+")){
 			 formErrors[6] = "«œŒ· ﬂÊœ «·√·… «—ﬁ«„ ›ﬁÿ";
 			 valid = false;		
+			}else{
+			    formErrors[6] = null;
 			}
 			
 			if (namedriver_txt_.isEmpty()){
 			 formErrors[7] = "«œŒ· «”„ «·”«∆ﬁ";
 			 valid = false;
+			}else{
+			    formErrors[7] = null;
 			}
 			
 			if(nameresponsible_txt_.isEmpty()){
 			  formErrors[8] = "«œŒ· «”„ «·„”∆Ê·";	
 			  valid = false;
+			}else{
+			    formErrors[8] = null;
 			}
 			
 			if (date_ == null){
 			  formErrors[9] = "«Œ — «· «—ÌŒ „‰ «·ﬁ«∆„Â";
 			  valid = false;
+			}else{
+			    formErrors[9] = null;
 			}
 			if (nmachine.equals("")){
 				formErrors[10] =  "«Œ — ‰Ê⁄ «·√·…";
 				valid = false;
+			}else{
+			   formErrors[10] = null;
 			}
 			break;
 		} 
@@ -301,13 +342,16 @@ public Input_data_Controller(){
 			int result = ps.executeUpdate();
 			if (result != 0 ){
 				System.out.println("result of ps.executeUpdate -> "  + result);
+				setViewTable();
+				viewtable.refresh();
 				//setNotification here pass "info" 
-				setNotification("Info");
-				
+				setNotification("Info","no content");
 				//clear TextField
 				clear();
 			}
 			}else if (!getValid_Func){
+			    //initialize of collectErrors here too
+			    collectErrors = "";
 				for (int i = 0; i < formErrors.length; i++){
 				    if (formErrors[i] != null){
 					collectErrors += formErrors[i]+"      \n\n"; 
@@ -316,13 +360,15 @@ public Input_data_Controller(){
 					}
 				}
 				//setNotification here pass "Error" 
-				setNotification("Error");
+				if (!collectErrors.isEmpty()){
+				setNotification("Error",collectErrors);
+				}
 		    }
 	    }catch(SQLException sqlex){
             sqlex.printStackTrace();
         }
         finally {
-
+            //setViewTable();
             //Closing database connection
             try {
                 if( con_db_savedata != null && getValid_Func) {
@@ -400,7 +446,7 @@ public Input_data_Controller(){
 	    }
 	}
 	//type either "Info" or "Error"
-	public void setNotification(String type){
+	public void setNotification(String type,String content){
 		if (type.equals("Info")){
 			Notifications notificationBuilder = Notifications.create()
 			.title(" „ »‰Ã«Õ")
@@ -418,7 +464,7 @@ public Input_data_Controller(){
 		}else if (type.equals("Error")){
 			Notifications notificationBuilder = Notifications.create()
 			.title("  «œŒ· «·»Ì«‰«  ’ÕÌÕÂ ")
-			.text(collectErrors)
+			.text(content)
 			.graphic(new ImageView(new Image("/images/Error1.PNG")))
 			.hideAfter(Duration.seconds(15))
 			.position(Pos.BOTTOM_LEFT)
@@ -442,6 +488,29 @@ public Input_data_Controller(){
         alert.showAndWait();
 	}
 	
+	//setText from getSelectionModel
+	public void setTextFG(){
+	    selectedModel = viewtable.getSelectionModel();
+		ObservableList<Table_View>  list_view = selectedModel.getSelectedItems();
+		nbon_txt.setText(""+list_view.get(0).getNbon());
+		Date date = list_view.get(0).getDateexchange();
+		dateexchange_datepicker.setValue(date.toLocalDate());
+		String type_fuel = list_view.get(0).getTypefuel().toString();
+		if (type_fuel.equals("»‰“Ì‰")){
+			gas_radiobtn.setSelected(true);
+			solar_radiobtn.setSelected(false);
+		}else if (type_fuel.equals("”Ê·«—")){
+		    solar_radiobtn.setSelected(true);
+			gas_radiobtn.setSelected(false);
+ 	    }
+		quantitybon_txt.setText(""+list_view.get(0).getQuantitybon());
+		counter_txt.setText(""+list_view.get(0).getCounter());
+		namedriver_txt.setText(list_view.get(0).getNamedriver().toString());
+		nnote_txt.setText(""+list_view.get(0).getNnote());
+		nameresponsible_txt.setText(list_view.get(0).getNameresponsible().toString());
+		String code = list_view.get(0).getCodemachine().toString();
+		codemachine_txt.setText(code.replaceAll("[^0-9]", ""));
+	}
 	//clear for Input TextFields
 	public void clear(){
         nbon_txt.clear();	
@@ -454,3 +523,5 @@ public Input_data_Controller(){
         codemachine_txt.clear();	
 	}
 }
+
+
