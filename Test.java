@@ -17,6 +17,7 @@ public class Test{
 		    count++;
 			System.out.println("count : " + count + " | SerialN "+rs.getLong("SerialN")+ " | Nbon : " + rs.getLong("Nbon"));
 		}
+		String test_github = " Ã—Ì» «·«‰ﬂÊœ ›Ï «·ÃÌ  Â«» ";
 		System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
 	}catch(SQLException e){
 		e.printStackTrace();
