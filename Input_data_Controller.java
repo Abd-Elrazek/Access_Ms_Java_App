@@ -424,7 +424,7 @@ public Input_data_Controller(){
 				setViewTable();
 				viewtable.refresh();
 				//setNotification here pass "info" 
-				setNotification("Info_ubdate","no content");
+				setNotification("Info_update","no content");
 				//clear TextField
 				clear();
 			}
@@ -550,7 +550,7 @@ public Input_data_Controller(){
 			//notificationBuilder.owner(stageOfThis);
 			notificationBuilder.darkStyle();
 			notificationBuilder.show();
-		}else if (type.equals("info_update")){
+		}else if (type.equals("Info_update")){
 		    Notifications notificationBuilder = Notifications.create()
 			.title(" „ «· ⁄œÌ· »‰Ã«Œ")
 			.text(content)
