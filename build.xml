@@ -1,0 +1,6 @@
+<project default="compile">
+    <target name="compile">
+        <mkdir dir="bin"/>
+        <javac srcdir="." destdir="classes" classpath="1.jar;2.jar;3.jar;4.jar;5.jar"/>
+    </target>
+</project>

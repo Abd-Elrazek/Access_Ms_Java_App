@@ -7,11 +7,17 @@ public class Table_View{
 	private Date Dateexchange;
 	
 //Constructor 
-
+    //Defualt Constructor
 	public Table_View(){
 		
 	}
-
+    
+	//Construcor for two variables (String code , long counter)
+	public Table_View(String code_machine, long counter){
+		this.Codemachine = code_machine;
+		this.Counter = counter;
+	}
+	//Constructor for all variables
     public Table_View(long Serialn, long Nbon,Date Dateexchange,String Typefuel, long Quantitybon,long Counter,long Distance, String Namedriver,long Nnote, String Nameresponsible,String Codemachine){
 	 this.Serialn = Serialn;
 	 this.Nbon = Nbon;

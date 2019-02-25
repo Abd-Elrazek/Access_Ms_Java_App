@@ -61,7 +61,8 @@ public class Input_data_Controller implements Initializable{
     //this Connection for View table
 	private Connection con_db = null;
 	private Connection con_db_savedata = null;
-	private PreparedStatement ps = null;
+	private Connection con_db_update = null;
+	private Connection con_db_delete = null;
 	private DB db = new DB();
 	//list of Table_View class 
 	ObservableList<Table_View> table_view_list ;
@@ -137,6 +138,7 @@ public class Input_data_Controller implements Initializable{
 		//set formErrors length
 		String formErrors[] = new String[11];
 		String collectErrors = "";
+		private boolean check_update = true;
 		
 		private TableViewSelectionModel<Table_View> selectedModel ;
 //Constructor
@@ -212,26 +214,31 @@ public Input_data_Controller(){
 			 formErrors[0] = " «·—Ã«¡ «œŒ«· —ﬁ„ «·»Ê‰";
 			 System.out.println("please inter number of nbon");
 			 valid = false;
-			}else{
-			    try{
-					long nbon_check = Integer.valueOf(nbon_txt_);
-					long nbon_distict = 0;
-					long retrive_serialn_of_distinct = 0;
-					ResultSet rs =con_db_savedata.createStatement().executeQuery("SELECT Serialn, Nbon FROM General_db");
-					while(rs.next()){
-						retrive_serialn_of_distinct = rs.getLong("Serialn");
-						nbon_distict = rs.getLong("Nbon");
-						System.out.println("nbon_distict -> "+rs.getLong("Nbon"));
-						if (nbon_distict == nbon_check){
-						    String concat = "  «·»Ê‰ «·–Ï  Õ«Ê· «œŒ«·Â „ﬂ—— ›Ï «·„”·”· —ﬁ„  " + retrive_serialn_of_distinct;
-					        setAlert(AlertType.INFORMATION, "Œÿ√ ›«œÕ","—«Ã⁄ «·»Ì«‰«  ÃÌœ«",concat);
-							no_distinct = false;
-						} 
-						
+			}else {
+			    if (check_update){
+					try{ 
+					    Connection con_temp = db.getConnection_F_DB();
+						long nbon_check = Integer.valueOf(nbon_txt_);
+						long nbon_distict = 0;
+						long retrive_serialn_of_distinct = 0;
+						ResultSet rs =con_temp.createStatement().executeQuery("SELECT Serialn, Nbon FROM General_db");
+						while(rs.next()){
+							retrive_serialn_of_distinct = rs.getLong("Serialn");
+							nbon_distict = rs.getLong("Nbon");
+							System.out.println("nbon_distict -> "+rs.getLong("Nbon"));
+							if (nbon_distict == nbon_check){
+								String concat = "  «·»Ê‰ «·–Ï  Õ«Ê· «œŒ«·Â „ﬂ—— ›Ï «·„”·”· —ﬁ„  " + retrive_serialn_of_distinct;
+								setAlert(AlertType.INFORMATION, "Œÿ√ ›«œÕ","—«Ã⁄ «·»Ì«‰«  ÃÌœ«",concat);
+								no_distinct = false;
+							} 
+							
+						}
+						rs.close();
+						con_temp.close();
+					}catch(SQLException e){
+						e.printStackTrace();
 					}
-			    }catch(SQLException e){
-			        e.printStackTrace();
-			    }
+				}
 				formErrors[0] = null;
 			}
 			
@@ -323,6 +330,7 @@ public Input_data_Controller(){
 	@FXML
 	public void saveData(){
 	 con_db_savedata = db.getConnection_F_DB();
+	 PreparedStatement ps = null;
 	 boolean getValid_Func = getValidation();
 	 try{
 	    if (getValid_Func){
@@ -382,12 +390,77 @@ public Input_data_Controller(){
                 sqlex.printStackTrace();
             }
         }
+		check_update = true;
+		System.out.println("check_update -> " + check_update);
 	}
 	
 	@FXML
 	//Update func
 	public void updateData(){
-		
+	 con_db_update = db.getConnection_F_DB();
+	 check_update = false;
+	 boolean getValid_Func = getValidation();
+	 PreparedStatement ps_update = null;
+	 try{
+	    if (getValid_Func){
+			//Creating JDBC PreparedStatement class 
+			ps_update = con_db_update.prepareStatement("UPDATE General_db SET Nbon = ?, Dateexchange = ?, Typefuel = ?, Quantitybon = ?, Counter = ?, Distance = ?, Namedriver = ?, Nnote = ?, Nameresponsible = ?, Codemachine = ? WHERE Nbon = ?;");
+			ps_update.setLong(1, Integer.valueOf(nbon_txt_));
+			ps_update.setDate(2,Date.valueOf(date_));
+			ps_update.setString(3, store_radio_val);
+			ps_update.setLong(4, Integer.valueOf(quantitybon_txt_));
+			ps_update.setLong(5, Integer.valueOf(counter_txt_));
+			ps_update.setLong(6, Integer.valueOf(counter_txt_)); // this for distance calculator instead of counter_txt_
+			ps_update.setString(7,namedriver_txt_);
+			ps_update.setLong(8, Integer.valueOf(nnote_txt_));
+			ps_update.setString(9, nameresponsible_txt_);
+			ps_update.setString(10, codemachine_val);//codemachine_txt.getText());
+			ps_update.setLong(11,Integer.valueOf(nbon_txt_));
+			//Executing SQL 
+			int result = ps_update.executeUpdate();
+				System.out.println("result of ps_update.executeUpdate -> "  + result);
+			if (result != 0 ){
+				System.out.println("result of ps_update.executeUpdate -> "  + result);
+				setViewTable();
+				viewtable.refresh();
+				//setNotification here pass "info" 
+				setNotification("Info_ubdate","no content");
+				//clear TextField
+				clear();
+			}
+			}else if (!getValid_Func){
+			    //initialize of collectErrors here too
+			    collectErrors = "";
+				for (int i = 0; i < formErrors.length; i++){
+				    if (formErrors[i] != null){
+					collectErrors += formErrors[i]+"      \n\n"; 
+					}else{
+					System.out.println(formErrors[i]);	
+					}
+				}
+				//setNotification here pass "Error" 
+				if (!collectErrors.isEmpty()){
+				setNotification("Error",collectErrors);
+				}
+		    }
+	    }catch(SQLException sqlex){
+            sqlex.printStackTrace();
+        }
+        finally {
+            //setViewTable();
+            //Closing database connection
+            try {
+                if( con_db_update != null && getValid_Func) {
+
+                    // cleanup resources, once after processing
+                    ps_update.close();
+                    // and then finally close connection
+                    con_db_update.close();
+                }
+            }catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
 	}
 	
 	@FXML
@@ -446,6 +519,7 @@ public Input_data_Controller(){
 	    }
 	}
 	//type either "Info" or "Error"
+	//this way isn't good way to 
 	public void setNotification(String type,String content){
 		if (type.equals("Info")){
 			Notifications notificationBuilder = Notifications.create()
@@ -476,6 +550,20 @@ public Input_data_Controller(){
 			//notificationBuilder.owner(stageOfThis);
 			notificationBuilder.darkStyle();
 			notificationBuilder.show();
+		}else if (type.equals("info_update")){
+		    Notifications notificationBuilder = Notifications.create()
+			.title(" „ «· ⁄œÌ· »‰Ã«Œ")
+			.text(content)
+			.graphic(new ImageView(new Image("/images/Error1.PNG")))
+			.hideAfter(Duration.seconds(3))
+			.position(Pos.BOTTOM_LEFT)
+			.onAction(new EventHandler<ActionEvent>() {
+				@Override public void handle(ActionEvent arg0) {
+					System.out.println("Notification clicked on!");
+				}
+			});
+			//notificationBuilder.owner(stageOfThis);
+			notificationBuilder.show();
 		}
 	}
 	
@@ -490,26 +578,31 @@ public Input_data_Controller(){
 	
 	//setText from getSelectionModel
 	public void setTextFG(){
-	    selectedModel = viewtable.getSelectionModel();
-		ObservableList<Table_View>  list_view = selectedModel.getSelectedItems();
-		nbon_txt.setText(""+list_view.get(0).getNbon());
-		Date date = list_view.get(0).getDateexchange();
-		dateexchange_datepicker.setValue(date.toLocalDate());
-		String type_fuel = list_view.get(0).getTypefuel().toString();
-		if (type_fuel.equals("»‰“Ì‰")){
-			gas_radiobtn.setSelected(true);
-			solar_radiobtn.setSelected(false);
-		}else if (type_fuel.equals("”Ê·«—")){
-		    solar_radiobtn.setSelected(true);
-			gas_radiobtn.setSelected(false);
- 	    }
-		quantitybon_txt.setText(""+list_view.get(0).getQuantitybon());
-		counter_txt.setText(""+list_view.get(0).getCounter());
-		namedriver_txt.setText(list_view.get(0).getNamedriver().toString());
-		nnote_txt.setText(""+list_view.get(0).getNnote());
-		nameresponsible_txt.setText(list_view.get(0).getNameresponsible().toString());
-		String code = list_view.get(0).getCodemachine().toString();
-		codemachine_txt.setText(code.replaceAll("[^0-9]", ""));
+			selectedModel = viewtable.getSelectionModel();
+	    if (!selectedModel.isEmpty()){
+			nbon_txt.setDisable(true);
+			ObservableList<Table_View>  list_view = selectedModel.getSelectedItems();
+			nbon_txt.setText(""+list_view.get(0).getNbon());
+			Date date = list_view.get(0).getDateexchange();
+			dateexchange_datepicker.setValue(date.toLocalDate());
+			String type_fuel = list_view.get(0).getTypefuel().toString();
+			if (type_fuel.equals("»‰“Ì‰")){
+				gas_radiobtn.setSelected(true);
+				solar_radiobtn.setSelected(false);
+			}else if (type_fuel.equals("”Ê·«—")){
+				solar_radiobtn.setSelected(true);
+				gas_radiobtn.setSelected(false);
+			}
+			quantitybon_txt.setText(""+list_view.get(0).getQuantitybon());
+			counter_txt.setText(""+list_view.get(0).getCounter());
+			namedriver_txt.setText(list_view.get(0).getNamedriver().toString());
+			nnote_txt.setText(""+list_view.get(0).getNnote());
+			nameresponsible_txt.setText(list_view.get(0).getNameresponsible().toString());
+			String code = list_view.get(0).getCodemachine().toString();
+			codemachine_txt.setText(code.replaceAll("[^0-9]", ""));
+	    }else{
+		setAlert(AlertType.ERROR, "Œÿ√", "ÌÃ»  ÕœÌœ ’› ﬁ»·  Õ—Ì—Â","«·—Ã«¡ «Œ Ì«— ’› „‰ «·ÃœÊ·  ﬁ»· «· ⁄œÌ· ⁄·ÌÂ");
+		}
 	}
 	//clear for Input TextFields
 	public void clear(){
@@ -521,6 +614,9 @@ public Input_data_Controller(){
         nameresponsible_txt.clear();	
         nnote_txt.clear();	
         codemachine_txt.clear();	
+		 if (nbon_txt.isDisable()){
+			nbon_txt.setDisable(false);
+		} 
 	}
 }
 
