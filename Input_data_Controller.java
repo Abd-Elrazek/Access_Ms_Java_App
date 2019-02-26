@@ -390,8 +390,6 @@ public Input_data_Controller(){
                 sqlex.printStackTrace();
             }
         }
-		check_update = true;
-		System.out.println("check_update -> " + check_update);
 	}
 	
 	@FXML
@@ -424,7 +422,7 @@ public Input_data_Controller(){
 				setViewTable();
 				viewtable.refresh();
 				//setNotification here pass "info" 
-				setNotification("Info_update","no content");
+				setNotification("Info_update"," „ «· ⁄œÌ· »‰Ã«Õ");
 				//clear TextField
 				clear();
 			}
@@ -460,6 +458,8 @@ public Input_data_Controller(){
             }catch (SQLException sqlex) {
                 sqlex.printStackTrace();
             }
+		check_update = true;
+		System.out.println("check_update -> " + check_update);
         }
 	}
 	
@@ -552,9 +552,9 @@ public Input_data_Controller(){
 			notificationBuilder.show();
 		}else if (type.equals("Info_update")){
 		    Notifications notificationBuilder = Notifications.create()
-			.title(" „ «· ⁄œÌ· »‰Ã«Œ")
+			.title(" ⁄œÌ·  «·ÃœÊ·")
 			.text(content)
-			.graphic(new ImageView(new Image("/images/Error1.PNG")))
+			.graphic(new ImageView(new Image("/images/update.PNG")))
 			.hideAfter(Duration.seconds(3))
 			.position(Pos.BOTTOM_LEFT)
 			.onAction(new EventHandler<ActionEvent>() {
@@ -580,7 +580,7 @@ public Input_data_Controller(){
 	public void setTextFG(){
 			selectedModel = viewtable.getSelectionModel();
 	    if (!selectedModel.isEmpty()){
-			nbon_txt.setDisable(true);
+			// nbon_txt.setDisable(true);
 			ObservableList<Table_View>  list_view = selectedModel.getSelectedItems();
 			nbon_txt.setText(""+list_view.get(0).getNbon());
 			Date date = list_view.get(0).getDateexchange();
@@ -614,9 +614,9 @@ public Input_data_Controller(){
         nameresponsible_txt.clear();	
         nnote_txt.clear();	
         codemachine_txt.clear();	
-		 if (nbon_txt.isDisable()){
+		/*  if (nbon_txt.isDisable()){
 			nbon_txt.setDisable(false);
-		} 
+		}  */
 	}
 }
 
