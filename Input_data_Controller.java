@@ -14,6 +14,7 @@ import javafx.scene.control.SelectionModel;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.Reflection;
 import javafx.scene.layout.AnchorPane;
@@ -45,7 +46,7 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
-import java.net.URL;
+//import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.util.Duration;
@@ -140,6 +141,7 @@ public class Input_data_Controller implements Initializable{
 		String formErrors[] = new String[11];
 		String collectErrors = "";
 		private boolean check_update = true;
+	    private boolean confirm_delete = false;
 		
 		private TableViewSelectionModel<Table_View> selectedModel ;
 //Constructor
@@ -467,7 +469,38 @@ public Input_data_Controller(){
 	@FXML
 	//Delete func
 	public void deleteData(){
-		
+	    String nbon = nbon_txt.getText();
+	   if (nbon.matches("[0-9]+")){
+		   //setAlert
+		   //when I call setAlert confirm_delete var will become true if response == ButtonType.OK
+		   setAlert(AlertType.CONFIRMATION, " Õ“Ì—", "«‰  ⁄·Ï Ê‘ﬂ Õ–› ’›¯"," : Â· «‰  „ √ﬂœ „‰ Õ–› «·»Ê‰ —ﬁ„ "+nbon_txt.getText());
+		   if (confirm_delete){
+				long t0 = System.nanoTime();
+				con_db_delete =  db.getConnection_F_DB();
+				try{ 
+					PreparedStatement ps_delete =con_db_delete.prepareStatement("DELETE FROM General_db WHERE Nbon = ?;");
+					ps_delete.setLong(1, Integer.valueOf(nbon));
+					int reslut = ps_delete.executeUpdate(); 
+					System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
+					if (reslut != 0){
+					   //setNotification
+					   setViewTable();
+					   setNotification("delete", "  „ «·Õ–›                  ");
+					}else{
+						setAlert(AlertType.ERROR, "Œÿ√", " ·ﬁœ ÕœÀ Œÿ√ „« ", "«‰   Õ«Ê· Õ–› ’› €Ì— „ÊÃÊœ");
+					}
+					//cut connect
+					ps_delete.close();
+					con_db_delete.close();
+			   }catch(SQLException e){
+				e.printStackTrace();
+			   }
+			   clear();
+			}
+	    }else{
+		    setAlert(AlertType.ERROR, "Œÿ√","·ﬁœ ÕœÀ Œÿ√ „« ","«·—Ã«¡ «· √ﬂœ „‰ —ﬁ„ «·»Ê‰..«—ﬁ«„ ›ﬁÿ");
+		}
+		confirm_delete = false;
 	}
 	
 	//View Table in TableView
@@ -568,6 +601,20 @@ public Input_data_Controller(){
 			});
 			//notificationBuilder.owner(stageOfThis);
 			notificationBuilder.show();
+		}else if (type.equals("delete")){
+		      Notifications notificationBuilder = Notifications.create()
+			.title("Õ–›")
+			.text(content)
+			.graphic(new ImageView(new Image("/images/delete.PNG",true)))
+			.hideAfter(Duration.seconds(3))
+			.position(Pos.BOTTOM_LEFT)
+			.onAction(new EventHandler<ActionEvent>() {
+				@Override public void handle(ActionEvent arg0) {
+					System.out.println("Notification clicked on!");
+				}
+			});
+			//notificationBuilder.owner(stageOfThis);
+			notificationBuilder.show();
 		}
 	}
 	
@@ -577,7 +624,16 @@ public Input_data_Controller(){
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(Content);
-        alert.showAndWait();
+		if (alertType == AlertType.CONFIRMATION){
+			alert.showAndWait().ifPresent(response -> {
+			if (response == ButtonType.OK) {
+			   confirm_delete = true;
+			  }
+			});
+		}else{
+		    alert.showAndWait();
+		}
+		
 	}
 	
 	//setText from getSelectionModel
