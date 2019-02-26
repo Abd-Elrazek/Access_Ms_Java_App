@@ -54,6 +54,7 @@ import java.io.IOException;
 import javafx.stage.Stage;
 import javafx.geometry.Pos;
 import org.controlsfx.control.Notifications;
+import java.net.URL;
 
 public class Input_data_Controller implements Initializable{
 
@@ -521,11 +522,14 @@ public Input_data_Controller(){
 	//type either "Info" or "Error"
 	//this way isn't good way to 
 	public void setNotification(String type,String content){
+	    URL info_img = this.getClass().getResource("images//inserted.PNG");
+	    URL error_img = this.getClass().getResource("images//Error1.PNG");
+	    URL update_img = this.getClass().getResource("images//update.PNG");
 		if (type.equals("Info")){
 			Notifications notificationBuilder = Notifications.create()
 			.title(" „ »‰Ã«Õ")
 			.text(" „ «÷«›Â «·»Ì«‰«  »‰Ã«Õ")
-			.graphic(new ImageView(new Image("/images/inserted.PNG")))
+			.graphic(new ImageView(new Image("/images/inserted.PNG",true)))
 			.hideAfter(Duration.seconds(2))
 			.position(Pos.BOTTOM_LEFT)
 			.onAction(new EventHandler<ActionEvent>() {
@@ -539,7 +543,7 @@ public Input_data_Controller(){
 			Notifications notificationBuilder = Notifications.create()
 			.title("  «œŒ· «·»Ì«‰«  ’ÕÌÕÂ ")
 			.text(content)
-			.graphic(new ImageView(new Image("/images/Error1.PNG")))
+			.graphic(new ImageView(new Image("/images/Error1.PNG",true)))
 			.hideAfter(Duration.seconds(15))
 			.position(Pos.BOTTOM_LEFT)
 			.onAction(new EventHandler<ActionEvent>() {
@@ -554,7 +558,7 @@ public Input_data_Controller(){
 		    Notifications notificationBuilder = Notifications.create()
 			.title(" ⁄œÌ·  «·ÃœÊ·")
 			.text(content)
-			.graphic(new ImageView(new Image("/images/update.PNG")))
+			.graphic(new ImageView(new Image("/images/update.PNG",true)))
 			.hideAfter(Duration.seconds(3))
 			.position(Pos.BOTTOM_LEFT)
 			.onAction(new EventHandler<ActionEvent>() {
