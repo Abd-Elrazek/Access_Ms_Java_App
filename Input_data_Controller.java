@@ -142,6 +142,8 @@ public class Input_data_Controller implements Initializable{
 		String collectErrors = "";
 		private boolean check_update = true;
 	    private boolean confirm_delete = false;
+		private long Distance = 0;
+		private boolean update_distance = false;
 		
 		private TableViewSelectionModel<Table_View> selectedModel ;
 //Constructor
@@ -318,10 +320,17 @@ public Input_data_Controller(){
 			}else{
 			   formErrors[10] = null;
 			}
+		    codemachine_val = nmachine +" "+codemachine_txt_+"ß";
+			// here is place of calcDistance which nmachine and codemachine_txt_ are valids
+			//In Future if Want customize for car only check nmachine for ÓíÇÑå only
+			if (!update_distance){
+				if(!nmachine.isEmpty() && !codemachine_txt_.isEmpty()){
+					calcDistance();
+				}
+		    }
 			break;
 		} 
 		//Concatenation every of name of machine and its number of code 
-		codemachine_val = nmachine +" "+codemachine_txt_+"ß";
 		if (valid && no_distinct){
 			return true;
 		}
@@ -344,7 +353,7 @@ public Input_data_Controller(){
 			ps.setString(3, store_radio_val);
 			ps.setLong(4, Integer.valueOf(quantitybon_txt_));
 			ps.setLong(5, Integer.valueOf(counter_txt_));
-			ps.setLong(6, Integer.valueOf(counter_txt_)); // this for distance calculator instead of counter_txt_
+			ps.setLong(6, Distance); // this for distance calculator instead of counter_txt_
 			ps.setString(7,namedriver_txt_);
 			ps.setLong(8, Integer.valueOf(nnote_txt_));
 			ps.setString(9, nameresponsible_txt_);
@@ -400,25 +409,26 @@ public Input_data_Controller(){
 	public void updateData(){
 	 con_db_update = db.getConnection_F_DB();
 	 check_update = false;
+	 update_distance = true;
 	 boolean getValid_Func = getValidation();
 	 PreparedStatement ps_update = null;
 	 try{
 	    if (getValid_Func){
 			//Creating JDBC PreparedStatement class 
-			ps_update = con_db_update.prepareStatement("UPDATE General_db SET Nbon = ?, Dateexchange = ?, Typefuel = ?, Quantitybon = ?, Counter = ?, Distance = ?, Namedriver = ?, Nnote = ?, Nameresponsible = ?, Codemachine = ? WHERE Nbon = ?;");
+			ps_update = con_db_update.prepareStatement("UPDATE General_db SET Nbon = ?, Dateexchange = ?, Typefuel = ?, Quantitybon = ?, Counter = ?, Namedriver = ?, Nnote = ?, Nameresponsible = ?, Codemachine = ? WHERE Nbon = ?;");
 			ps_update.setLong(1, Integer.valueOf(nbon_txt_));
 			ps_update.setDate(2,Date.valueOf(date_));
 			ps_update.setString(3, store_radio_val);
 			ps_update.setLong(4, Integer.valueOf(quantitybon_txt_));
 			ps_update.setLong(5, Integer.valueOf(counter_txt_));
-			ps_update.setLong(6, Integer.valueOf(counter_txt_)); // this for distance calculator instead of counter_txt_
-			ps_update.setString(7,namedriver_txt_);
-			ps_update.setLong(8, Integer.valueOf(nnote_txt_));
-			ps_update.setString(9, nameresponsible_txt_);
-			ps_update.setString(10, codemachine_val);//codemachine_txt.getText());
-			ps_update.setLong(11,Integer.valueOf(nbon_txt_));
+			//ps_update.setLong(6, Distance); // this for distance calculator instead of counter_txt_
+			ps_update.setString(6,namedriver_txt_);
+			ps_update.setLong(7, Integer.valueOf(nnote_txt_));
+			ps_update.setString(8, nameresponsible_txt_);
+			ps_update.setString(9, codemachine_val);//codemachine_txt.getText());
+			ps_update.setLong(10,Integer.valueOf(nbon_txt_));
 			//Executing SQL 
-			int result = ps_update.executeUpdate();
+			    int result = ps_update.executeUpdate();
 				System.out.println("result of ps_update.executeUpdate -> "  + result);
 			if (result != 0 ){
 				System.out.println("result of ps_update.executeUpdate -> "  + result);
@@ -428,6 +438,8 @@ public Input_data_Controller(){
 				setNotification("Info_update","Êã ÇáÊÚÏíá ÈäÌÇÍ");
 				//clear TextField
 				clear();
+			}else{
+			     setAlert(AlertType.ERROR, "ÎØÃ","ÇáÊÍÏíË İÔá","ÇáÕİ ÇáĞì ÊÍÇæá ÊÍÏíËå ÛíÑ ãæÌæÏ ..ÊÃßÏ ãä æÌæÏ ÑŞã ÇáÈæä İì ÇáÌÏæá");
 			}
 			}else if (!getValid_Func){
 			    //initialize of collectErrors here too
@@ -444,6 +456,7 @@ public Input_data_Controller(){
 				setNotification("Error",collectErrors);
 				}
 		    }
+			
 	    }catch(SQLException sqlex){
             sqlex.printStackTrace();
         }
@@ -462,6 +475,7 @@ public Input_data_Controller(){
                 sqlex.printStackTrace();
             }
 		check_update = true;
+		update_distance = false;
 		System.out.println("check_update -> " + check_update);
         }
 	}
@@ -536,7 +550,65 @@ public Input_data_Controller(){
       codemachine_col.setCellValueFactory(new PropertyValueFactory<>("Codemachine"));
 	  viewtable.setItems(table_view_list);
 	}
-	
+	//func calculate distance
+	public void calcDistance(){
+	    // return counter and codemachine 
+	    Connection con = db.getConnection_F_DB();
+		ObservableList<Table_View> list = FXCollections.observableArrayList();
+		long counter = 0;
+		long serial  = 0;
+		String code = "";
+		Table_View tv = null;
+		//String codemachine_val = "áäÔ 10ß";
+		try{
+			ResultSet rs = con.createStatement().executeQuery("SELECT Serialn ,Counter ,Codemachine FROM General_db WHERE Codemachine =\""+codemachine_val+"\";");
+			while(rs.next()){
+		    tv = new Table_View(rs.getLong("Serialn"),rs.getInt("Counter"),rs.getString("Codemachine"));
+			   list.add(tv); 
+			}
+			//Cut con, rs
+			con.close();
+			rs.close();
+			
+			System.out.printf("Serialn\t\tCounter\t\tcodemachine \n");
+			System.out.printf("========\t=======\t\t=========== \n");
+			 int lastIndex = list.lastIndexOf(tv);
+		    //check if not counter or = null so distance = zero 
+			if (lastIndex != -1){
+			    serial  = list.get(lastIndex).getSerialn();
+				counter = list.get(lastIndex).getCounter();
+				code    = list.get(lastIndex).getCodemachine();
+				System.out.printf(serial+"\t\t"+counter + "\t\t" + code + "\n");
+				System.out.println("lastIndex = " + lastIndex);
+		        //check current counter small than in last row -> setNotification(create variable and set it in formErrors in getValidation) and saveData and updateData not running 
+				if (counter_txt_.matches("[0-9]+")){
+				int current_counter = Integer.valueOf(counter_txt_);
+					if (current_counter > counter){
+						//distance = currentCounter - lastCounter for this Code
+						Distance =  current_counter- counter;
+					}else{
+					    setAlert(AlertType.INFORMATION,"ãáÇÍÙå","ÚÏÇÏ åĞå ÇáÇáå ÇÕÛÑ ãä ÇÎÑ ãÑå ÓÌáÊ İíåÇ","ÇĞÇ ßÇä ÇáÚÏÇÏ ÇáÍÇáì ÇßÈÑ ãä ÇáÓÇÈŞ ÈÇáäÓÈå áåĞå ÇáÃáÉ Óæİ  íÊã ÊÓÌíá ÇáãÓÇİå ÈÕİÑ ÇĞ äÌÍÊ ÇáÚãáíå");
+					    Distance = 0;
+					}
+				}
+			}else{
+			    //I don't know if alert stop thread or not
+				setAlert(AlertType.INFORMATION,"ãáÇÍÙå","ßæÏåĞå ÇáÇáå ÛíÑ ãæÌæÏ ãä ŞÈá","ÇäÊ ÊÍÇæá æÖÚ ßæÏ ÇáÃáÉ ÛíÑ ãæÌæÏ áĞÇ Óæİ íÊã æÖÚ ÇáãÓÇİå È ÕİÑ ßãÑÌÚ ÇĞÇ äÌÍÊ ÇáÚãáíå");
+				Distance = 0;
+			}
+			/* for (int i = 0; i < list.size(); i++){
+				counter = list.get(i).getCounter();
+				code = list.get(i).getCodemachine();
+				serial = list.get(i).getSerialn();
+				System.out.printf(serial+"\t\t"+counter + "\t\t" + code + "\n");
+			}  */
+			
+		}catch(SQLException e){
+		  e.printStackTrace();
+		}
+
+		
+	}
 	@FXML //this way isn't correct way , the correct way using by Group and toggle classes
 	public void setSelectedRadioBtnSolar(){
 		if (gas_radiobtn.isSelected()){
@@ -638,6 +710,7 @@ public Input_data_Controller(){
 	
 	//setText from getSelectionModel
 	public void setTextFG(){
+	        counter_txt.setDisable(true);
 			selectedModel = viewtable.getSelectionModel();
 	    if (!selectedModel.isEmpty()){
 			// nbon_txt.setDisable(true);
@@ -669,6 +742,7 @@ public Input_data_Controller(){
         nbon_txt.clear();	
         quantitybon_txt.clear();	
         counter_txt.clear();	
+        counter_txt.setDisable(false);	
         dateexchange_datepicker.setValue(null);	
         namedriver_txt.clear();	
         nameresponsible_txt.clear();	
