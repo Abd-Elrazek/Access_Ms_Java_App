@@ -3,7 +3,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-// import javafx.stage.StageStyle;
+//import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -18,7 +19,9 @@ public class Main extends Application {
         stage.setTitle(" Œ“Ì‰ «·»Ì«‰« ");
 		stage.setResizable(false);
 		stage.sizeToScene();
-		// stage.initStyle(StageStyle.UNDECORATED);
+		//stage.initStyle(StageStyle.UTILITY);
+		//stage.initStyle(StageStyle.TRANSPARENT);
+	    //stage.initModality(Modality.WINDOW_MODAL);
         stage.setScene(scene);
         stage.show();
     }

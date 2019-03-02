@@ -66,6 +66,7 @@ public class Input_data_Controller implements Initializable{
 	private Connection con_db_update = null;
 	private Connection con_db_delete = null;
 	private DB db = new DB();
+	private Sound sound = new Sound();
 	//list of Table_View class 
 	ObservableList<Table_View> table_view_list ;
 	
@@ -233,6 +234,7 @@ public Input_data_Controller(){
 							System.out.println("nbon_distict -> "+rs.getLong("Nbon"));
 							if (nbon_distict == nbon_check){
 								String concat = "  ÇáÈæä ÇáĞì ÊÍÇæá ÇÏÎÇáå ãßÑÑ İì ÇáãÓáÓá ÑŞã  " + retrive_serialn_of_distinct;
+								sound.getSAI().play();
 								setAlert(AlertType.INFORMATION, "ÎØÃ İÇÏÍ","ÑÇÌÚ ÇáÈíÇäÇÊ ÌíÏÇ",concat);
 								no_distinct = false;
 							} 
@@ -363,8 +365,8 @@ public Input_data_Controller(){
 			if (result != 0 ){
 				System.out.println("result of ps.executeUpdate -> "  + result);
 				setViewTable();
-				viewtable.refresh();
 				//setNotification here pass "info" 
+				sound.getSNI().play();
 				setNotification("Info","no content");
 				//clear TextField
 				clear();
@@ -381,6 +383,7 @@ public Input_data_Controller(){
 				}
 				//setNotification here pass "Error" 
 				if (!collectErrors.isEmpty()){
+				sound.getSNE().play();
 				setNotification("Error",collectErrors);
 				}
 		    }
@@ -435,11 +438,13 @@ public Input_data_Controller(){
 				setViewTable();
 				viewtable.refresh();
 				//setNotification here pass "info" 
+				sound.getSNI().play();
 				setNotification("Info_update","Êã ÇáÊÚÏíá ÈäÌÇÍ");
 				//clear TextField
 				clear();
 			}else{
-			     setAlert(AlertType.ERROR, "ÎØÃ","ÇáÊÍÏíË İÔá","ÇáÕİ ÇáĞì ÊÍÇæá ÊÍÏíËå ÛíÑ ãæÌæÏ ..ÊÃßÏ ãä æÌæÏ ÑŞã ÇáÈæä İì ÇáÌÏæá");
+			    sound.getSAE().play();
+			    setAlert(AlertType.ERROR, "ÎØÃ","ÇáÊÍÏíË İÔá","ÇáÕİ ÇáĞì ÊÍÇæá ÊÍÏíËå ÛíÑ ãæÌæÏ ..ÊÃßÏ ãä æÌæÏ ÑŞã ÇáÈæä İì ÇáÌÏæá");
 			}
 			}else if (!getValid_Func){
 			    //initialize of collectErrors here too
@@ -453,6 +458,7 @@ public Input_data_Controller(){
 				}
 				//setNotification here pass "Error" 
 				if (!collectErrors.isEmpty()){
+				sound.getSNE().play();
 				setNotification("Error",collectErrors);
 				}
 		    }
@@ -487,6 +493,7 @@ public Input_data_Controller(){
 	   if (nbon.matches("[0-9]+")){
 		   //setAlert
 		   //when I call setAlert confirm_delete var will become true if response == ButtonType.OK
+		   sound.getSAI().play();
 		   setAlert(AlertType.CONFIRMATION, "ÊÍÒíÑ", "ÇäÊ Úáì æÔß ÍĞİ Õİø"," : åá ÇäÊ ãÊÃßÏ ãä ÍĞİ ÇáÈæä ÑŞã "+nbon_txt.getText());
 		   if (confirm_delete){
 				long t0 = System.nanoTime();
@@ -499,8 +506,10 @@ public Input_data_Controller(){
 					if (reslut != 0){
 					   //setNotification
 					   setViewTable();
+					   sound.getSNI().play();
 					   setNotification("delete", " Êã ÇáÍĞİ                  ");
 					}else{
+					    sound.getSAE().play();
 						setAlert(AlertType.ERROR, "ÎØÃ", " áŞÏ ÍÏË ÎØÃ ãÇ ", "ÇäÊ ÊÍÇæá ÍĞİ Õİ ÛíÑ ãæÌæÏ");
 					}
 					//cut connect
@@ -512,6 +521,7 @@ public Input_data_Controller(){
 			   clear();
 			}
 	    }else{
+		    sound.getSAE().play();
 		    setAlert(AlertType.ERROR, "ÎØÃ","áŞÏ ÍÏË ÎØÃ ãÇ ","ÇáÑÌÇÁ ÇáÊÃßÏ ãä ÑŞã ÇáÈæä..ÇÑŞÇã İŞØ");
 		}
 		confirm_delete = false;
@@ -587,12 +597,14 @@ public Input_data_Controller(){
 						//distance = currentCounter - lastCounter for this Code
 						Distance =  current_counter- counter;
 					}else{
+					    sound.getSAI().play();
 					    setAlert(AlertType.INFORMATION,"ãáÇÍÙå","ÚÏÇÏ åĞå ÇáÇáå ÇÕÛÑ ãä ÇÎÑ ãÑå ÓÌáÊ İíåÇ","ÇĞÇ ßÇä ÇáÚÏÇÏ ÇáÍÇáì ÇßÈÑ ãä ÇáÓÇÈŞ ÈÇáäÓÈå áåĞå ÇáÃáÉ Óæİ  íÊã ÊÓÌíá ÇáãÓÇİå ÈÕİÑ ÇĞ äÌÍÊ ÇáÚãáíå");
 					    Distance = 0;
 					}
 				}
 			}else{
 			    //I don't know if alert stop thread or not
+				sound.getSAI().play();
 				setAlert(AlertType.INFORMATION,"ãáÇÍÙå","ßæÏåĞå ÇáÇáå ÛíÑ ãæÌæÏ ãä ŞÈá","ÇäÊ ÊÍÇæá æÖÚ ßæÏ ÇáÃáÉ ÛíÑ ãæÌæÏ áĞÇ Óæİ íÊã æÖÚ ÇáãÓÇİå È ÕİÑ ßãÑÌÚ ÇĞÇ äÌÍÊ ÇáÚãáíå");
 				Distance = 0;
 			}
@@ -734,6 +746,7 @@ public Input_data_Controller(){
 			String code = list_view.get(0).getCodemachine().toString();
 			codemachine_txt.setText(code.replaceAll("[^0-9]", ""));
 	    }else{
+		sound.getSAE().play();
 		setAlert(AlertType.ERROR, "ÎØÃ", "íÌÈ ÊÍÏíÏ Õİ ŞÈá ÊÍÑíÑå","ÇáÑÌÇÁ ÇÎÊíÇÑ Õİ ãä ÇáÌÏæá  ŞÈá ÇáÊÚÏíá Úáíå");
 		}
 	}

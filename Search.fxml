@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -31,23 +33,23 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <CheckBox alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="195.0" layoutY="207.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="79.0" text="بنزين" textAlignment="RIGHT" textFill="#04680b">
+      <CheckBox fx:id="checkbox_gas" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="195.0" layoutY="207.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="79.0" text="بنزين" textAlignment="RIGHT" textFill="#04680b">
          <font>
             <Font size="13.0" />
          </font>
       </CheckBox>
-      <CheckBox alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="80.0" layoutY="207.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="79.0" text="سولار" textAlignment="RIGHT" textFill="#ff1313">
+      <CheckBox fx:id="checkbox_solar" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="80.0" layoutY="207.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="79.0" text="سولار" textAlignment="RIGHT" textFill="#ff1313">
          <font>
             <Font size="13.0" />
          </font>
       </CheckBox>
-      <TextField alignment="CENTER_RIGHT" layoutX="477.0" layoutY="111.0" prefHeight="25.0" prefWidth="208.0" />
+      <TextField fx:id="nbon_text" alignment="CENTER_RIGHT" layoutX="477.0" layoutY="111.0" prefHeight="25.0" prefWidth="208.0" />
       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="700.0" layoutY="111.0" prefHeight="25.0" prefWidth="94.0" text="رقم البون      : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField alignment="CENTER_RIGHT" layoutX="476.0" layoutY="152.0" prefHeight="25.0" prefWidth="208.0" />
+      <TextField fx:id="nameresponsible_text" alignment="CENTER_RIGHT" layoutX="476.0" layoutY="152.0" prefHeight="25.0" prefWidth="208.0" />
       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="699.0" layoutY="152.0" prefHeight="25.0" prefWidth="94.0" text="اسم المسؤول : ">
          <font>
             <Font size="16.0" />
@@ -58,8 +60,8 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <DatePicker editable="false" layoutX="491.0" layoutY="246.0" prefHeight="25.0" prefWidth="165.0" />
-      <DatePicker editable="false" layoutX="273.0" layoutY="246.0" prefHeight="25.0" prefWidth="165.0" />
+      <DatePicker fx:id="from" editable="false" layoutX="491.0" layoutY="246.0" prefHeight="25.0" prefWidth="165.0" />
+      <DatePicker fx:id="to" editable="false" layoutX="273.0" layoutY="246.0" prefHeight="25.0" prefWidth="165.0" />
       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="646.0" layoutY="246.0" prefHeight="25.0" prefWidth="60.0" text="    من :  ">
          <font>
             <Font size="16.0" />
@@ -70,13 +72,13 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField alignment="CENTER_RIGHT" layoutX="80.0" layoutY="111.0" prefHeight="25.0" prefWidth="193.0" />
+      <TextField fx:id="namedriver_text" alignment="CENTER_RIGHT" layoutX="80.0" layoutY="111.0" prefHeight="25.0" prefWidth="193.0" />
       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="277.0" layoutY="111.0" prefHeight="25.0" prefWidth="94.0" text="اسم السائق      : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField alignment="CENTER_RIGHT" layoutX="80.0" layoutY="152.0" prefHeight="25.0" prefWidth="193.0" />
+      <TextField fx:id="nnote_text" alignment="CENTER_RIGHT" layoutX="80.0" layoutY="152.0" prefHeight="25.0" prefWidth="193.0" />
       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="277.0" layoutY="152.0" prefHeight="25.0" prefWidth="94.0" text="رقم الدفتر       :">
          <font>
             <Font size="16.0" />
@@ -99,8 +101,18 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <ChoiceBox layoutX="603.0" layoutY="195.0" prefHeight="25.0" prefWidth="86.0" />
-      <TextField alignment="CENTER_RIGHT" layoutX="474.0" layoutY="193.0" prefHeight="25.0" prefWidth="122.0" promptText="رقم الكود  ">
+      <ChoiceBox fx:id="choicebox" layoutX="603.0" layoutY="195.0" prefHeight="25.0" prefWidth="86.0">
+		  <items>
+		   <FXCollections fx:factory="observableArrayList">
+				<String fx:value="سياره" />
+				<Separator />
+				<String fx:value="مولد" />
+				<Separator />
+				<String fx:value="لنش" />
+		   </FXCollections>
+		</items>
+	  </ChoiceBox>
+      <TextField fx:id="nmachine_text" alignment="CENTER_RIGHT" layoutX="474.0" layoutY="193.0" prefHeight="25.0" prefWidth="122.0" promptText="رقم الكود  ">
          <effect>
             <Reflection fraction="0.65" />
          </effect>

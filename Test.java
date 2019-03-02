@@ -17,30 +17,15 @@ public class Test{
 		long counter = 0;
 		long serial  = 0;
 		String code = "";
-		String codemachine_val = "·‰‘ 10ﬂ";
+		String codemachine_val = "”Ì«—Â 6ﬂ";
 		Table_View tv = null;
-		try{
-			ResultSet rs = con.createStatement().executeQuery("SELECT Serialn ,Counter ,Codemachine FROM General_db WHERE Codemachine =\""+codemachine_val+"\";");
-			while(rs.next()){
-		    tv = new Table_View(rs.getLong("Serialn"),rs.getInt("Counter"),rs.getString("Codemachine"));
-			   list.add(tv); 
-			}
 			System.out.printf("Serialn\t\tCounter\t\tcodemachine \n");
 			System.out.printf("========\t=======\t\t=========== \n");
-			 int lastIndex = list.lastIndexOf(tv);
-			if (lastIndex != -1){
-			    serial = list.get(lastIndex).getSerialn();
-				counter =list.get(lastIndex).getCounter();
-				code    =list.get(lastIndex).getCodemachine();
-				System.out.printf(serial+"\t\t"+counter + "\t\t" + code + "\n");
-				System.out.println("lastIndex = " + lastIndex);
-			} 
-			/* for (int i = 0; i < list.size(); i++){
-				counter = list.get(i).getCounter();
-				code = list.get(i).getCodemachine();
-				serial = list.get(i).getSerialn();
-				System.out.printf(serial+"\t\t"+counter + "\t\t" + code + "\n");
-			}  */
+		try{
+			ResultSet rs = con.createStatement().executeQuery("SELECT Serialn ,Counter ,Codemachine FROM General_db WHERE Codemachine =\""+codemachine_val+"\" AND Serialn = 192;");
+			while(rs.next()){
+				System.out.printf(rs.getLong("Serialn")+"\t\t"+rs.getLong("Counter")+"\t\t"+rs.getString("Codemachine")+"\n");
+			}
 			con.close();
 			rs.close();
 		}catch(SQLException e){

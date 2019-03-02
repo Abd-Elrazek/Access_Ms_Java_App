@@ -15,6 +15,8 @@ import java.io.IOException;
 //import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
@@ -42,10 +44,13 @@ public class Main_Controller implements Initializable{
         Search_stage = new Stage();
 		
         Input_data_stage.setResizable(false);
-        Input_data_stage.setTitle("«œŒ«· Ê Õ—Ì— «·»Ì«‰« ");   
+        Input_data_stage.setTitle("«œŒ«· Ê Õ—Ì— «·»Ì«‰« ");  
+		Input_data_stage.initStyle(StageStyle.UTILITY);
+		//Input_data_stage.initModality(Modality.APPLICATION_MODAL);
 		
 		Search_stage.setResizable(false);
         Search_stage.setTitle("»ÕÀ");
+	    Search_stage.initStyle(StageStyle.UTILITY);
         try {
             Input_data_Anch = FXMLLoader.load(getClass().getResource("Input_data.fxml"));
             Search_Anch = FXMLLoader.load(getClass().getResource("Search.fxml"));
@@ -62,6 +67,7 @@ public class Main_Controller implements Initializable{
 
     //Show Input_data
 	public void showInputData(){
+	
 	    Input_data_stage.show();
 		inputPane.setCursor(Cursor.WAIT);
 	}

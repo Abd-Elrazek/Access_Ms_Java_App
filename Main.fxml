@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="564.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="564.0" style="-fx-border-color: blue;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main_Controller">
    <children>
       <Separator layoutX="268.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="447.0" prefWidth="14.0" />
       <Pane fx:id="searchPane" layoutX="324.0" layoutY="25.0" onMouseMoved="#defaultCursor" onMouseReleased="#showSearch" prefHeight="200.0" prefWidth="200.0" styleClass="Search_main" stylesheets="@css/style.css">
