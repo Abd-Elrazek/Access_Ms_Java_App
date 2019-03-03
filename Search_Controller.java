@@ -146,6 +146,7 @@ public class Search_Controller implements Initializable{
 		}
 		
 		if (date_from == null && date_to == null && check_code && namedriver_text_.isEmpty() &&  nameresponsible_text_.isEmpty() && nbon_text_.isEmpty() && nnote_text_.isEmpty() && !checkbox_gas.isSelected() && !checkbox_solar.isSelected()){
+			sound.getSAE().play();
 			setAlert(AlertType.ERROR, "Œÿ√","«·—Ã«¡ «Œ Ì«— ⁄‰’— ··»ÕÀ ⁄‰Â");
 			return false;
 		}

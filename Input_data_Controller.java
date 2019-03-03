@@ -535,7 +535,7 @@ public Input_data_Controller(){
 	  //get connection of this.DB
 	  con_db = db.getConnection_F_DB();
 	  try{ 
-		ResultSet rs =con_db.createStatement().executeQuery("SELECT * FROM General_db");
+		ResultSet rs =con_db.createStatement().executeQuery("SELECT * FROM General_db WHERE Dateexchange BETWEEN #"+getDayOfMonth("start")+"# AND #"+getDayOfMonth("end")+"#");
 		while(rs.next()){
 		table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getInt("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getInt("Quantitybon"),rs.getInt("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getInt("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
 		}
@@ -764,6 +764,16 @@ public Input_data_Controller(){
 		/*  if (nbon_txt.isDisable()){
 			nbon_txt.setDisable(false);
 		}  */
+	}
+	//return start and end of month 
+	public LocalDate getDayOfMonth(String se){
+		LocalDate ld = LocalDate.now();
+		LocalDate startDate = ld.minusDays(ld.getDayOfMonth() - 1);
+		LocalDate endDate   = startDate.plusDays(ld.lengthOfMonth()-1);
+	    if (se.equals("start")){
+			return startDate;
+		}
+		return endDate;
 	}
 }
 

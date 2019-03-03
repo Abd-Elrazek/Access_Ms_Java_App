@@ -127,6 +127,8 @@ public class DB {
 		connection = DriverManager.getConnection(dbURL);
 		if (connection != null){
 		 System.out.println("Connected to db...");
+		}else{
+		   System.out.println("Error with connectin with database");
 		}
 
 	}catch(SQLException e){

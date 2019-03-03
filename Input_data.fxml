@@ -19,97 +19,96 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="input_data_anch" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="1291.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Input_data_Controller">
+<AnchorPane fx:id="input_data_anch" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="1053.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Input_data_Controller">
    <children>
-      <TableView fx:id="viewtable" layoutX="3.0" layoutY="6.0" prefHeight="289.0" prefWidth="1291.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="viewtable" layoutX="-45.0" prefHeight="289.0" prefWidth="1042.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
             <TableColumn fx:id="codemachine_col" minWidth="0.0" prefWidth="86.00003051757812" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="كود ألألة" />
-            <TableColumn fx:id="nameresponsible_col" prefWidth="132.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم المسؤول " />
-            <TableColumn fx:id="nnote_col" prefWidth="164.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم الدفتر" />
-            <TableColumn fx:id="namedriver_col" prefWidth="148.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم السائق" />
-            <TableColumn fx:id="distance_col" prefWidth="104.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="المسافه المقطوعه" />
-            <TableColumn fx:id="counter_col" prefWidth="152.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="العداد" />
-            <TableColumn fx:id="quantitybon_col" prefWidth="66.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="سعه البون" />
-            <TableColumn fx:id="typefuel_col" minWidth="0.0" prefWidth="102.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="نوع الوقود" />
-            <TableColumn fx:id="dateexchange_col" prefWidth="133.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="تاريخ الصرف" />
-            <TableColumn fx:id="nbon_col" minWidth="0.0" prefWidth="137.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم البون" />
-            <TableColumn fx:id="serialn_col" minWidth="0.0" prefWidth="65.0" resizable="false" style="-fx-alignment: center;" styleClass="Column_X" text="م" />
+            <TableColumn fx:id="nameresponsible_col" prefWidth="94.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم المسؤول " />
+            <TableColumn fx:id="nnote_col" prefWidth="114.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم الدفتر" />
+            <TableColumn fx:id="namedriver_col" prefWidth="114.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم السائق" />
+            <TableColumn fx:id="typefuel_col" minWidth="0.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="نوع الوقود" />
+            <TableColumn fx:id="quantitybon_col" prefWidth="75.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="سعه البون" />
+            <TableColumn fx:id="distance_col" prefWidth="101.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="المسافه المقطوعه" />
+            <TableColumn fx:id="dateexchange_col" minWidth="0.0" prefWidth="111.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="تاريخ الصرف" />
+            <TableColumn fx:id="counter_col" prefWidth="78.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="العداد" />
+            <TableColumn fx:id="nbon_col" minWidth="0.0" prefWidth="139.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم البون" />
+            <TableColumn fx:id="serialn_col" minWidth="0.0" prefWidth="89.0" resizable="false" style="-fx-alignment: center;" styleClass="Column_X" text="م" />
         </columns>
          <effect>
             <InnerShadow color="#63ffae" />
          </effect>
       </TableView>
-      <Separator layoutX="687.0" layoutY="299.0" orientation="VERTICAL" prefHeight="319.0" prefWidth="7.0" />
-      <Separator layoutX="8.0" layoutY="617.0" prefHeight="8.0" prefWidth="674.0" />
-      <Separator layoutX="695.0" layoutY="617.0" prefHeight="8.0" prefWidth="592.0" />
-      <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="1166.0" layoutY="301.0" prefHeight="32.0" prefWidth="117.0" text="رقم البون      : " textAlignment="RIGHT" textFill="#030303">
+      <Separator layoutX="537.0" layoutY="287.0" orientation="VERTICAL" prefHeight="302.0" prefWidth="1.0" />
+      <Separator layoutX="5.0" layoutY="591.0" prefHeight="5.0" prefWidth="1047.0" />
+      <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="917.0" layoutY="313.0" prefHeight="32.0" prefWidth="117.0" text="رقم البون      : " textAlignment="RIGHT" textFill="#030303">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="nbon_txt" alignment="CENTER_RIGHT" layoutX="755.0" layoutY="305.0" prefHeight="25.0" prefWidth="402.0" promptText="ارقام فقط ">
+      <TextField fx:id="nbon_txt" alignment="CENTER_RIGHT" layoutX="612.0" layoutY="316.0" prefHeight="25.0" prefWidth="300.0" promptText="ارقام فقط ">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
       </TextField>
-      <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="1168.0" layoutY="468.0" prefHeight="32.0" prefWidth="117.0" text="تاريخ الصرف:  " textAlignment="RIGHT" textFill="#030303">
+      <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="916.0" layoutY="476.0" prefHeight="32.0" prefWidth="117.0" text="تاريخ الصرف:  " textAlignment="RIGHT" textFill="#030303">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="quantitybon_txt" alignment="CENTER_RIGHT" layoutX="755.0" layoutY="360.0" prefHeight="25.0" prefWidth="402.0" promptText="سعه البون بالرقم من 1 الى 254 فقط ">
+      <TextField fx:id="quantitybon_txt" alignment="CENTER_RIGHT" layoutX="612.0" layoutY="371.0" prefHeight="25.0" prefWidth="300.0" promptText="سعه البون بالرقم من 1 الى 254 فقط ">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
       </TextField>
-      <Label alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="1163.0" layoutY="530.0" prefHeight="32.0" prefWidth="124.0" text="نوع الوقود     : " textAlignment="RIGHT" textFill="#030303">
+      <Label alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="914.0" layoutY="541.0" prefHeight="32.0" prefWidth="124.0" text="نوع الوقود     : " textAlignment="RIGHT" textFill="#030303">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="1172.0" layoutY="352.0" prefHeight="32.0" prefWidth="109.0" text="سعه البون     : " textAlignment="RIGHT" textFill="#030303">
+      <Label alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="926.0" layoutY="368.0" prefHeight="32.0" prefWidth="109.0" text="سعه البون     : " textAlignment="RIGHT" textFill="#030303">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="499.0" layoutY="306.0" prefHeight="32.0" prefWidth="133.0" text=" اسم السائق       : " textAlignment="RIGHT" textFill="#030303">
+      <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="384.0" layoutY="304.0" prefHeight="31.0" prefWidth="140.0" text=" اسم السائق   : " textAlignment="RIGHT" textFill="#030303">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="namedriver_txt" alignment="CENTER_RIGHT" layoutX="77.0" layoutY="310.0" prefHeight="25.0" prefWidth="425.0" promptText="اسم السائق ">
+      <TextField fx:id="namedriver_txt" alignment="CENTER_RIGHT" layoutX="121.0" layoutY="309.0" prefHeight="25.0" prefWidth="300.0" promptText="اسم السائق ">
          <effect>
             <Reflection fraction="0.65" />
          </effect>
       </TextField>
-      <TextField fx:id="nnote_txt" alignment="CENTER_RIGHT" layoutX="77.0" layoutY="389.0" prefHeight="25.0" prefWidth="425.0" promptText="ارقام فقط">
+      <TextField fx:id="nnote_txt" alignment="CENTER_RIGHT" layoutX="121.0" layoutY="388.0" prefHeight="25.0" prefWidth="300.0" promptText="ارقام فقط">
          <effect>
             <Reflection fraction="0.65" />
          </effect>
       </TextField>
-      <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="502.0" layoutY="386.0" prefHeight="32.0" prefWidth="133.0" text=" رقم الدفتر        : " textAlignment="RIGHT" textFill="#030303">
+      <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="419.0" layoutY="385.0" prefHeight="30.0" prefWidth="117.0" text=" رقم الدفتر      : " textAlignment="RIGHT" textFill="#030303">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="1177.0" layoutY="418.0" prefHeight="32.0" prefWidth="109.0" text="عداد السياره   : " textAlignment="RIGHT" textFill="#030303">
+      <Label alignment="TOP_RIGHT" contentDisplay="CENTER" layoutX="926.0" layoutY="423.0" prefHeight="32.0" prefWidth="109.0" text="عداد السياره   : " textAlignment="RIGHT" textFill="#030303">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="counter_txt" alignment="CENTER_RIGHT" layoutX="755.0" layoutY="415.0" prefHeight="25.0" prefWidth="402.0" promptText="ارقام فقط">
+      <TextField fx:id="counter_txt" alignment="CENTER_RIGHT" layoutX="612.0" layoutY="426.0" prefHeight="25.0" prefWidth="300.0" promptText="ارقام فقط">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
       </TextField>
-      <Pane layoutX="755.0" layoutY="525.0" prefHeight="42.0" prefWidth="402.0" style="-fx-border-color: #107EEB;">
+      <Pane layoutX="612.0" layoutY="536.0" prefHeight="42.0" prefWidth="300.0" style="-fx-border-color: #107EEB;">
          <children>
-            <RadioButton fx:id="solar_radiobtn" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="112.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#setSelectedRadioBtnSolar" prefHeight="21.0" prefWidth="76.0" style="-fx-font-weight: bold;" text="سولار" textFill="#545454">
+            <RadioButton fx:id="solar_radiobtn" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#setSelectedRadioBtnSolar" prefHeight="21.0" prefWidth="76.0" style="-fx-font-weight: bold;" text="سولار" textFill="#545454">
                <font>
                   <Font size="15.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="gas_radiobtn" alignment="TOP_CENTER" contentDisplay="RIGHT" layoutX="255.0" layoutY="13.0" mnemonicParsing="false" onMouseClicked="#setSelectedRadioBtnGas" prefHeight="21.0" prefWidth="61.0" style="-fx-font-weight: bold;" text="بنزين">
+            <RadioButton fx:id="gas_radiobtn" alignment="TOP_CENTER" contentDisplay="RIGHT" layoutX="166.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#setSelectedRadioBtnGas" prefHeight="21.0" prefWidth="61.0" style="-fx-font-weight: bold;" text="بنزين">
                <font>
                   <Font size="15.0" />
                </font>
@@ -119,25 +118,17 @@
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
       </Pane>
-      <DatePicker fx:id="dateexchange_datepicker" editable="false" layoutX="755.0" layoutY="470.0" prefHeight="28.0" prefWidth="402.0" promptText="اختر تاريح الصرف " showWeekNumbers="true">
+      <DatePicker fx:id="dateexchange_datepicker" editable="false" layoutX="612.0" layoutY="481.0" prefHeight="28.0" prefWidth="300.0" promptText="اختر تاريح الصرف " showWeekNumbers="true">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
       </DatePicker>
-      <Button fx:id="save_btn" layoutX="1048.0" layoutY="634.0" mnemonicParsing="false" onMouseClicked="#saveData" prefHeight="31.0" prefWidth="117.0" styleClass="Save_btn" stylesheets="@css/style.css" text="حفظ" textFill="#0d22e0f7">
+      <Button fx:id="save_btn" layoutX="917.0" layoutY="608.0" mnemonicParsing="false" onMouseClicked="#saveData" prefHeight="31.0" prefWidth="117.0" styleClass="Save_btn" stylesheets="@css/style.css" text="حفظ" textFill="#0d22e0f7">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="update_btn" layoutX="898.0" layoutY="634.0" mnemonicParsing="false" onMouseClicked="#updateData" prefHeight="31.0" prefWidth="117.0" styleClass="Update_btn" stylesheets="@css/style.css" text="تحديث" textFill="#008cff">
-         <font>
-            <Font size="15.0" />
-         </font>
-         <effect>
-            <Blend />
-         </effect>
-      </Button>
-      <Button fx:id="delete_btn" layoutX="755.0" layoutY="634.0" mnemonicParsing="false" onMouseClicked="#deleteData" prefHeight="31.0" prefWidth="117.0" styleClass="Delete_btn" stylesheets="@css/style.css" text="حذف" textFill="#f50808">
+      <Button fx:id="update_btn" layoutX="767.0" layoutY="608.0" mnemonicParsing="false" onMouseClicked="#updateData" prefHeight="31.0" prefWidth="117.0" styleClass="Update_btn" stylesheets="@css/style.css" text="تحديث" textFill="#008cff">
          <font>
             <Font size="15.0" />
          </font>
@@ -145,22 +136,30 @@
             <Blend />
          </effect>
       </Button>
-      <Label alignment="TOP_RIGHT" contentDisplay="TOP" layoutX="511.0" layoutY="468.0" prefHeight="32.0" prefWidth="124.0" text="اسم المسؤول     : " textAlignment="RIGHT" textFill="#030303">
+      <Button fx:id="delete_btn" layoutX="624.0" layoutY="608.0" mnemonicParsing="false" onMouseClicked="#deleteData" prefHeight="31.0" prefWidth="117.0" styleClass="Delete_btn" stylesheets="@css/style.css" text="حذف" textFill="#f50808">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Label alignment="TOP_RIGHT" contentDisplay="TOP" layoutX="403.0" layoutY="466.0" prefHeight="28.0" prefWidth="124.0" text="اسم المسؤول  : " textAlignment="RIGHT" textFill="#030303">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="nameresponsible_txt" alignment="CENTER_RIGHT" layoutX="77.0" layoutY="468.0" prefHeight="25.0" prefWidth="425.0" promptText="اسم المسؤول ">
+      <TextField fx:id="nameresponsible_txt" alignment="CENTER_RIGHT" layoutX="121.0" layoutY="467.0" prefHeight="25.0" prefWidth="300.0" promptText="اسم المسؤول ">
          <effect>
             <Reflection fraction="0.65" />
          </effect>
       </TextField>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="504.0" layoutY="534.0" prefHeight="25.0" prefWidth="133.0" text="كود ألألة               : ">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="399.0" layoutY="534.0" prefHeight="25.0" prefWidth="133.0" text="كود ألألة            : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="codemachine_choicebox" layoutX="421.0" layoutY="534.0" prefHeight="25.0" prefWidth="83.0" value="ادخل كود السياره">
+      <ChoiceBox fx:id="codemachine_choicebox" layoutX="347.0" layoutY="534.0" prefHeight="25.0" prefWidth="76.0" value="ادخل كود السياره">
            <items>
                <FXCollections fx:factory="observableArrayList">
 					<String fx:value="سياره" />
@@ -171,7 +170,7 @@
                </FXCollections>
             </items>
       </ChoiceBox>
-      <TextField fx:id="codemachine_txt" alignment="CENTER_RIGHT" layoutX="77.0" layoutY="534.0" prefHeight="25.0" prefWidth="344.0" promptText="ارقام فقط">
+      <TextField fx:id="codemachine_txt" alignment="CENTER_RIGHT" layoutX="120.0" layoutY="534.0" prefHeight="25.0" prefWidth="227.0" promptText="ارقام فقط">
          <effect>
             <Reflection fraction="0.65" />
          </effect>

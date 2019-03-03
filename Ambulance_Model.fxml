@@ -9,93 +9,93 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1295.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ambulance_Model_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1187.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ambulance_Model_Controller">
    <children>
-      <Separator layoutX="-2.0" layoutY="137.0" prefHeight="8.0" prefWidth="1291.0" />
-      <Label alignment="CENTER_RIGHT" layoutX="1080.0" layoutY="12.0" prefHeight="30.0" prefWidth="193.0" text="هيئه الاسعاف المصرية " textAlignment="CENTER">
+      <Separator layoutY="141.0" prefHeight="8.0" prefWidth="1187.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="981.0" layoutY="14.0" prefHeight="30.0" prefWidth="193.0" text="هيئه الاسعاف المصرية " textAlignment="CENTER">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" layoutX="1128.0" layoutY="42.0" prefHeight="30.0" prefWidth="139.0" text="نموزج اسعاف اسوان " textAlignment="CENTER">
+      <Label alignment="CENTER_RIGHT" layoutX="1029.0" layoutY="44.0" prefHeight="30.0" prefWidth="139.0" text="نموزج اسعاف اسوان " textAlignment="CENTER">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1089.0" layoutY="80.0" prefHeight="17.0" prefWidth="184.0" text="بيان للوقود المنصرف للسياره  رقم " textAlignment="CENTER">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="990.0" layoutY="82.0" prefHeight="17.0" prefWidth="184.0" text="بيان للوقود المنصرف للسياره  رقم " textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1008.0" layoutY="80.0" text="هنا يرجع رقم السياره">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="909.0" layoutY="82.0" text="هنا يرجع رقم السياره">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="971.0" layoutY="82.0" text="كود">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="872.0" layoutY="84.0" text="كود">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="872.0" layoutY="82.0" prefHeight="20.0" prefWidth="87.0" text="(هنا يرجع الكود)">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="773.0" layoutY="84.0" prefHeight="20.0" prefWidth="87.0" text="(هنا يرجع الكود)">
          <font>
 			 <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="789.0" layoutY="84.0" prefHeight="20.0" prefWidth="63.0" text="عن شهر :  ">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="695.0" layoutY="82.0" prefHeight="20.0" prefWidth="63.0" text="عن شهر :  ">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="705.0" layoutY="84.0" prefHeight="20.0" prefWidth="84.0" text="هنا يرجع الشهر ">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="611.0" layoutY="82.0" prefHeight="20.0" prefWidth="84.0" text="هنا يرجع الشهر ">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="584.0" layoutY="84.0" prefHeight="20.0" prefWidth="119.0" text="هنا يرجع السنه الميلاديه">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="490.0" layoutY="82.0" prefHeight="20.0" prefWidth="119.0" text="هنا يرجع السنه الميلاديه">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1190.0" layoutY="112.0" prefHeight="17.0" prefWidth="87.0" text="جهه العمل : اسوان">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1099.0" layoutY="114.0" prefHeight="17.0" prefWidth="87.0" text="جهه العمل : اسوان">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1058.0" layoutY="112.0" prefHeight="17.0" prefWidth="63.0" text="نوع الوقود : ">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="959.0" layoutY="114.0" prefHeight="17.0" prefWidth="63.0" text="نوع الوقود : ">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="959.0" layoutY="112.0" prefHeight="20.0" prefWidth="97.0" text="هنا يرجع نوع الوقود ">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="860.0" layoutY="114.0" prefHeight="20.0" prefWidth="97.0" text="هنا يرجع نوع الوقود ">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="747.0" layoutY="112.0" prefHeight="17.0" prefWidth="110.0" text="نوع السياره : كرافتر">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="648.0" layoutY="114.0" prefHeight="17.0" prefWidth="110.0" text="نوع السياره : كرافتر">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Separator layoutX="2.0" layoutY="638.0" prefHeight="8.0" prefWidth="1291.0" />
-      <Button fx:id="backBtn" layoutX="563.0" layoutY="646.0" mnemonicParsing="false" onMouseReleased="#showBackSearch" prefHeight="32.0" prefWidth="184.0" styleClass="Main_menu" stylesheets="@css/style.css" text="رجوع">
+      <Separator layoutY="639.0" prefHeight="0.0" prefWidth="1187.0" />
+      <Button fx:id="backBtn" layoutX="580.0" layoutY="646.0" mnemonicParsing="false" onMouseReleased="#showBackSearch" prefHeight="20.0" prefWidth="184.0" styleClass="Main_menu" stylesheets="@css/style.css" text="رجوع">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <TableView fx:id="viewtable" layoutX="2.0" layoutY="144.0" prefHeight="493.0" prefWidth="1295.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <TableView fx:id="viewtable" layoutX="-2.0" layoutY="153.0" prefHeight="481.0" prefWidth="1187.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <columns>
             <TableColumn fx:id="codemachine_col" minWidth="0.0" prefWidth="86.00003051757812" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="كود ألألة" />
             <TableColumn fx:id="nameresponsible_col" prefWidth="132.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم المسؤول " />
-            <TableColumn fx:id="nnote_col" prefWidth="164.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم الدفتر" />
-            <TableColumn fx:id="namedriver_col" prefWidth="148.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم السائق" />
+            <TableColumn fx:id="nnote_col" prefWidth="115.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم الدفتر" />
+            <TableColumn fx:id="namedriver_col" prefWidth="113.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم السائق" />
             <TableColumn fx:id="distance_col" prefWidth="104.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="المسافه المقطوعه" />
-            <TableColumn fx:id="counter_col" prefWidth="152.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="العداد" />
-            <TableColumn fx:id="quantitybon_col" prefWidth="66.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="سعه البون" />
-            <TableColumn fx:id="typefuel_col" minWidth="0.0" prefWidth="102.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="نوع الوقود" />
-            <TableColumn fx:id="dateexchange_col" prefWidth="133.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="تاريخ الصرف" />
-            <TableColumn fx:id="nbon_col" minWidth="0.0" prefWidth="137.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم البون" />
-            <TableColumn fx:id="serialn_col" minWidth="0.0" prefWidth="65.0" resizable="false" style="-fx-alignment: center;" styleClass="Column_X" text="م" />
+            <TableColumn fx:id="counter_col" prefWidth="93.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="العداد" />
+            <TableColumn fx:id="quantitybon_col" prefWidth="84.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="سعه البون" />
+            <TableColumn fx:id="typefuel_col" minWidth="0.0" prefWidth="89.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="نوع الوقود" />
+            <TableColumn fx:id="dateexchange_col" prefWidth="118.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="تاريخ الصرف" />
+            <TableColumn fx:id="nbon_col" minWidth="0.0" prefWidth="183.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم البون" />
+            <TableColumn fx:id="serialn_col" minWidth="0.0" prefWidth="55.0" resizable="false" style="-fx-alignment: center;" styleClass="Column_X" text="م" />
          </columns>
          <effect>
             <InnerShadow color="#63ffae" />

@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.time.LocalDate;
 
 
 public class Test{
@@ -11,7 +12,15 @@ public class Test{
 	Connection con_db = null;
 	long t0 = System.nanoTime();
 	DB db = new DB();
-	 // return counter and codemachine 
+    LocalDate ld = LocalDate.now();
+    LocalDate startDate = ld.minusDays(ld.getDayOfMonth() - 1);
+	LocalDate endDate   = startDate.plusDays(ld.lengthOfMonth()-1);
+	System.out.println("date now  => " + ld); //default >> 2019-03-01
+	System.out.println("start  => " + startDate); //default >> 2019-03-01
+	System.out.println("end => " + endDate);
+
+	
+/* 	 // return counter and codemachine 
 	    Connection con = db.getConnection_F_DB();
 		ObservableList<Table_View> list = FXCollections.observableArrayList();
 		long counter = 0;
@@ -30,7 +39,7 @@ public class Test{
 			rs.close();
 		}catch(SQLException e){
 		  e.printStackTrace();
-		}
+		} */
 		//check if not counter or = null so distance = zero 
 		//check current counter small than in last row -> setNotification(create variable and set it in formErrors in getValidation) and saveData and updateData not running 
 		//check counter current(inputs) larger than last row  -> create $distance = current - last
