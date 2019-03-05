@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Class-Path: . 
+Main-Class: Main
+SplashScreen-Image: images/gif/3.gif
+
+

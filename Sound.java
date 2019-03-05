@@ -16,30 +16,38 @@ private  URL  AInfo_Sound = this.getClass().getResource("sound//AInfo.wav");
 // private  URL  GameOver_Sound = this.getClass().getClassLoader().getResource("Sound/GameOver_Sound.wav");
 // private  URL  Power_Sound = this.getClass().getClassLoader().getResource("Sound/Power_Sound.wav");
 
-private AudioClip NE_S;
-private AudioClip NI_S;
-private AudioClip AE_S;
-private AudioClip AI_S;
+private AudioClip NE_S = null;
+private AudioClip NI_S = null;
+private AudioClip AE_S = null;
+private AudioClip AI_S = null;
 
 // Constructor
 public Sound (){
-	NE_S = Applet.newAudioClip(NError_Sound);
-	NI_S = Applet.newAudioClip(NInfo_Sound);
-	AE_S = Applet.newAudioClip(AError_Sound);
-	AI_S = Applet.newAudioClip(AInfo_Sound);
+	if (NError_Sound != null){
+	    NE_S = Applet.newAudioClip(NError_Sound);
+	}
+	if (NInfo_Sound != null){
+	    NI_S = Applet.newAudioClip(NInfo_Sound);
+	}
+	if (AError_Sound != null){
+	    AE_S = Applet.newAudioClip(AError_Sound);
+	}
+	if (AInfo_Sound != null){
+	    AI_S = Applet.newAudioClip(AInfo_Sound);
+    }
 }
 
 //functions 
 //getSoundNotificationError
-public AudioClip getSNE (){return NE_S;}
+public AudioClip getSNE (){ if (NE_S == null){return null;} return NE_S;}
 
 //getSoundNotificationInfo
-public AudioClip getSNI(){return NI_S;}
+public AudioClip getSNI(){if (NI_S == null){return null;}return NI_S;}
 
 //getSoundAlertError
-public AudioClip getSAE(){return AE_S;}	 
+public AudioClip getSAE(){if (AE_S == null){return null;}return AE_S;}	 
 
 //getSoundAlertInfo
-public AudioClip getSAI() {return AI_S;} 
+public AudioClip getSAI() {if (AI_S == null){return null;}return AI_S;} 
 
 }

@@ -33,10 +33,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.Modality;
+import javafx.stage.Window;
 
 public class Search_Controller implements Initializable{
 //Variables
-	public Stage getSearchStage;
+	//public Stage getSearchStage;
 	private Stage ambulance_Model_Stage;
 	@FXML
 	private Button viewData;
@@ -71,8 +73,8 @@ public class Search_Controller implements Initializable{
 	private String name_machine = "";	
 	private Sound sound = new Sound();
 	private String codemachine_val = "";
-
-
+    private Stage getOwnerStage;
+    private String typefuel = "";
 //Functions
     //initialize function
 	@Override
@@ -90,6 +92,7 @@ public class Search_Controller implements Initializable{
 			}
 		});
 	}
+	
 	//function validation 
 	public boolean valid(){
 		boolean check_code = false;
@@ -102,7 +105,9 @@ public class Search_Controller implements Initializable{
 		date_to   = to.getValue();
 		if (!nbon_text_.isEmpty()){
 		    if(!nbon_text_.matches("[0-9]+")){
-			    sound.getSAE().play();
+			    if (sound.getSAE() != null){
+			        sound.getSAE().play();
+				}
 			    setAlert(AlertType.ERROR, "ÎØÃ", "ÇáÈæä ÇÑÞÇã ÝÞØ");
 				return false;
 			}	
@@ -111,7 +116,9 @@ public class Search_Controller implements Initializable{
 		
 		if (!nnote_text_.isEmpty()){
 		    if(!nnote_text_.matches("[0-9]+")){
-			    sound.getSAE().play();
+			    if (sound.getSAE() != null){
+			        sound.getSAE().play();
+				}
 			    setAlert(AlertType.ERROR, "ÎØÃ", "ÇáÏÝÊÑ ÇÑÞÇã ÝÞØ");
 				return false;
 			}	
@@ -119,11 +126,15 @@ public class Search_Controller implements Initializable{
 		
 		if (!nmachine_text_.isEmpty() || !name_machine.isEmpty()){
 		    if(!nmachine_text_.matches("[0-9]+")){
-			    sound.getSAE().play();
+			    if (sound.getSAE() != null){
+			        sound.getSAE().play();
+				}
 			    setAlert(AlertType.ERROR, "ÎØÃ", "ÇáÑÌÇÁ ÇÎÊíÇÑ ßæÏ ÇáÃáÉ ÇÑÞÇã ÝÞØ");
 				return false;
 			}else if (name_machine.isEmpty()){
-			    sound.getSAE().play();
+			    if (sound.getSAE() != null){
+			        sound.getSAE().play();
+				}
 				setAlert(AlertType.ERROR, "ÎØÃ", "ÇáÑÌÇÁ ÇÎÊíÇÑ ÇÓã ÇáÃáÉ");
 				return false;
 			}
@@ -135,18 +146,24 @@ public class Search_Controller implements Initializable{
 		
 		if (date_from != null || date_to != null){
 		    if (date_from  == null){			    	
-			    sound.getSAE().play();
+			    if (sound.getSAE() != null){
+			        sound.getSAE().play();
+				}
 				setAlert(AlertType.ERROR, "ÎØÃ", "ÍÏÏ ÈÏÇíÉ ÇáÊÇÑíÎ");
 				return false;
 			}else if (date_to == null){
-			    sound.getSAE().play();
+			    if (sound.getSAE() != null){
+			        sound.getSAE().play();
+				}
 				setAlert(AlertType.ERROR, "ÎØÃ", "ÍÏÏ äåÇíÉ ÇáÊÇÑíÎ");
 				return false;
 			}
 		}
 		
 		if (date_from == null && date_to == null && check_code && namedriver_text_.isEmpty() &&  nameresponsible_text_.isEmpty() && nbon_text_.isEmpty() && nnote_text_.isEmpty() && !checkbox_gas.isSelected() && !checkbox_solar.isSelected()){
-			sound.getSAE().play();
+			if (sound.getSAE() != null ){
+			   sound.getSAE().play();
+			}
 			setAlert(AlertType.ERROR, "ÎØÃ","ÇáÑÌÇÁ ÇÎÊíÇÑ ÚäÕÑ ááÈÍË Úäå");
 			return false;
 		}
@@ -227,6 +244,7 @@ public class Search_Controller implements Initializable{
 						query += " AND Typefuel = 'ÈäÒíä'";	
 					}
 			    }
+			    typefuel = "ÈäÒíä";
 			}
 			
 			if (checkbox_solar.isSelected()){
@@ -237,41 +255,53 @@ public class Search_Controller implements Initializable{
 						query += " AND Typefuel = 'ÓæáÇÑ'";	
 					}
 			    }
+				typefuel = "ÓæáÇÑ";
 			}
+			
 			
 			break;
 		}
 	   return query;
 	}
+	
 	//This function that make show Ambulance_Model and hide SearchStage
 	public void showAmbulanceModel(){
 	    //if valid true execute 
 		boolean check_valid = valid();
 	    if (check_valid){
+		    String month = "";
+			String year = "";
+		if (date_from != null){
+			month = ""+date_from.getMonthValue();
+			year  = ""+date_from.getYear();;			
+		}
 		System.out.println("vlid() => "+ check_valid);
 			try {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Ambulance_Model.fxml"));
 				AnchorPane root1 = (AnchorPane) fxmlLoader.load();
 				Ambulance_Model_Controller controller=fxmlLoader.<Ambulance_Model_Controller>getController();
 				controller.showTable(getQuery());
+				controller.setLabel(codemachine_val,month, year,typefuel);
 				Stage stage = new Stage();
 				stage.initStyle(StageStyle.UTILITY);
 				stage.setTitle("äãæÒÌ ÇáÇÎÑÇÌ");
 				stage.setResizable(false);
 				stage.setScene(new Scene(root1));
+				getOwnerStage = (Stage)viewData.getScene().getWindow(); 
+				stage.initOwner(getOwnerStage);
+				//stage.initModality(Modality.WINDOW_MODAL);
 				stage.show();
+				System.out.println("Owner => " + stage.getOwner());
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			//for hide root of this controller (Search_Controller)
-		    getSearchStage = (Stage) viewData.getScene().getWindow();
-		    getSearchStage.hide();
 		}else{
 		    choicebox.setValue(null);
 		    name_machine = "";
 			//System.out.println(getQuery());
 		    System.out.println("vlid() => "+ check_valid);
 		}
+		typefuel = "";
 		codemachine_val = "";
         query = "SELECT * FROM General_db WHERE";
 	}

@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 
 
 
@@ -24,7 +25,7 @@ import javafx.scene.control.ButtonType;
  * @author Abdelrazek
  */
 public class Main extends Application {
-    
+    public Stage primaryStage = null;
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
@@ -33,10 +34,11 @@ public class Main extends Application {
         stage.setTitle(" Œ“Ì‰ «·»Ì«‰« ");
 		stage.setResizable(false);
 		stage.sizeToScene();
-		// stage.setOpacity(0.9);
+		//stage.setOpacity(0.9);
 		//stage.initStyle(StageStyle.UTILITY);
 		//stage.initStyle(StageStyle.TRANSPARENT);
 	    //stage.initModality(Modality.WINDOW_MODAL);
+		stage.getIcons().add(new Image("images/icon.png"));
         stage.show();
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
         @Override
@@ -44,7 +46,6 @@ public class Main extends Application {
 			System.exit(0); 
 			}
         });
-		
     }
 
 

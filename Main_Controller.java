@@ -34,11 +34,13 @@ public class Main_Controller implements Initializable{
 	@FXML 
 	private Pane inputPane;
 	
+	private Stage  primaryStage;
 	//Functions
 	// this function used to initialize my variables
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-   
+        
+		
         // initialize my data emails in stage and scence and its url 
         Input_data_stage = new Stage();
         Search_stage = new Stage();
@@ -46,11 +48,14 @@ public class Main_Controller implements Initializable{
         Input_data_stage.setResizable(false);
         Input_data_stage.setTitle("«œŒ«· Ê Õ—Ì— «·»Ì«‰« ");  
 		Input_data_stage.initStyle(StageStyle.UTILITY);
-		//Input_data_stage.initModality(Modality.APPLICATION_MODAL);
+
+		//Input_data_stage.initModality(Modality.NONE);
 		
 		Search_stage.setResizable(false);
         Search_stage.setTitle("»ÕÀ");
 	    Search_stage.initStyle(StageStyle.UTILITY);
+
+		//Search_stage.initModality(Modality.APPLICATION_MODAL);
         try {
             Input_data_Anch = FXMLLoader.load(getClass().getResource("Input_data.fxml"));
             Search_Anch = FXMLLoader.load(getClass().getResource("Search.fxml"));
@@ -67,13 +72,23 @@ public class Main_Controller implements Initializable{
 
     //Show Input_data
 	public void showInputData(){
-	
+	    primaryStage = (Stage) inputPane.getScene().getWindow();
+		if (Input_data_stage.getOwner()== null){
+		Input_data_stage.initOwner(primaryStage);
+		}
 	    Input_data_stage.show();
+		Input_data_stage.toFront();
 		inputPane.setCursor(Cursor.WAIT);
 	}
 	//Show Search_data
 	public void showSearch(){
+	    primaryStage = (Stage) searchPane.getScene().getWindow();
+		if (Search_stage.getOwner() == null){
+	    Search_stage.initOwner(primaryStage);	
+		}
 		Search_stage.show();
+		Search_stage.toFront();
+		//Input_data_stage.setIconified(true);
 		searchPane.setCursor(Cursor.WAIT);
 	}
 	//Change Cursor from WAIT To DEFAULT

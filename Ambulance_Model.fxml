@@ -22,37 +22,37 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="990.0" layoutY="82.0" prefHeight="17.0" prefWidth="184.0" text="بيان للوقود المنصرف للسياره  رقم " textAlignment="CENTER">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1000.0" layoutY="82.0" prefHeight="20.0" prefWidth="174.0" text="بيان للوقود المنصرف للسياره  رقم  : " textAlignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="909.0" layoutY="82.0" text="هنا يرجع رقم السياره">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="909.0" layoutY="82.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="872.0" layoutY="84.0" text="كود">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="862.0" layoutY="84.0" prefHeight="20.0" prefWidth="37.0" text="كود  : ">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="773.0" layoutY="84.0" prefHeight="20.0" prefWidth="87.0" text="(هنا يرجع الكود)">
+      <Label fx:id="label_code" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="760.0" layoutY="84.0" prefHeight="20.0" prefWidth="110.0">
          <font>
 			 <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="695.0" layoutY="82.0" prefHeight="20.0" prefWidth="63.0" text="عن شهر :  ">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="695.0" layoutY="84.0" prefHeight="20.0" prefWidth="56.0" text="عن شهر :  ">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="611.0" layoutY="82.0" prefHeight="20.0" prefWidth="84.0" text="هنا يرجع الشهر ">
+      <Label fx:id="label_month" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="680.0" layoutY="84.0" prefHeight="20.0" prefWidth="17.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="490.0" layoutY="82.0" prefHeight="20.0" prefWidth="119.0" text="هنا يرجع السنه الميلاديه">
+      <Label fx:id="label_year" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="586.0" layoutY="84.0" prefHeight="20.0" prefWidth="47.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -67,12 +67,12 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="860.0" layoutY="114.0" prefHeight="20.0" prefWidth="97.0" text="هنا يرجع نوع الوقود ">
+      <Label fx:id="label_typefuel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="860.0" layoutY="114.0" prefHeight="20.0" prefWidth="97.0" text="هنا يرجع نوع الوقود ">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="648.0" layoutY="114.0" prefHeight="17.0" prefWidth="110.0" text="نوع السياره : كرافتر">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="641.0" layoutY="114.0" prefHeight="17.0" prefWidth="110.0" text="نوع السياره : كرافتر">
          <font>
             <Font size="14.0" />
          </font>
@@ -101,5 +101,10 @@
             <InnerShadow color="#63ffae" />
          </effect>
       </TableView>
+      <Label fx:id="label_year1" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="623.0" layoutY="84.0" prefHeight="20.0" prefWidth="37.0" text="سنه : ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

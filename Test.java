@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.time.LocalDate;
+import java.net.URL;
 
 
 public class Test{
@@ -18,7 +19,31 @@ public class Test{
 	System.out.println("date now  => " + ld); //default >> 2019-03-01
 	System.out.println("start  => " + startDate); //default >> 2019-03-01
 	System.out.println("end => " + endDate);
-
+	System.out.println("year => " + ld.getYear());
+	System.out.println("year => " + ld.getMonthValue());
+	Object ob = Thread.currentThread().getContextClassLoader().getResource("images/1.png");
+	String obb = ob.toString();
+	System.out.println("Class is => " + obb);
+	
+	
+	String info_img  = "";
+	String error_img = "";
+	String update_img = "";
+	try{
+		URL info_imgg   = Thread.currentThread().getContextClassLoader().getResource("images/inserted.PNG");
+	    URL error_imgg = Thread.currentThread().getContextClassLoader().getResource("images/Error1.PNG");
+	    URL update_imgg = Thread.currentThread().getContextClassLoader().getResource("images/update.PNG");	
+	    System.out.println(info_imgg.getFile());
+	    System.out.println(error_imgg);
+	    System.out.println(update_imgg);
+	}catch(Exception e){
+	    e.printStackTrace();
+	}
+	
+	
+	
+	
+    
 	
 /* 	 // return counter and codemachine 
 	    Connection con = db.getConnection_F_DB();

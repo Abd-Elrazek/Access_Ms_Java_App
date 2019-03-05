@@ -234,7 +234,9 @@ public Input_data_Controller(){
 							System.out.println("nbon_distict -> "+rs.getLong("Nbon"));
 							if (nbon_distict == nbon_check){
 								String concat = "  «·»Ê‰ «·–Ï  Õ«Ê· «œŒ«·Â „ﬂ—— ›Ï «·„”·”· —ﬁ„  " + retrive_serialn_of_distinct;
-								sound.getSAI().play();
+								if (sound.getSNI() != null){
+								    sound.getSAI().play();
+								}
 								setAlert(AlertType.INFORMATION, "Œÿ√ ›«œÕ","—«Ã⁄ «·»Ì«‰«  ÃÌœ«",concat);
 								no_distinct = false;
 							} 
@@ -366,7 +368,9 @@ public Input_data_Controller(){
 				System.out.println("result of ps.executeUpdate -> "  + result);
 				setViewTable();
 				//setNotification here pass "info" 
-				sound.getSNI().play();
+				if (sound.getSNI() != null){
+				   sound.getSNI().play();
+				}
 				setNotification("Info","no content");
 				//clear TextField
 				clear();
@@ -383,7 +387,9 @@ public Input_data_Controller(){
 				}
 				//setNotification here pass "Error" 
 				if (!collectErrors.isEmpty()){
-				sound.getSNE().play();
+				if(sound.getSNE() != null){
+				    sound.getSNE().play();
+				}
 				setNotification("Error",collectErrors);
 				}
 		    }
@@ -438,12 +444,16 @@ public Input_data_Controller(){
 				setViewTable();
 				viewtable.refresh();
 				//setNotification here pass "info" 
-				sound.getSNI().play();
+				if(sound.getSNI() != null){
+				    sound.getSNI().play();
+				}
 				setNotification("Info_update"," „ «· ⁄œÌ· »‰Ã«Õ");
 				//clear TextField
 				clear();
 			}else{
-			    sound.getSAE().play();
+			    if(sound.getSAE() != null){
+					sound.getSAE().play();
+				}
 			    setAlert(AlertType.ERROR, "Œÿ√","«· ÕœÌÀ ›‘·","«·’› «·–Ï  Õ«Ê·  ÕœÌÀÂ €Ì— „ÊÃÊœ .. √ﬂœ „‰ ÊÃÊœ —ﬁ„ «·»Ê‰ ›Ï «·ÃœÊ·");
 			}
 			}else if (!getValid_Func){
@@ -458,7 +468,9 @@ public Input_data_Controller(){
 				}
 				//setNotification here pass "Error" 
 				if (!collectErrors.isEmpty()){
-				sound.getSNE().play();
+				if (sound.getSNE() != null){
+				    sound.getSNE().play();
+				}
 				setNotification("Error",collectErrors);
 				}
 		    }
@@ -493,7 +505,9 @@ public Input_data_Controller(){
 	   if (nbon.matches("[0-9]+")){
 		   //setAlert
 		   //when I call setAlert confirm_delete var will become true if response == ButtonType.OK
-		   sound.getSAI().play();
+		   if (sound.getSAI() != null){
+       		   sound.getSAI().play();	   
+			}
 		   setAlert(AlertType.CONFIRMATION, " Õ“Ì—", "«‰  ⁄·Ï Ê‘ﬂ Õ–› ’›¯"," : Â· «‰  „ √ﬂœ „‰ Õ–› «·»Ê‰ —ﬁ„ "+nbon_txt.getText());
 		   if (confirm_delete){
 				long t0 = System.nanoTime();
@@ -506,10 +520,14 @@ public Input_data_Controller(){
 					if (reslut != 0){
 					   //setNotification
 					   setViewTable();
-					   sound.getSNI().play();
+					   if(sound.getSNI() != null){
+					       sound.getSNI().play();
+					   }
 					   setNotification("delete", "  „ «·Õ–›                  ");
 					}else{
+					    if (sound.getSAE() != null){	
 					    sound.getSAE().play();
+						}
 						setAlert(AlertType.ERROR, "Œÿ√", " ·ﬁœ ÕœÀ Œÿ√ „« ", "«‰   Õ«Ê· Õ–› ’› €Ì— „ÊÃÊœ");
 					}
 					//cut connect
@@ -521,7 +539,9 @@ public Input_data_Controller(){
 			   clear();
 			}
 	    }else{
-		    sound.getSAE().play();
+		    if (sound.getSAE() != null){
+		        sound.getSAE().play();
+			}
 		    setAlert(AlertType.ERROR, "Œÿ√","·ﬁœ ÕœÀ Œÿ√ „« ","«·—Ã«¡ «· √ﬂœ „‰ —ﬁ„ «·»Ê‰..«—ﬁ«„ ›ﬁÿ");
 		}
 		confirm_delete = false;
@@ -597,14 +617,19 @@ public Input_data_Controller(){
 						//distance = currentCounter - lastCounter for this Code
 						Distance =  current_counter- counter;
 					}else{
-					    sound.getSAI().play();
+					    
+					    if(sound.getSAI() != null){
+				          sound.getSAI().play();
+				        }
 					    setAlert(AlertType.INFORMATION,"„·«ÕŸÂ","⁄œ«œ Â–Â «·«·Â «’€— „‰ «Œ— „—Â ”Ã·  ›ÌÂ«","«–« ﬂ«‰ «·⁄œ«œ «·Õ«·Ï «ﬂ»— „‰ «·”«»ﬁ »«·‰”»Â ·Â–Â «·√·… ”Ê›  Ì „  ”ÃÌ· «·„”«›Â »’›— «– ‰ÃÕ  «·⁄„·ÌÂ");
 					    Distance = 0;
 					}
 				}
 			}else{
 			    //I don't know if alert stop thread or not
+				if(sound.getSAI() != null){
 				sound.getSAI().play();
+				}
 				setAlert(AlertType.INFORMATION,"„·«ÕŸÂ","ﬂÊœÂ–Â «·«·Â €Ì— „ÊÃÊœ „‰ ﬁ»·","«‰   Õ«Ê· Ê÷⁄ ﬂÊœ «·√·… €Ì— „ÊÃÊœ ·–« ”Ê› Ì „ Ê÷⁄ «·„”«›Â » ’›— ﬂ„—Ã⁄ «–« ‰ÃÕ  «·⁄„·ÌÂ");
 				Distance = 0;
 			}
@@ -639,9 +664,9 @@ public Input_data_Controller(){
 	//type either "Info" or "Error"
 	//this way isn't good way to 
 	public void setNotification(String type,String content){
-	    URL info_img = this.getClass().getResource("images//inserted.PNG");
-	    URL error_img = this.getClass().getResource("images//Error1.PNG");
-	    URL update_img = this.getClass().getResource("images//update.PNG");
+        URL info_img   = Thread.currentThread().getContextClassLoader().getResource("images/inserted.PNG");
+	    URL error_img  = Thread.currentThread().getContextClassLoader().getResource("images/Error1.PNG");
+	    URL update_img = Thread.currentThread().getContextClassLoader().getResource("images/update.PNG");	
 		if (type.equals("Info")){
 			Notifications notificationBuilder = Notifications.create()
 			.title(" „ »‰Ã«Õ")
@@ -689,7 +714,7 @@ public Input_data_Controller(){
 		      Notifications notificationBuilder = Notifications.create()
 			.title("Õ–›")
 			.text(content)
-			.graphic(new ImageView(new Image("/images/delete.PNG",true)))
+			.graphic(new ImageView(new Image("/images/inserted.PNG",true)))
 			.hideAfter(Duration.seconds(3))
 			.position(Pos.BOTTOM_LEFT)
 			.onAction(new EventHandler<ActionEvent>() {
@@ -746,7 +771,10 @@ public Input_data_Controller(){
 			String code = list_view.get(0).getCodemachine().toString();
 			codemachine_txt.setText(code.replaceAll("[^0-9]", ""));
 	    }else{
-		sound.getSAE().play();
+		if(sound.getSAE() != null){
+		    sound.getSAE().play();
+		}
+		    
 		setAlert(AlertType.ERROR, "Œÿ√", "ÌÃ»  ÕœÌœ ’› ﬁ»·  Õ—Ì—Â","«·—Ã«¡ «Œ Ì«— ’› „‰ «·ÃœÊ·  ﬁ»· «· ⁄œÌ· ⁄·ÌÂ");
 		}
 	}

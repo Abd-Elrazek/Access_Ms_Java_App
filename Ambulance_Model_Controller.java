@@ -84,6 +84,14 @@ public class Ambulance_Model_Controller  {
     private TableColumn<Table_View,String> nameresponsible_col;
 	@FXML
     private TableColumn<Table_View,String> codemachine_col;
+    @FXML
+	private Label label_code;
+	@FXML
+	private Label label_month;
+	@FXML
+	private Label label_year;
+	@FXML
+	private Label label_typefuel;
 
 	private String query = "SELECT * FROM General_db where Nbon = 30";
 
@@ -138,6 +146,20 @@ public class Ambulance_Model_Controller  {
 		}
 	}
 	
+	public void setLabel(String code, String month, String year, String typefuel){
+	    if (code != null){	
+		label_code.setText(code);
+		}
+		if (month != null){
+		label_month.setText(month);
+		}
+		if(!year.isEmpty()){
+		label_year.setText( year + " ã");	
+		}
+		if (typefuel != null){
+		label_typefuel.setText(typefuel);
+		}
+	}
 	
 
 
