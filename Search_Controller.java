@@ -35,6 +35,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.Modality;
 import javafx.stage.Window;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.sql.*;
 
 public class Search_Controller implements Initializable{
 //Variables
@@ -75,10 +80,13 @@ public class Search_Controller implements Initializable{
 	private String codemachine_val = "";
     private Stage getOwnerStage;
     private String typefuel = "";
+	private DB db = new DB();
 //Functions
     //initialize function
 	@Override
     public void initialize(URL url, ResourceBundle rb) {
+	   completeNameDriver();
+	   completeNameRespon();
 	   //event select from choicebox
 	   Tooltip tip = new Tooltip(" ÇÎÊÑ ÇÓã ÇáÃáÉ ");
 	   tip.setFont(new Font(14));
@@ -287,11 +295,11 @@ public class Search_Controller implements Initializable{
 				stage.setTitle("äãæÒÌ ÇáÇÎÑÇÌ");
 				stage.setResizable(false);
 				stage.setScene(new Scene(root1));
-				getOwnerStage = (Stage)viewData.getScene().getWindow(); 
-				stage.initOwner(getOwnerStage);
+/* 				getOwnerStage = (Stage)viewData.getScene().getWindow(); 
+				stage.initOwner(getOwnerStage); */
 				//stage.initModality(Modality.WINDOW_MODAL);
 				stage.show();
-				System.out.println("Owner => " + stage.getOwner());
+				//System.out.println("Owner => " + stage.getOwner());
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -312,6 +320,51 @@ public class Search_Controller implements Initializable{
         alert.setTitle(title);
         alert.setContentText(Content);
 		alert.showAndWait();
+	}
+	
+	
+	public void completeNameDriver(){
+	    List<String> list = new ArrayList();
+	    Connection con = null;
+		con = db.getConnection_F_DB();
+	    try{ 
+			ResultSet rs =con.createStatement().executeQuery("SELECT Namedriver FROM General_db");
+			while(rs.next()){
+			    list.add(rs.getString("Namedriver"));
+			}
+			//cut connect
+			rs.close();
+			con.close();
+	    }catch(SQLException e){
+		 e.printStackTrace();
+	    }
+		TextFields.bindAutoCompletion(namedriver_text, t -> {
+            return list.stream().filter(elem -> {
+                return elem.toLowerCase().startsWith(t.getUserText().toLowerCase());
+            }).collect(Collectors.toList());
+        });
+	}
+	
+	public void completeNameRespon(){
+	    List<String> list = new ArrayList();
+	    Connection con = null;
+		con = db.getConnection_F_DB();
+	    try{ 
+			ResultSet rs =con.createStatement().executeQuery("SELECT Nameresponsible FROM General_db");
+			while(rs.next()){
+			    list.add(rs.getString("Nameresponsible"));
+			}
+			//cut connect
+			rs.close();
+			con.close();
+	    }catch(SQLException e){
+		 e.printStackTrace();
+	    }
+		TextFields.bindAutoCompletion(nameresponsible_text, t -> {
+            return list.stream().filter(elem -> {
+                return elem.toLowerCase().startsWith(t.getUserText().toLowerCase());
+            }).collect(Collectors.toList());
+        });
 	}
 	
 }

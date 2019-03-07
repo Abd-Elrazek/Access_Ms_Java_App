@@ -42,6 +42,12 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.image.WritableImage;
+import javafx.scene.SnapshotParameters;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.print.*;
 
 
 public class Ambulance_Model_Controller  { 
@@ -50,8 +56,11 @@ public class Ambulance_Model_Controller  {
 	private Button backBtn;
 	private Stage getAmbulance_Model_StageByBtn;
 	private AnchorPane searchAnch;
-	private Stage getSearchStage;   
-
+	private Stage getSearchStage;  
+	
+	
+	@FXML 
+	private AnchorPane node;
     //this Connection for View table
 	private DB db = new DB();
 	
@@ -161,6 +170,24 @@ public class Ambulance_Model_Controller  {
 		}
 	}
 	
+	@FXML
+	public void print(){
+	    System.out.println("node of AnchorPane return  => " + node);
+/* 	    WritableImage image = node.snapshot(new SnapshotParameters(), null);
+
+        File file = new File("D:\\anchor.png");
+        try{
+        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+		}catch(Exception e){
+		    e.printStackTrace();
+		} */
+	    PrinterJob job = PrinterJob.createPrinterJob();
+		boolean printed = job.printPage(viewtable);
+		if (printed){
+		job.endJob();	
+		} 
+		
+	}	
 
 
 }
