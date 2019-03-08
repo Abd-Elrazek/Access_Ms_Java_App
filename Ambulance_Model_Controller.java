@@ -47,6 +47,7 @@ import javafx.scene.SnapshotParameters;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javafx.embed.swing.SwingFXUtils;
+import java.awt.Desktop;
 import javafx.print.*;
 
 
@@ -172,21 +173,21 @@ public class Ambulance_Model_Controller  {
 	
 	@FXML
 	public void print(){
-	    System.out.println("node of AnchorPane return  => " + node);
-/* 	    WritableImage image = node.snapshot(new SnapshotParameters(), null);
-
-        File file = new File("D:\\anchor.png");
+	    System.out.println("node of AnchorPane return  => " + viewtable);
+        WritableImage image = node.snapshot(new SnapshotParameters(), null);
+        File file = new File(".\\anchor.png");
         try{
         ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
 		}catch(Exception e){
 		    e.printStackTrace();
-		} */
-	    PrinterJob job = PrinterJob.createPrinterJob();
-		boolean printed = job.printPage(viewtable);
-		if (printed){
-		job.endJob();	
 		} 
-		
+		if (Desktop.isDesktopSupported()) {
+			try {
+				Desktop.getDesktop().open(file);
+			} catch (IOException ex) {
+				// no application registered for PDFs
+			}
+        }
 	}	
 
 

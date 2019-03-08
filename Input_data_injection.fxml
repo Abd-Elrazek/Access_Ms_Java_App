@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="input_data_anch" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Input_data_injection_Controller">
+   <children>
+      <TableView fx:id="viewtable" layoutX="-1.0" layoutY="14.0" prefHeight="289.0" prefWidth="655.0" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+            <TableColumn fx:id="nbon_col" minWidth="0.0" prefWidth="327.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم البون" />
+            <TableColumn fx:id="nnote_col" minWidth="0.0" prefWidth="325.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم الدفتر" />
+        </columns>
+         <effect>
+            <InnerShadow color="#63ffae" />
+         </effect>
+      </TableView>
+      <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="567.0" layoutY="352.0" prefHeight="32.0" prefWidth="76.0" text="رقم الدفتر: " textAlignment="RIGHT" textFill="#030303">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nnote_txt" alignment="CENTER_RIGHT" layoutX="382.0" layoutY="355.0" prefHeight="25.0" prefWidth="185.0" promptText="ارقام فقط ">
+         <effect>
+            <Reflection fraction="0.65" topOpacity="0.3" />
+         </effect>
+      </TextField>
+      <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="282.0" layoutY="353.0" prefHeight="30.0" prefWidth="92.0" text=" رقم البون : " textAlignment="RIGHT" textFill="#030303">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="save_btn" layoutX="520.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#saveData" prefHeight="31.0" prefWidth="125.0" styleClass="Save_btn" stylesheets="@css/style.css" text="حفظ" textFill="#0d22e0f7">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="update_btn" layoutX="374.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#updateData" prefHeight="31.0" prefWidth="117.0" styleClass="Update_btn" stylesheets="@css/style.css" text="تحديث" textFill="#008cff">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="delete_btn" layoutX="228.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#deleteData" prefHeight="31.0" prefWidth="125.0" styleClass="Delete_btn" stylesheets="@css/style.css" text="حذف" textFill="#f50808">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="view_row" layoutX="64.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#setTextFG" styleClass="Btn_Row" stylesheets="@css/style.css" text="+">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="18.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#clear" prefHeight="25.0" prefWidth="25.0" styleClass="Btn_Row" stylesheets="@css/style.css" text="-" />
+      <TextField fx:id="nbon_txt" alignment="CENTER_RIGHT" layoutX="106.0" layoutY="356.0" prefHeight="25.0" prefWidth="185.0" promptText="ارقام فقط ">
+         <effect>
+            <Reflection fraction="0.65" topOpacity="0.3" />
+         </effect>
+      </TextField>
+   </children>
+</AnchorPane>

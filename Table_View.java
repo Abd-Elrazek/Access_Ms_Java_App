@@ -11,7 +11,10 @@ public class Table_View{
 	public Table_View(){
 		
 	}
-    
+    public Table_View(long nbon , long nnote){
+		this.Nbon = nbon;
+		this.Nnote = nnote;
+	}
 	//Construcor for two variables (String code , long counter)
 	public Table_View(long serialn ,long counter,String code_machine){
 		this.Counter = counter;

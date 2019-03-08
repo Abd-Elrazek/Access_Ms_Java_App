@@ -24,15 +24,20 @@ public class Main_Controller implements Initializable{
 	
 	//Variables
 	private Stage Input_data_stage;
-	public Stage Search_stage;
+	private Stage Search_stage;
+	private Stage Injection_stage;
 	@FXML
 	private AnchorPane Input_data_Anch;
 	@FXML
-	private AnchorPane Search_Anch;
+	private AnchorPane Search_Anch;	
+	@FXML
+	private AnchorPane Injection_Anchor;
 	@FXML
 	private Pane searchPane;
 	@FXML 
 	private Pane inputPane;
+	@FXML 
+	private Pane injection;
 	
 	private Stage  primaryStage;
 	//Functions
@@ -44,6 +49,7 @@ public class Main_Controller implements Initializable{
         // initialize my data emails in stage and scence and its url 
         Input_data_stage = new Stage();
         Search_stage = new Stage();
+		Injection_stage = new Stage();
 		
         Input_data_stage.setResizable(false);
         Input_data_stage.setTitle("«œŒ«· Ê Õ—Ì— «·»Ì«‰« ");  
@@ -56,12 +62,20 @@ public class Main_Controller implements Initializable{
 	    Search_stage.initStyle(StageStyle.UTILITY);
 
 		//Search_stage.initModality(Modality.APPLICATION_MODAL);
+		
+		Injection_stage.setResizable(false);
+        Injection_stage.setTitle("»ÕÀ");
+	    Injection_stage.initStyle(StageStyle.UTILITY);
+
+		//Injection_stage.initModality(Modality.APPLICATION_MODAL);
         try {
             Input_data_Anch = FXMLLoader.load(getClass().getResource("Input_data.fxml"));
             Search_Anch = FXMLLoader.load(getClass().getResource("Search.fxml"));
+			Injection_Anchor = FXMLLoader.load(getClass().getResource("Input_data_injection.fxml"));
 			
             Input_data_stage.setScene(new Scene(Input_data_Anch));
             Search_stage.setScene(new Scene(Search_Anch));
+			Injection_stage.setScene(new Scene(Injection_Anchor));
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("here wrong .....");
@@ -91,9 +105,25 @@ public class Main_Controller implements Initializable{
 		//Input_data_stage.setIconified(true);
 		searchPane.setCursor(Cursor.WAIT);
 	}
+	
+	//Show Injection_data
+	public void showInjection(){
+	    primaryStage = (Stage) injection.getScene().getWindow();
+		if (Injection_stage.getOwner() == null){
+	    Injection_stage.initOwner(primaryStage);	
+		}
+		Injection_stage.show();
+		Injection_stage.toFront();
+		//Input_data_stage.setIconified(true);
+		injection.setCursor(Cursor.WAIT);
+	}
+	
+	
+	
 	//Change Cursor from WAIT To DEFAULT
 	public void defaultCursor(){
 		inputPane.setCursor(Cursor.DEFAULT);
 		searchPane.setCursor(Cursor.DEFAULT);
+		injection.setCursor(Cursor.DEFAULT);
     }
 }
