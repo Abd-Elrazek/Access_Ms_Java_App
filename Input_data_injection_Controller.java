@@ -56,6 +56,7 @@ import javafx.stage.Stage;
 import javafx.geometry.Pos;
 import org.controlsfx.control.Notifications;
 import java.net.URL;
+import java.math.BigInteger;
 
 public class Input_data_injection_Controller implements Initializable{
 
@@ -130,7 +131,8 @@ public Input_data_injection_Controller(){
 			    if (check_update){
 					try{ 
 					    Connection con_temp = db.getConnection_F_DB();
-						long nbon_check = Integer.valueOf(nbon_txt_);
+						BigInteger nbon_big = new BigInteger(nbon_txt_);
+						long nbon_check = nbon_big.longValue();
 						long nbon_distict = 0;
 
 						ResultSet rs =con_temp.createStatement().executeQuery("SELECT Nnote, Nbon FROM Injection_db");
@@ -182,10 +184,14 @@ public Input_data_injection_Controller(){
 	 boolean getValid_Func = getValidation();
 	 try{
 	    if (getValid_Func){
+		    BigInteger nbon_big = new BigInteger(nbon_txt_);
+			long nbon_from_big = nbon_big.longValue();
+			BigInteger nnote_big = new BigInteger(nnote_txt_);
+			long nnote_from_big = nnote_big.longValue();
 			//Creating JDBC PreparedStatement class 
 			ps = con_db_savedata.prepareStatement("INSERT  INTO Injection_db (Nbon, Nnote)values(?,?)");
-			ps.setLong(1, Integer.valueOf(nbon_txt_));
-			ps.setLong(2, Integer.valueOf(nnote_txt_));
+			ps.setLong(1, nbon_from_big);
+			ps.setLong(2, nnote_from_big);
 			//Executing SQL 
 			int result = ps.executeUpdate();
 			if (result != 0 ){
@@ -246,11 +252,17 @@ public Input_data_injection_Controller(){
 	 PreparedStatement ps_update = null;
 	 try{
 	     if (getValid_Func){
+		 
+		    BigInteger nbon_big = new BigInteger(nbon_txt_);
+			long nbon_from_big = nbon_big.longValue();
+			BigInteger nnote_big = new BigInteger(nnote_txt_);
+			long nnote_from_big = nnote_big.longValue();
+			
 			//Creating JDBC PreparedStatement class 
 			ps_update = con_db_update.prepareStatement("UPDATE General_db SET Nbon = ?, Nnote = ?  WHERE Nbon = ?;");
-			ps_update.setLong(1, Integer.valueOf(nbon_txt_));
-			ps_update.setLong(2, Integer.valueOf(nnote_txt_));
-			ps_update.setLong(3,Integer.valueOf(nbon_txt_));
+			ps_update.setLong(1, nbon_from_big);
+			ps_update.setLong(2, nnote_from_big);
+			ps_update.setLong(3,nbon_from_big);
 			//Executing SQL 
 			    int result = ps_update.executeUpdate();
 				System.out.println("result of ps_update.executeUpdate -> "  + result);
@@ -327,8 +339,10 @@ public Input_data_injection_Controller(){
 				long t0 = System.nanoTime();
 				con_db_delete =  db.getConnection_F_DB();
 				try{ 
+				    BigInteger nbon_big = new BigInteger(nbon);
+					long nbon_from_big = nbon_big.longValue();
 					PreparedStatement ps_delete =con_db_delete.prepareStatement("DELETE FROM Injection_db WHERE Nbon = ?;");
-					ps_delete.setLong(1, Integer.valueOf(nbon));
+					ps_delete.setLong(1, nbon_from_big);
 					int reslut = ps_delete.executeUpdate(); 
 					System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
 					if (reslut != 0){
@@ -371,7 +385,7 @@ public Input_data_injection_Controller(){
 	  try{ 
 		ResultSet rs =con_db.createStatement().executeQuery("SELECT * FROM Injection_db");
 		while(rs.next()){
-		table_view_list.add(new Table_View(rs.getInt("Nbon"),rs.getInt("Nnote")));
+		table_view_list.add(new Table_View(rs.getLong("Nbon"),rs.getLong("Nnote")));
 		}
 		System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
 		//cut connect

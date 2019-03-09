@@ -69,6 +69,9 @@ public class Test{
 		//check current counter small than in last row -> setNotification(create variable and set it in formErrors in getValidation) and saveData and updateData not running 
 		//check counter current(inputs) larger than last row  -> create $distance = current - last
 		System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
+	    System.out.println(Integer.MAX_VALUE);
+	    System.out.println(Long.MAX_VALUE);
 	}
+	
 }
 

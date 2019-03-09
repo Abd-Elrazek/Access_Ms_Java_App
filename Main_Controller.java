@@ -67,7 +67,7 @@ public class Main_Controller implements Initializable{
         Injection_stage.setTitle("»ÕÀ");
 	    Injection_stage.initStyle(StageStyle.UTILITY);
 
-		//Injection_stage.initModality(Modality.APPLICATION_MODAL);
+		Injection_stage.initModality(Modality.APPLICATION_MODAL);
         try {
             Input_data_Anch = FXMLLoader.load(getClass().getResource("Input_data.fxml"));
             Search_Anch = FXMLLoader.load(getClass().getResource("Search.fxml"));
@@ -88,7 +88,7 @@ public class Main_Controller implements Initializable{
 	public void showInputData(){
 	    primaryStage = (Stage) inputPane.getScene().getWindow();
 		if (Input_data_stage.getOwner()== null){
-		Input_data_stage.initOwner(primaryStage);
+		    Input_data_stage.initOwner(primaryStage);
 		}
 	    Input_data_stage.show();
 		Input_data_stage.toFront();
@@ -98,7 +98,7 @@ public class Main_Controller implements Initializable{
 	public void showSearch(){
 	    primaryStage = (Stage) searchPane.getScene().getWindow();
 		if (Search_stage.getOwner() == null){
-	    Search_stage.initOwner(primaryStage);	
+	        Search_stage.initOwner(primaryStage);	
 		}
 		Search_stage.show();
 		Search_stage.toFront();

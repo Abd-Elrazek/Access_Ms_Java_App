@@ -81,7 +81,7 @@
             <Reflection fraction="0.65" />
          </effect>
       </TextField>
-      <TextField fx:id="nnote_txt" alignment="CENTER_RIGHT" layoutX="121.0" layoutY="388.0" prefHeight="25.0" prefWidth="300.0" promptText="ارقام فقط">
+      <TextField fx:id="nnote_txt" alignment="CENTER_RIGHT" layoutX="121.0" layoutY="388.0" onKeyReleased="#getDefaultNbon" prefHeight="25.0" prefWidth="300.0" promptText="ارقام فقط">
          <effect>
             <Reflection fraction="0.65" />
          </effect>

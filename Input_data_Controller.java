@@ -56,6 +56,7 @@ import javafx.stage.Stage;
 import javafx.geometry.Pos;
 import org.controlsfx.control.Notifications;
 import java.net.URL;
+import java.math.BigInteger;
 
 public class Input_data_Controller implements Initializable{
 
@@ -145,6 +146,8 @@ public class Input_data_Controller implements Initializable{
 	    private boolean confirm_delete = false;
 		private long Distance = 0;
 		private boolean update_distance = false;
+		//this Nbon for delete row from Injection_db 
+		private long Nbon = 0;
 		
 		private TableViewSelectionModel<Table_View> selectedModel ;
 //Constructor
@@ -224,7 +227,8 @@ public Input_data_Controller(){
 			    if (check_update){
 					try{ 
 					    Connection con_temp = db.getConnection_F_DB();
-						long nbon_check = Integer.valueOf(nbon_txt_);
+						BigInteger nbon_big = new BigInteger(nbon_txt_);
+						long nbon_check = nbon_big.longValue();
 						long nbon_distict = 0;
 						long retrive_serialn_of_distinct = 0;
 						ResultSet rs =con_temp.createStatement().executeQuery("SELECT Serialn, Nbon FROM General_db");
@@ -350,16 +354,26 @@ public Input_data_Controller(){
 	 boolean getValid_Func = getValidation();
 	 try{
 	    if (getValid_Func){
+		
+		    BigInteger nbon_big = new BigInteger(nbon_txt_);
+			long nbon_from_big = nbon_big.longValue();
+			
+			BigInteger conter_big = new BigInteger(counter_txt_);
+			long counter_from_big = conter_big.longValue();
+			
+			BigInteger nnote_big = new BigInteger(nnote_txt_);
+			long nnote_from_big = nnote_big.longValue();
+			
 			//Creating JDBC PreparedStatement class 
 			ps = con_db_savedata.prepareStatement("INSERT  INTO General_db (Nbon, Dateexchange, Typefuel, Quantitybon, Counter, Distance, Namedriver, Nnote, Nameresponsible, Codemachine)values(?,?,?,?,?,?,?,?,?,?)");
-			ps.setLong(1, Integer.valueOf(nbon_txt_));
+			ps.setLong(1, nbon_from_big);
 			ps.setDate(2,Date.valueOf(date_));
 			ps.setString(3, store_radio_val);
 			ps.setLong(4, Integer.valueOf(quantitybon_txt_));
-			ps.setLong(5, Integer.valueOf(counter_txt_));
+			ps.setLong(5, counter_from_big);
 			ps.setLong(6, Distance); // this for distance calculator instead of counter_txt_
 			ps.setString(7,namedriver_txt_);
-			ps.setLong(8, Integer.valueOf(nnote_txt_));
+			ps.setLong(8,nnote_from_big);
 			ps.setString(9, nameresponsible_txt_);
 			ps.setString(10, codemachine_val);//codemachine_txt.getText());
 			//Executing SQL 
@@ -374,6 +388,14 @@ public Input_data_Controller(){
 				setNotification("Info","no content");
 				//clear TextField
 				clear();
+				//delete row of nbon and nnote  from Injection_db where Nbon = ?
+			    int result_ = con_db_savedata.createStatement().executeUpdate("delete from Injection_db where Nbon = " + Nbon+";");
+			    if (result_ != 0){
+				    System.out.println("Nbon deleted from Injection_db correctly : " + Nbon);
+				}
+				
+				//in the end after savedata correctly return Nbon var to zero 
+				Nbon = 0;
 			}
 			}else if (!getValid_Func){
 			    //initialize of collectErrors here too
@@ -423,19 +445,29 @@ public Input_data_Controller(){
 	 PreparedStatement ps_update = null;
 	 try{
 	    if (getValid_Func){
+		    
+			BigInteger nbon_big = new BigInteger(nbon_txt_);
+			long nbon_from_big = nbon_big.longValue();
+			
+			BigInteger conter_big = new BigInteger(quantitybon_txt_);
+			long counter_from_big = conter_big.longValue();
+			
+			BigInteger nnote_big = new BigInteger(nnote_txt_);
+			long nnote_from_big = nnote_big.longValue();
+			
 			//Creating JDBC PreparedStatement class 
 			ps_update = con_db_update.prepareStatement("UPDATE General_db SET Nbon = ?, Dateexchange = ?, Typefuel = ?, Quantitybon = ?, Counter = ?, Namedriver = ?, Nnote = ?, Nameresponsible = ?, Codemachine = ? WHERE Nbon = ?;");
-			ps_update.setLong(1, Integer.valueOf(nbon_txt_));
+			ps_update.setLong(1, nbon_from_big);
 			ps_update.setDate(2,Date.valueOf(date_));
 			ps_update.setString(3, store_radio_val);
 			ps_update.setLong(4, Integer.valueOf(quantitybon_txt_));
-			ps_update.setLong(5, Integer.valueOf(counter_txt_));
+			ps_update.setLong(5, counter_from_big);
 			//ps_update.setLong(6, Distance); // this for distance calculator instead of counter_txt_
 			ps_update.setString(6,namedriver_txt_);
-			ps_update.setLong(7, Integer.valueOf(nnote_txt_));
+			ps_update.setLong(7, nnote_from_big);
 			ps_update.setString(8, nameresponsible_txt_);
 			ps_update.setString(9, codemachine_val);//codemachine_txt.getText());
-			ps_update.setLong(10,Integer.valueOf(nbon_txt_));
+			ps_update.setLong(10,nbon_from_big);
 			//Executing SQL 
 			    int result = ps_update.executeUpdate();
 				System.out.println("result of ps_update.executeUpdate -> "  + result);
@@ -503,6 +535,8 @@ public Input_data_Controller(){
 	public void deleteData(){
 	    String nbon = nbon_txt.getText();
 	   if (nbon.matches("[0-9]+")){
+		BigInteger nbon_big = new BigInteger(nbon);
+		long nbon_from_big = nbon_big.longValue();
 		   //setAlert
 		   //when I call setAlert confirm_delete var will become true if response == ButtonType.OK
 		   if (sound.getSAI() != null){
@@ -514,7 +548,7 @@ public Input_data_Controller(){
 				con_db_delete =  db.getConnection_F_DB();
 				try{ 
 					PreparedStatement ps_delete =con_db_delete.prepareStatement("DELETE FROM General_db WHERE Nbon = ?;");
-					ps_delete.setLong(1, Integer.valueOf(nbon));
+					ps_delete.setLong(1, nbon_from_big);
 					int reslut = ps_delete.executeUpdate(); 
 					System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
 					if (reslut != 0){
@@ -557,7 +591,7 @@ public Input_data_Controller(){
 	  try{ 
 		ResultSet rs =con_db.createStatement().executeQuery("SELECT * FROM General_db WHERE Dateexchange BETWEEN #"+getDayOfMonth("start")+"# AND #"+getDayOfMonth("end")+"#");
 		while(rs.next()){
-		table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getInt("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getInt("Quantitybon"),rs.getInt("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getInt("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
+		table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getLong("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getLong("Quantitybon"),rs.getLong("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getLong("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
 		}
 		System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
 		//cut connect
@@ -615,7 +649,7 @@ public Input_data_Controller(){
 				int current_counter = Integer.valueOf(counter_txt_);
 					if (current_counter > counter){
 						//distance = currentCounter - lastCounter for this Code
-						Distance =  current_counter- counter;
+						Distance =  current_counter - counter;
 					}else{
 					    
 					    if(sound.getSAI() != null){
@@ -714,7 +748,7 @@ public Input_data_Controller(){
 		      Notifications notificationBuilder = Notifications.create()
 			.title("ÍÐÝ")
 			.text(content)
-			.graphic(new ImageView(new Image("/images/inserted.PNG",true)))
+			.graphic(new ImageView(new Image("/images/delete.PNG",true)))
 			.hideAfter(Duration.seconds(3))
 			.position(Pos.BOTTOM_LEFT)
 			.onAction(new EventHandler<ActionEvent>() {
@@ -803,6 +837,50 @@ public Input_data_Controller(){
 		}
 		return endDate;
 	}
+	
+	public void getDefaultNbon(){
+	    //trim()  for delete spaces in first number and last
+	    String nnote_txt__ = nnote_txt.getText().trim(); 
+		
+	    if (nnote_txt__.matches("[0-9]+")){
+		    BigInteger big = new BigInteger(nnote_txt__);
+		    long nnote = big.longValue();
+			Nbon = 0;
+            int index = 0;
+			Connection con = null;
+			Table_View tv = null;
+			con = db.getConnection_F_DB();
+			ObservableList<Table_View> list = FXCollections.observableArrayList();
+			//select nbon and nnote from Injection_db where nnote equal ... nnote_txt.getText();
+			try{
+				PreparedStatement ps = con.prepareStatement("SELECT * From Injection_db WHERE Nnote = ?");
+				ps.setLong(1, nnote);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+				tv = new Table_View(rs.getLong("Nbon"),rs.getLong("Nnote"));
+			      //insert it nbon and nnote in list 
+				   list.add(tv);
+				   index = rs.getRow();
+				   break;
+				}
+			      //return the first item(nnbon) in the list and store in variable Nbon
+				  if (index != 0){
+			            //nbon_text.setText(Nbon);
+						Nbon = list.get(0).getNbon();
+						nbon_txt.setText(String.valueOf(Nbon));
+					}
+				//Cut con, rs
+				rs.close();
+				ps.close();
+				con.close();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+			index = 0;
+			list = null;
+		}
+	}
+	
 }
 
 
