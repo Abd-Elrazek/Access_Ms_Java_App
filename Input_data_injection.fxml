@@ -28,7 +28,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="nnote_txt" alignment="CENTER_RIGHT" layoutX="382.0" layoutY="355.0" prefHeight="25.0" prefWidth="185.0" promptText="ارقام فقط ">
+      <TextField fx:id="nnote_txt" alignment="CENTER_RIGHT" layoutX="382.0" layoutY="355.0" onKeyPressed="#veryfiedNnote" prefHeight="25.0" prefWidth="185.0" promptText="ارقام فقط ">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
@@ -65,7 +65,7 @@
          </cursor>
       </Button>
       <Button layoutX="18.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#clear" prefHeight="25.0" prefWidth="25.0" styleClass="Btn_Row" stylesheets="@css/style.css" text="-" />
-      <TextField fx:id="nbon_txt" alignment="CENTER_RIGHT" layoutX="106.0" layoutY="356.0" prefHeight="25.0" prefWidth="185.0" promptText="ارقام فقط ">
+      <TextField fx:id="nbon_txt" alignment="CENTER_RIGHT" layoutX="106.0" layoutY="356.0" onKeyPressed="#veryfiedNbon" prefHeight="25.0" prefWidth="185.0" promptText="ارقام فقط ">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>

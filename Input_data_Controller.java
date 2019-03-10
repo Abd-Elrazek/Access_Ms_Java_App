@@ -159,6 +159,8 @@ public Input_data_Controller(){
     // this function used to initialize my variables
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+	   // counter_txt.setPrefColumnCount(9);
+	    // counter_txt.selectRange(0,8);
 	  //initialize of DatePicker 
 	  dateexchange_datepicker.setPromptText(" ÇÎÊÑ ÇáÊÇÑíÎ ãä åäÇ ");
 	  //initialize of store_radio_val by Banzeeen
@@ -880,7 +882,48 @@ public Input_data_Controller(){
 			list = null;
 		}
 	}
+
+//functions for check the length of TextField not more than of max_length
+	public void veryfiedNbon(){
+		int maxChar = 14;
+		if(nbon_txt.getText().length() > maxChar) {
+			String s = nbon_txt.getText().substring(0, maxChar);
+            nbon_txt.setText(s);
+		}	
+	}
 	
+	public void veryfiedCounter(){
+		int maxChar = 8;
+		if(counter_txt.getText().length() > maxChar) {
+			String s = counter_txt.getText().substring(0, maxChar);
+            counter_txt.setText(s);
+		}	
+	}
+	
+	public void veryfiedQuantityNbon(){
+		int maxChar = 2;
+		if(quantitybon_txt.getText().length() > maxChar) {
+			String s = quantitybon_txt.getText().substring(0, maxChar);
+            quantitybon_txt.setText(s);
+		}	
+	}
+	
+	public void veryfiedNnote(){
+		int maxChar = 14;
+		if(nnote_txt.getText().length() > maxChar) {
+			String s = nnote_txt.getText().substring(0, maxChar);
+            nnote_txt.setText(s);
+		}	
+	}
+	
+	public void veryfiedNcode(){
+		int maxChar = 8;
+		if(codemachine_txt.getText().length() > maxChar) {
+			String s = codemachine_txt.getText().substring(0, maxChar);
+			codemachine_txt.setText(s);
+		}	
+	}
+
 }
 
 

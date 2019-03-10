@@ -116,7 +116,7 @@ public class Ambulance_Model_Controller  {
 	  try{ 
 	    ResultSet rs =con_db.createStatement().executeQuery(query);
 		while(rs.next()){
-		table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getInt("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getInt("Quantitybon"),rs.getInt("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getInt("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
+		table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getLong("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getInt("Quantitybon"),rs.getLong("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getLong("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
 		}
 		System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
 		//cut connect
@@ -148,7 +148,7 @@ public class Ambulance_Model_Controller  {
 	 try{
 		  searchAnch= FXMLLoader.load(getClass().getResource("Search.fxml"));
 		  getSearchStage.setScene(new Scene(searchAnch));
-		  getSearchStage.setTitle("»ÕÀ");
+		  getSearchStage.setTitle("???");
 		  getSearchStage.initStyle(StageStyle.UTILITY);
 		  getSearchStage.show();
 		}catch(IOException e){

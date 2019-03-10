@@ -46,7 +46,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="nbon_txt" alignment="CENTER_RIGHT" layoutX="612.0" layoutY="316.0" prefHeight="25.0" prefWidth="300.0" promptText="ارقام فقط ">
+      <TextField fx:id="nbon_txt" alignment="CENTER_RIGHT" layoutX="612.0" layoutY="316.0" onKeyPressed="#veryfiedNbon" prefHeight="25.0" prefWidth="300.0" promptText="ارقام فقط ">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
@@ -56,7 +56,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="quantitybon_txt" alignment="CENTER_RIGHT" layoutX="612.0" layoutY="371.0" prefHeight="25.0" prefWidth="300.0" promptText="سعه البون بالرقم من 1 الى 254 فقط ">
+      <TextField fx:id="quantitybon_txt" alignment="CENTER_RIGHT" layoutX="612.0" layoutY="371.0" onKeyPressed="#veryfiedQuantityNbon" prefHeight="25.0" prefWidth="300.0" promptText="سعه البون بالرقم من 1 الى 254 فقط ">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
@@ -81,7 +81,7 @@
             <Reflection fraction="0.65" />
          </effect>
       </TextField>
-      <TextField fx:id="nnote_txt" alignment="CENTER_RIGHT" layoutX="121.0" layoutY="388.0" onKeyReleased="#getDefaultNbon" prefHeight="25.0" prefWidth="300.0" promptText="ارقام فقط">
+      <TextField fx:id="nnote_txt" alignment="CENTER_RIGHT" layoutX="121.0" layoutY="388.0" onKeyPressed="#veryfiedNnote" onKeyReleased="#getDefaultNbon" prefHeight="25.0" prefWidth="300.0" promptText="ارقام فقط">
          <effect>
             <Reflection fraction="0.65" />
          </effect>
@@ -96,7 +96,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="counter_txt" alignment="CENTER_RIGHT" layoutX="612.0" layoutY="426.0" prefHeight="25.0" prefWidth="300.0" promptText="ارقام فقط">
+      <TextField fx:id="counter_txt" alignment="CENTER_RIGHT" layoutX="612.0" layoutY="426.0" onKeyPressed="#veryfiedCounter" prefHeight="25.0" prefWidth="300.0" promptText="ارقام فقط">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
@@ -170,7 +170,7 @@
                </FXCollections>
             </items>
       </ChoiceBox>
-      <TextField fx:id="codemachine_txt" alignment="CENTER_RIGHT" layoutX="120.0" layoutY="534.0" prefHeight="25.0" prefWidth="227.0" promptText="ارقام فقط">
+      <TextField fx:id="codemachine_txt" alignment="CENTER_RIGHT" layoutX="120.0" layoutY="534.0" onKeyPressed="#veryfiedNcode" prefHeight="25.0" prefWidth="227.0" promptText="ارقام فقط">
          <effect>
             <Reflection fraction="0.65" />
          </effect>

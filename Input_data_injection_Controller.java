@@ -503,6 +503,23 @@ public Input_data_injection_Controller(){
         nbon_txt.clear();	
         nnote_txt.clear();
 	}
+	
+	
+	public void veryfiedNbon(){
+		int maxChar = 14;
+		if(nbon_txt.getText().length() > maxChar) {
+			String s = nbon_txt.getText().substring(0, maxChar);
+			nbon_txt.setText(s);
+		}	
+	}
+	
+	public void veryfiedNnote(){
+		int maxChar = 14;
+		if(nnote_txt.getText().length() > maxChar) {
+			String s = nnote_txt.getText().substring(0, maxChar);
+			nnote_txt.setText(s);
+		}	
+	}
 
 }
 

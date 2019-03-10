@@ -49,13 +49,13 @@
          <columns>
             <TableColumn fx:id="codemachine_col" minWidth="0.0" prefWidth="86.00003051757812" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="كود ألألة" />
             <TableColumn fx:id="nameresponsible_col" prefWidth="132.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم المسؤول " />
-            <TableColumn fx:id="nnote_col" prefWidth="115.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم الدفتر" />
-            <TableColumn fx:id="namedriver_col" prefWidth="113.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم السائق" />
-            <TableColumn fx:id="distance_col" prefWidth="104.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="المسافه المقطوعه" />
-            <TableColumn fx:id="counter_col" prefWidth="93.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="العداد" />
-            <TableColumn fx:id="quantitybon_col" prefWidth="84.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="سعه البون" />
-            <TableColumn fx:id="typefuel_col" minWidth="0.0" prefWidth="89.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="نوع الوقود" />
-            <TableColumn fx:id="dateexchange_col" prefWidth="118.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="تاريخ الصرف" />
+            <TableColumn fx:id="nnote_col" prefWidth="138.99996948242188" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم الدفتر" />
+            <TableColumn fx:id="namedriver_col" prefWidth="111.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم السائق" />
+            <TableColumn fx:id="distance_col" prefWidth="99.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="المسافه المقطوعه" />
+            <TableColumn fx:id="counter_col" prefWidth="128.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="العداد" />
+            <TableColumn fx:id="quantitybon_col" prefWidth="70.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="سعه البون" />
+            <TableColumn fx:id="typefuel_col" minWidth="0.0" prefWidth="62.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="نوع الوقود" />
+            <TableColumn fx:id="dateexchange_col" prefWidth="107.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="تاريخ الصرف" />
             <TableColumn fx:id="nbon_col" minWidth="0.0" prefWidth="183.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم البون" />
             <TableColumn fx:id="serialn_col" minWidth="0.0" prefWidth="55.0" resizable="false" style="-fx-alignment: center;" styleClass="Column_X" text="م" />
          </columns>
