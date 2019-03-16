@@ -164,7 +164,7 @@ public class Ambulance_Model_Controller  {
 		label_month.setText(month);
 		}
 		if(!year.isEmpty()){
-		label_year.setText( year + " ã");	
+		label_year.setText( year + " ?");	
 		}
 		if (typefuel != null){
 		label_typefuel.setText(typefuel);
@@ -173,22 +173,87 @@ public class Ambulance_Model_Controller  {
 	
 	@FXML
 	public void print(){
-	    System.out.println("node of AnchorPane return  => " + viewtable);
+	    for (int i = 0; i < 10; ++i){
+			if (i == 0){
+			    showTable("SELECT * FROM General_db where Nbon = 55");
+				printNod(i);
+			}
+			
+			if (i == 1){
+			    showTable("SELECT * FROM General_db where Nbon = 1");	
+				printNod(i);
+			}
+			if (i == 2){
+			    showTable("SELECT * FROM General_db where Nbon = 2");	
+				printNod(i);
+			}
+			if (i == 3){
+			    showTable("SELECT * FROM General_db where Nbon = 3");
+				printNod(i);
+			}
+			if (i == 4){
+			    showTable("SELECT * FROM General_db where Nbon = 4");
+				printNod(i);
+			}
+			if (i == 5){
+			    showTable("SELECT * FROM General_db where Nbon = 5");
+				printNod(i);
+			}
+			if (i == 6){
+			    showTable("SELECT * FROM General_db where Nbon = 6");
+				printNod(i);
+			}
+			if (i == 7){
+			    showTable("SELECT * FROM General_db where Nbon = 7");
+				printNod(i);
+			}
+			if (i == 8){
+			    showTable("SELECT * FROM General_db where Nbon = 8");
+				printNod(i);
+			}
+			if (i == 9){
+			    showTable("SELECT * FROM General_db where Nbon = 9");	
+				printNod(i);
+			}
+			if (i == 10){
+			    showTable("SELECT * FROM General_db where Nbon = 10");
+				printNod(i);
+			}
+		}
+	    
+	}
+	
+	public void printNod(int i){
+		System.out.println("node of AnchorPane return  => " + node);
         WritableImage image = node.snapshot(new SnapshotParameters(), null);
-        File file = new File(".\\anchor.png");
+        File file = new File(".\\SnapShot\\"+i+".png");
         try{
         ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
 		}catch(Exception e){
 		    e.printStackTrace();
 		} 
-		if (Desktop.isDesktopSupported()) {
-			try {
-				Desktop.getDesktop().open(file);
-			} catch (IOException ex) {
-				// no application registered for PDFs
-			}
-        }
-	}	
+		
+		File root = new File("Desktop");
+		String outputFile = "some.pdf";
+
+		List<String> files = new ArrayList<String>();
+		files.add("0.png");
+		Document document = new Document();
+
+		PdfWriter.getInstance(document, new FileOutputStream(new File(root, outputFile)));
+		document.open();
+
+		for (String f : files) {
+			document.newPage();
+			Image image = Image.getInstance(new File(root, f).getAbsolutePath());
+			image.setAbsolutePosition(0, 0);
+			image.setBorderWidth(0);
+			image.scaleAbsoluteHeight(PageSize.A4.getHeight());
+			image.scaleAbsoluteWidth(PageSize.A4.getWidth());
+			document.add(image);
+		}
+		document.close();
+	}
 
 
 }

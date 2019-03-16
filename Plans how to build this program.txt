@@ -1,1 +1,29 @@
-new Name Db => Injection_db
+--Decimal Places or size TextField
+quantitybon = 3 
+Counter max = 9
+nnote and nbon = 15
+
+-- Problem: how i can snapshot or print all node with scale all elements?
+-- Problem: How to print all node with I want it.
+
+==================================================================
+
+JobSettings	
+            The JobSettings class encapsulates most of the configuration of a print job.
+PageLayout	
+            A PageLayout encapsulates the information needed to lay out content.
+PageRange	
+			A PageRange is used to select or constrain the job print stream pages to print.
+Paper	
+			A class which encapsulates the size of paper media as used by printers.
+PaperSource	
+			A PaperSource is the input tray to be used for the Paper.
+Printer	
+			A Printer instance represents the destination for a print job.
+PrinterAttributes	
+			This class encapsulates the attributes of a printer which relate to its job printing capabilities and other attributes.
+PrinterJob	
+			PrinterJob is the starting place for JavaFX scenegraph printing.
+PrintResolution	
+			Class to represent a supported device resolution of a printer in the feed and crossfeed directionsin dots-per-inch (DPI).
+==================================================================

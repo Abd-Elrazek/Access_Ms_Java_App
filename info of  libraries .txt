@@ -5,3 +5,4 @@ ucanaccess-4.0.1.jar    > lib.jar
     hsqldb.jar 2.3.1                 > libtwo.jar
     jackcess-2.1.6.jar               > libthree.jar
    controlsfx-8.40.14              >libfive.jar
+   Itext                                >libsix.jar
