@@ -6,6 +6,12 @@ nnote and nbon = 15
 -- Problem: how i can snapshot or print all node with scale all elements?
 -- Problem: How to print all node with I want it.
 
+-- printData() 
+  -> print(from , to) in Ambulance_Model__Controller
+	  -> distinct_codemachine(LocalDate from , LocalDate to)
+	  -> showTable(S query);
+	  -> setLabel(String code, String month, String year, String typefuel)
+	  -> printNod(int i)
 ==================================================================
 
 JobSettings	

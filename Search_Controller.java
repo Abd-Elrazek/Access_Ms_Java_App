@@ -295,7 +295,7 @@ public class Search_Controller implements Initializable{
 				stage.setTitle("‰„Ê“Ã «·«Œ—«Ã");
 				stage.setResizable(false);
 				stage.setScene(new Scene(root1));
-/* 				getOwnerStage = (Stage)viewData.getScene().getWindow(); 
+                /*getOwnerStage = (Stage)viewData.getScene().getWindow(); 
 				stage.initOwner(getOwnerStage); */
 				//stage.initModality(Modality.WINDOW_MODAL);
 				stage.show();
@@ -312,6 +312,60 @@ public class Search_Controller implements Initializable{
 		typefuel = "";
 		codemachine_val = "";
         query = "SELECT * FROM General_db WHERE";
+	}
+	
+	// for print all date with date from and to with every codemachine value
+	public void printData(){
+	    boolean check_valid =true;
+		namedriver_text_     = namedriver_text.getText();
+		nameresponsible_text_= nameresponsible_text.getText();
+	    nbon_text_     = nbon_text.getText();
+		nnote_text_    = nnote_text.getText();
+		nmachine_text_ = nmachine_text.getText();
+		date_from      = from.getValue();
+		date_to        = to.getValue();
+		if (date_from == null || date_to == null){
+			if (date_from  == null){			    	
+				if (sound.getSAE() != null){
+					sound.getSAE().play();
+				}
+				setAlert(AlertType.ERROR, "Œÿ√", "Õœœ »œ«Ì… «· «—ÌŒ");
+				check_valid = false;
+			}else if (date_to == null){
+				if (sound.getSAE() != null){
+					sound.getSAE().play();
+				}
+				setAlert(AlertType.ERROR, "Œÿ√", "Õœœ ‰Â«Ì… «· «—ÌŒ");
+				check_valid = false;
+			}
+		}
+		if(!nmachine_text_.isEmpty() || !namedriver_text_.isEmpty() ||  !nameresponsible_text_.isEmpty() || !nbon_text_.isEmpty() || !nnote_text_.isEmpty() || checkbox_gas.isSelected() || checkbox_solar.isSelected()){
+			if (sound.getSAE() != null ){
+				sound.getSAE().play();
+			}
+			setAlert(AlertType.ERROR, "Œÿ√","«·—Ã«¡ «Œ Ì«— «· «—ÌŒ „‰ Ê«·Ï ›ﬁÿ ⁄‰œ «·÷€ÿ ⁄·Ï “— «·ÿ»«⁄Â ");
+			check_valid = false;
+		}
+	    if (check_valid){
+			try {
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Ambulance_Model.fxml"));
+				AnchorPane root1 = (AnchorPane) fxmlLoader.load();
+				Ambulance_Model_Controller controller=fxmlLoader.<Ambulance_Model_Controller>getController();
+				Stage stage = new Stage();
+				stage.setScene(new Scene(root1));
+				controller.print(date_from,date_to);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else{
+		    choicebox.setValue(null);
+		    name_machine = "";
+		    System.out.println("vlid() => "+ check_valid);
+		}
+		typefuel = "";
+		codemachine_val = "";
+        query = "SELECT * FROM General_db WHERE";
+		check_valid = true;
 	}
 	
 	//func to set Alert (AlertType , title  , content)

@@ -45,7 +45,7 @@ public class Test{
 	
     
 	
-/* 	 // return counter and codemachine 
+	 // return counter and codemachine 
 	    Connection con = db.getConnection_F_DB();
 		ObservableList<Table_View> list = FXCollections.observableArrayList();
 		long counter = 0;
@@ -56,15 +56,16 @@ public class Test{
 			System.out.printf("Serialn\t\tCounter\t\tcodemachine \n");
 			System.out.printf("========\t=======\t\t=========== \n");
 		try{
-			ResultSet rs = con.createStatement().executeQuery("SELECT Serialn ,Counter ,Codemachine FROM General_db WHERE Codemachine =\""+codemachine_val+"\" AND Serialn = 192;");
-			while(rs.next()){
-				System.out.printf(rs.getLong("Serialn")+"\t\t"+rs.getLong("Counter")+"\t\t"+rs.getString("Codemachine")+"\n");
-			}
+			ResultSet rs = con.createStatement().executeQuery("SELECT DISTINCT Codemachine from General_db");
+			System.out.println("size   : " + (rs.getInt("COUNT(Codemachine)")));
+			// while(rs.next()){
+				// System.out.println(rs.getString("Codemachine"));
+			// }
 			con.close();
 			rs.close();
 		}catch(SQLException e){
 		  e.printStackTrace();
-		} */
+		} 
 		//check if not counter or = null so distance = zero 
 		//check current counter small than in last row -> setNotification(create variable and set it in formErrors in getValidation) and saveData and updateData not running 
 		//check counter current(inputs) larger than last row  -> create $distance = current - last

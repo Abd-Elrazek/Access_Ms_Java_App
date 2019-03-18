@@ -48,8 +48,19 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import javafx.embed.swing.SwingFXUtils;
 import java.awt.Desktop;
+// import java.awt.Image;
+import java.awt.Color;
 import javafx.print.*;
+import java.io.ByteArrayOutputStream;
+import java.time.LocalDate;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.pdf.PdfWriter;
 
 public class Ambulance_Model_Controller  { 
 //Global Variables
@@ -103,9 +114,15 @@ public class Ambulance_Model_Controller  {
 	@FXML
 	private Label label_typefuel;
 
-	private String query = "SELECT * FROM General_db where Nbon = 30";
+	private String query_global = "SELECT * FROM General_db where Nbon = 30";
+	List<String> all_name_codemachine = new ArrayList<String>();
+	List<String> all_name_typefuel    = new ArrayList<String>();
+	List<LocalDate> date              = new ArrayList<LocalDate>();
+	private Document document = new Document();
+	
 
 //Functions
+	
     //View Table in TableView
 	public void showTable(String query){
 	  //getTimeCurrent with nanoTime
@@ -116,7 +133,7 @@ public class Ambulance_Model_Controller  {
 	  try{ 
 	    ResultSet rs =con_db.createStatement().executeQuery(query);
 		while(rs.next()){
-		table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getLong("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getInt("Quantitybon"),rs.getLong("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getLong("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
+		    table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getLong("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getInt("Quantitybon"),rs.getLong("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getLong("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
 		}
 		System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
 		//cut connect
@@ -125,7 +142,6 @@ public class Ambulance_Model_Controller  {
 	  }catch(SQLException e){
 		e.printStackTrace();
 	  }
-	  
       serialn_col.setCellValueFactory(new PropertyValueFactory<>("Serialn"));
       nbon_col.setCellValueFactory(new PropertyValueFactory<>("Nbon"));
       dateexchange_col.setCellValueFactory(new PropertyValueFactory<>("Dateexchange"));
@@ -138,22 +154,6 @@ public class Ambulance_Model_Controller  {
       nameresponsible_col.setCellValueFactory(new PropertyValueFactory<>("Nameresponsible"));
       codemachine_col.setCellValueFactory(new PropertyValueFactory<>("Codemachine"));
       viewtable.setItems(table_view_list);
-	}
-//showBackSearch
-    @FXML
-	public void showBackSearch(){
-	 getSearchStage = new Stage();
-	 getAmbulance_Model_StageByBtn = (Stage) backBtn.getScene().getWindow();
-	 getAmbulance_Model_StageByBtn.close();
-	 try{
-		  searchAnch= FXMLLoader.load(getClass().getResource("Search.fxml"));
-		  getSearchStage.setScene(new Scene(searchAnch));
-		  getSearchStage.setTitle("???");
-		  getSearchStage.initStyle(StageStyle.UTILITY);
-		  getSearchStage.show();
-		}catch(IOException e){
-		 e.printStackTrace();
-		}
 	}
 	
 	public void setLabel(String code, String month, String year, String typefuel){
@@ -171,89 +171,67 @@ public class Ambulance_Model_Controller  {
 		}
 	}
 	
-	@FXML
-	public void print(){
-	    for (int i = 0; i < 10; ++i){
-			if (i == 0){
-			    showTable("SELECT * FROM General_db where Nbon = 55");
-				printNod(i);
-			}
-			
-			if (i == 1){
-			    showTable("SELECT * FROM General_db where Nbon = 1");	
-				printNod(i);
-			}
-			if (i == 2){
-			    showTable("SELECT * FROM General_db where Nbon = 2");	
-				printNod(i);
-			}
-			if (i == 3){
-			    showTable("SELECT * FROM General_db where Nbon = 3");
-				printNod(i);
-			}
-			if (i == 4){
-			    showTable("SELECT * FROM General_db where Nbon = 4");
-				printNod(i);
-			}
-			if (i == 5){
-			    showTable("SELECT * FROM General_db where Nbon = 5");
-				printNod(i);
-			}
-			if (i == 6){
-			    showTable("SELECT * FROM General_db where Nbon = 6");
-				printNod(i);
-			}
-			if (i == 7){
-			    showTable("SELECT * FROM General_db where Nbon = 7");
-				printNod(i);
-			}
-			if (i == 8){
-			    showTable("SELECT * FROM General_db where Nbon = 8");
-				printNod(i);
-			}
-			if (i == 9){
-			    showTable("SELECT * FROM General_db where Nbon = 9");	
-				printNod(i);
-			}
-			if (i == 10){
-			    showTable("SELECT * FROM General_db where Nbon = 10");
-				printNod(i);
-			}
-		}
-	    
-	}
-	
-	public void printNod(int i){
-		System.out.println("node of AnchorPane return  => " + node);
-        WritableImage image = node.snapshot(new SnapshotParameters(), null);
-        File file = new File(".\\SnapShot\\"+i+".png");
-        try{
-        ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-		}catch(Exception e){
-		    e.printStackTrace();
-		} 
-		
+	//print func 
+	public void print (LocalDate from ,LocalDate to){
+		distinct_codemachine(from, to);
 		File root = new File("Desktop");
 		String outputFile = "some.pdf";
-
-		List<String> files = new ArrayList<String>();
-		files.add("0.png");
-		Document document = new Document();
-
-		PdfWriter.getInstance(document, new FileOutputStream(new File(root, outputFile)));
+		
+		try{
+		    PdfWriter.getInstance(document, new FileOutputStream(new File(root, outputFile)));
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		
 		document.open();
-
-		for (String f : files) {
-			document.newPage();
-			Image image = Image.getInstance(new File(root, f).getAbsolutePath());
-			image.setAbsolutePosition(0, 0);
-			image.setBorderWidth(0);
-			image.scaleAbsoluteHeight(PageSize.A4.getHeight());
-			image.scaleAbsoluteWidth(PageSize.A4.getWidth());
-			document.add(image);
+		for(int i = 0; i < all_name_codemachine.size(); i++){
+			String code = all_name_codemachine.get(i);
+			System.out.println(code);
+	        showTable("SELECT * FROM General_db WHERE Codemachine = '" +code+ "' AND Dateexchange BETWEEN #" + from +"# AND #" + to + "# ");
+			printNod(i);
 		}
 		document.close();
+		System.out.println("Pdf created successfully");
 	}
+	
+	//This func bring the all distinct codemachine and putted in List
+	@FXML
+	public void distinct_codemachine(LocalDate from , LocalDate to){
+	    // LocalDate localDate_from_Date = null;
+		//all_name_codemachine = null;
+	    Connection con = db.getConnection_F_DB();
+	    try{
+		    ResultSet rs = con.createStatement().executeQuery("SELECT DISTINCT Codemachine FROM General_db WHERE Dateexchange BETWEEN #" + from +"# AND #" + to + "# ");
+		    // ResultSet rs_ = con.createStatement().executeQuery("SELECT Typefuel, Dateexchange FROM General_db");
+		    while(rs.next()){
+			all_name_codemachine.add(rs.getString("Codemachine"));
+		    }
 
+		    rs.close();
+		    con.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 
+	}
+	
+	//Print Node that i give it
+	public void printNod(int i){
+		try{
+		System.out.println("node of AnchorPane return  => " + node);
+        WritableImage image = node.snapshot(new SnapshotParameters(), null);
+		
+        ByteArrayOutputStream  byteOutput = new ByteArrayOutputStream();
+			ImageIO.write( SwingFXUtils.fromFXImage( image, null ), "png", byteOutput );
+			document.newPage();
+			Image image_ = Image.getInstance(byteOutput.toByteArray());
+			image_.setAbsolutePosition(0, 0);
+			image_.setBorderWidth(0);
+			image_.scaleAbsoluteHeight(PageSize.A4.getHeight());
+			image_.scaleAbsoluteWidth(PageSize.A4.getWidth());
+			document.add(image_);
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
 }

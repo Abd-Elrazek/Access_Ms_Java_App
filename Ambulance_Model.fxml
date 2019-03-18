@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="node" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#print" prefHeight="690.0" prefWidth="1187.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ambulance_Model_Controller">
+<AnchorPane fx:id="node" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1187.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ambulance_Model_Controller">
    <children>
       <Label alignment="CENTER_RIGHT" layoutX="1030.0" layoutY="14.0" prefHeight="25.0" prefWidth="139.0" text="هيئه الاسعاف المصرية " textAlignment="CENTER">
          <font>
@@ -60,6 +60,6 @@
             <TableColumn fx:id="serialn_col" minWidth="0.0" prefWidth="55.0" resizable="false" style="-fx-alignment: center;" styleClass="Column_X" text="م" />
          </columns>
       </TableView>
-      <Label fx:id="label_year1" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="616.0" layoutY="70.0" onMouseClicked="#print" prefHeight="20.0" prefWidth="37.0" text="سنه : " />
+      <Label fx:id="label_year1" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="616.0" layoutY="70.0" prefHeight="20.0" prefWidth="37.0" text="سنه : " />
    </children>
 </AnchorPane>
