@@ -15,14 +15,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Search_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="426.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Search_Controller">
    <children>
       <Label alignment="CENTER_RIGHT" layoutX="1080.0" layoutY="12.0" prefHeight="30.0" prefWidth="193.0" text="هيئه الاسعاف المصرية " textAlignment="CENTER">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Button fx:id="viewData" cache="true" layoutX="407.0" layoutY="326.0" mnemonicParsing="false" onMouseReleased="#showAmbulanceModel" prefHeight="32.0" prefWidth="140.0" styleClass="Search_btn" stylesheets="@css/style.css" text="عرض البيانات" textAlignment="CENTER" underline="true">
+      <Button fx:id="viewData" cache="true" layoutX="464.0" layoutY="340.0" mnemonicParsing="false" onMouseReleased="#showAmbulanceModel" prefHeight="40.0" prefWidth="179.0" styleClass="Search_btn" stylesheets="@css/style.css" text="عرض البيانات" textAlignment="CENTER" underline="true">
          <font>
             <Font size="15.0" />
          </font>
@@ -117,7 +117,7 @@
             <Reflection fraction="0.65" />
          </effect>
       </TextField>
-      <Button fx:id="data_print" cache="true" layoutX="231.0" layoutY="326.0" mnemonicParsing="false" onMouseReleased="#printData" prefHeight="32.0" prefWidth="140.0" styleClass="Search_btn" stylesheets="@css/style.css" text="طباعه " textAlignment="CENTER" underline="true">
+      <Button fx:id="data_print" cache="true" layoutX="249.0" layoutY="340.0" mnemonicParsing="false" onMouseReleased="#printData" prefHeight="40.0" prefWidth="179.0" styleClass="Search_btn" stylesheets="@css/style.css" text="طباعه " textAlignment="CENTER" underline="true">
          <font>
             <Font size="15.0" />
          </font>

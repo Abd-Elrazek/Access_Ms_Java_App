@@ -9,12 +9,14 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.Reflection;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-
+import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.io.IOException;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ScrollPane;
 //import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -40,7 +42,7 @@ import org.controlsfx.control.textfield.TextFields;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.sql.*;
-
+import javafx.scene.layout.Pane;
 public class Search_Controller implements Initializable{
 //Variables
 	//public Stage getSearchStage;
@@ -81,6 +83,10 @@ public class Search_Controller implements Initializable{
     private Stage getOwnerStage;
     private String typefuel = "";
 	private DB db = new DB();
+	
+	
+	
+	
 //Functions
     //initialize function
 	@Override
@@ -286,10 +292,10 @@ public class Search_Controller implements Initializable{
 		System.out.println("vlid() => "+ check_valid);
 			try {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Ambulance_Model.fxml"));
-				AnchorPane root1 = (AnchorPane) fxmlLoader.load();
+				ScrollPane root1 = (ScrollPane) fxmlLoader.load();
 				Ambulance_Model_Controller controller=fxmlLoader.<Ambulance_Model_Controller>getController();
 				controller.showTable(getQuery());
-				controller.setLabel(codemachine_val,month, year,typefuel);
+				//controller.setLabel(codemachine_val,month, year,typefuel);
 				Stage stage = new Stage();
 				stage.initStyle(StageStyle.UTILITY);
 				stage.setTitle("‰„Ê“Ã «·«Œ—«Ã");
@@ -346,17 +352,30 @@ public class Search_Controller implements Initializable{
 			setAlert(AlertType.ERROR, "Œÿ√","«·—Ã«¡ «Œ Ì«— «· «—ÌŒ „‰ Ê«·Ï ›ﬁÿ ⁄‰œ «·÷€ÿ ⁄·Ï “— «·ÿ»«⁄Â ");
 			check_valid = false;
 		}
+		
 	    if (check_valid){
-			try {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Ambulance_Model.fxml"));
-				AnchorPane root1 = (AnchorPane) fxmlLoader.load();
-				Ambulance_Model_Controller controller=fxmlLoader.<Ambulance_Model_Controller>getController();
-				Stage stage = new Stage();
-				stage.setScene(new Scene(root1));
-				controller.print(date_from,date_to);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("„⁄·Ê„Â");
+			alert.setContentText("ﬁœ  ” €—ﬁ «·ÿ»«⁄Â »⁄÷ «·Êﬁ  ...«–« «—œ  «·«” „—«— «÷€ÿ ⁄·Ï „Ê«›ﬁ");
+			alert.showAndWait().ifPresent(response -> {
+				if (response == ButtonType.OK) {
+					try {
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Ambulance_Model_Copy.fxml"));
+						AnchorPane root1 = (AnchorPane) fxmlLoader.load();
+						Ambulance_Model_Controller_Copy controller=fxmlLoader.<Ambulance_Model_Controller_Copy>getController();
+						Stage stage = new Stage();
+						stage.setScene(new Scene(root1));
+						stage.setResizable(false);
+						controller.print(date_from,date_to);
+						
+						
+					} catch(Exception e) {
+						e.printStackTrace();
+					} 
+				}
+		    });
+			
+			
 		}else{
 		    choicebox.setValue(null);
 		    name_machine = "";

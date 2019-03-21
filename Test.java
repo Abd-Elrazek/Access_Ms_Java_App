@@ -6,10 +6,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.time.LocalDate;
 import java.net.URL;
+import java.util.Date;
 
 
 public class Test{
 	public static void main(String []args){
+            System.out.println("Date " + new Date());
 	Connection con_db = null;
 	long t0 = System.nanoTime();
 	DB db = new DB();

@@ -74,7 +74,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import java.io.FileNotFoundException;
 
-public class Ambulance_Model_Controller { 
+public class Ambulance_Model_Controller_Copy { 
 //Global Variables
 	@FXML
 	private Button backBtn;
@@ -85,8 +85,7 @@ public class Ambulance_Model_Controller {
 	
 	@FXML 
 	private AnchorPane node_anch;
-	@FXML
-	private ScrollPane node_scroll;
+
     //this Connection for View table
 	private DB db = new DB();
 	
@@ -197,7 +196,7 @@ public class Ambulance_Model_Controller {
 	//print func 
 	public void print (LocalDate from ,LocalDate to){
 		distinct_codemachine(from, to);
-		/* String outputFile = "File.pdf";
+	    String outputFile = "File.pdf";
 		try{
 		    PdfWriter.getInstance(document, new FileOutputStream(new File(".", outputFile)));
 		}catch(Exception e){
@@ -206,24 +205,24 @@ public class Ambulance_Model_Controller {
 			alert.setTitle("Œÿ√");
 			alert.setContentText("ÌÊÃœ Â‰«ﬂ „·› „› ÊÕ .. «·—Ã«¡ ﬁ›·Â ›Ï «·„—Â «·ﬁ«œ„Â ⁄‰œ ⁄„·ÌÂ «·ÿ»«⁄Â");
 			alert.showAndWait();
-		} */ 
-		// document.open();
+		}  
+		document.open();
 		for(int i = 0; i < all_name_codemachine.size(); i++){
 			String code = all_name_codemachine.get(i);
 			System.out.println(code);
 			showTable("SELECT * FROM General_db WHERE Codemachine = '" +code+ "' AND Dateexchange BETWEEN #" + from +"# AND #" + to + "# ");
 			printNod(i);
 		}
-		// document.close();
+		document.close();
 		
-		/* try{
+	    try{
 			File file = new File(".\\File.pdf");
 			Desktop desktop = Desktop.getDesktop();
 			desktop.open(file);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		System.out.println("Pdf created successfully"); */
+		System.out.println("Pdf created successfully"); 
 	}
 	
 	//This func bring the all distinct codemachine and putted in List
@@ -249,26 +248,22 @@ public class Ambulance_Model_Controller {
 	
 	//Print Node that i give it
 	public void printNod(int i){
-	    node_anch.setVisible(true);
-		File file = new File(".\\"+i+".png");
 		System.out.println("node of AnchorPane return  => " + node_anch);
         WritableImage image = node_anch.snapshot(new SnapshotParameters(), null);
+        ByteArrayOutputStream  byteOutput = new ByteArrayOutputStream();
 		try{
-		ImageIO.write( SwingFXUtils.fromFXImage( image, null ), "png", file );
+			ImageIO.write( SwingFXUtils.fromFXImage( image, null ), "png", byteOutput );
+			document.newPage();
+			Image image_ = Image.getInstance(byteOutput.toByteArray());
+			image_.setAbsolutePosition(0, 0);
+			image_.setBorderWidth(0);
+			image_.scaleAbsoluteHeight(PageSize.A4.getHeight());
+			image_.scaleAbsoluteWidth(PageSize.A4.getWidth());   
+			document.add(image_);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-      /*   ByteArrayOutputStream  byteOutput = new ByteArrayOutputStream();
-		document.newPage();
-		Image image_ = Image.getInstance(".\\"+i+".png");
-		image_.setAbsolutePosition(0, 0);
-		image_.setBorderWidth(0);
-	    image_.scaleAbsoluteHeight(PageSize.A4.getHeight());
-		image_.scaleAbsoluteWidth(PageSize.A4.getWidth());   
-		document.add(image_);
-		}catch(Exception e){
-			e.printStackTrace();
-		} */
+	
 	}
 	
 	

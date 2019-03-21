@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="loading_anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="537.0" style="-fx-background-color: RGB(0,0,0,0.5); -fx-border-color: white; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="199.0" fitWidth="345.0" layoutX="169.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="169.0">
+         <image>
+            <Image url="@images/gif/2.gif" />
+         </image>
+         <effect>
+            <InnerShadow />
+         </effect></ImageView>
+      <Label layoutX="76.0" layoutY="236.0" prefHeight="48.0" prefWidth="386.0" text="جارى اعداد الملف .... الرجاء الانتظار" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+         <effect>
+            <Lighting bumpInput="$null" diffuseConstant="1.02" specularConstant="0.62" specularExponent="32.09" surfaceScale="0.0">
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Label>
+   </children>
+   <cursor>
+      <Cursor fx:constant="WAIT" />
+   </cursor>
+   <effect>
+      <DropShadow height="74.13" radius="18.0325" width="0.0" />
+   </effect>
+</AnchorPane>
