@@ -73,8 +73,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import java.io.FileNotFoundException;
+import javafx.scene.text.Font;
+import javafx.scene.control.TableCell;
 
-public class Ambulance_Model_Controller_Copy { 
+public class Ambulance_Model_Controller_Copy implements Initializable{ 
 //Global Variables
 	@FXML
 	private Button backBtn;
@@ -97,23 +99,23 @@ public class Ambulance_Model_Controller_Copy {
     @FXML
     private TableView<Table_View> viewtable;
 	@FXML
-    private TableColumn<Table_View,Integer> serialn_col;
+    private TableColumn<Table_View,Long> serialn_col;
 	@FXML
-    private TableColumn<Table_View,Integer> nbon_col;
+    private TableColumn<Table_View,Long> nbon_col;
 	@FXML
     private TableColumn<Table_View,Date> dateexchange_col;
 	@FXML
     private TableColumn<Table_View,String> typefuel_col;
 	@FXML
-    private TableColumn<Table_View,Integer> quantitybon_col;
+    private TableColumn<Table_View,Long> quantitybon_col;
 	@FXML
-    private TableColumn<Table_View,Integer> counter_col;
+    private TableColumn<Table_View,Long> counter_col;
 	@FXML
-    private TableColumn<Table_View,Integer> distance_col;
+    private TableColumn<Table_View,Long> distance_col;
 	@FXML
     private TableColumn<Table_View,String> namedriver_col;
 	@FXML
-    private TableColumn<Table_View,Integer> nnote_col;
+    private TableColumn<Table_View,Long> nnote_col;
 	@FXML
     private TableColumn<Table_View,String> nameresponsible_col;
 	@FXML
@@ -134,9 +136,14 @@ public class Ambulance_Model_Controller_Copy {
 	private Document document = new Document();
     private Stage wait_stage;
 	private AnchorPane wait_anch;
+	private Font font_column = new Font(16);
 
 //Functions
-  
+   //initialzable
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+	
+    }
 	
     //View Table in TableView
 	public void showTable(String query){
@@ -164,17 +171,29 @@ public class Ambulance_Model_Controller_Copy {
 	  }catch(SQLException e){
 		e.printStackTrace();
 	  }
+      // nbon_col.setFont(font_column);
+      passTableColumnInteger(serialn_col);
+      passTableColumnInteger(nbon_col);
+      passTableColumnDate(dateexchange_col);
+      passTableColumnString(typefuel_col);
+	  passTableColumnInteger(quantitybon_col);
+      passTableColumnInteger(counter_col);
+      passTableColumnInteger(distance_col);
+      passTableColumnString(namedriver_col);
+      passTableColumnInteger(nnote_col);
+      passTableColumnString(nameresponsible_col);
+      passTableColumnString(codemachine_col);
       serialn_col.setCellValueFactory(new PropertyValueFactory<>("Serialn"));
-      nbon_col.setCellValueFactory(new PropertyValueFactory<>("Nbon"));
-      dateexchange_col.setCellValueFactory(new PropertyValueFactory<>("Dateexchange"));
-      typefuel_col.setCellValueFactory(new PropertyValueFactory<>("Typefuel"));
-      quantitybon_col.setCellValueFactory(new PropertyValueFactory<>("Quantitybon"));
-      counter_col.setCellValueFactory(new PropertyValueFactory<>("Counter"));
-      distance_col.setCellValueFactory(new PropertyValueFactory<>("Distance"));
-      namedriver_col.setCellValueFactory(new PropertyValueFactory<>("Namedriver"));
-      nnote_col.setCellValueFactory(new PropertyValueFactory<>("Nnote"));
-      nameresponsible_col.setCellValueFactory(new PropertyValueFactory<>("Nameresponsible"));
-      codemachine_col.setCellValueFactory(new PropertyValueFactory<>("Codemachine"));
+	  nbon_col.setCellValueFactory(new PropertyValueFactory<>("Nbon"));
+	  dateexchange_col.setCellValueFactory(new PropertyValueFactory<>("Dateexchange"));
+	  typefuel_col.setCellValueFactory(new PropertyValueFactory<>("Typefuel"));
+	  quantitybon_col.setCellValueFactory(new PropertyValueFactory<>("Quantitybon"));
+	  counter_col.setCellValueFactory(new PropertyValueFactory<>("Counter"));
+	  distance_col.setCellValueFactory(new PropertyValueFactory<>("Distance"));
+	  namedriver_col.setCellValueFactory(new PropertyValueFactory<>("Namedriver"));
+	  nnote_col.setCellValueFactory(new PropertyValueFactory<>("Nnote"));
+	  nameresponsible_col.setCellValueFactory(new PropertyValueFactory<>("Nameresponsible"));
+	  codemachine_col.setCellValueFactory(new PropertyValueFactory<>("Codemachine"));
       viewtable.setItems(table_view_list);
 	}
 	
@@ -266,5 +285,55 @@ public class Ambulance_Model_Controller_Copy {
 	
 	}
 	
+	public void  passTableColumnInteger(TableColumn table_column){
+		table_column.setCellFactory(callback -> {
+			TableCell<Table_View, Long> cell =new TableCell<Table_View, Long>() {
+				@Override
+				protected void updateItem(Long item, boolean empty) {
+					
+					super.updateItem(item, empty);
+					String item_ = "" + item;
+					setText(empty ? "" : item_);
+				}
+			};
+			// maybe choose a more suitable name Class here
+			cell.setFont(font_column); 
+			return cell ;
+		}); 
+	}
+	
+	public void  passTableColumnString(TableColumn table_column){
+		table_column.setCellFactory(callback -> {
+			TableCell<Table_View, String> cell =new TableCell<Table_View, String>() {
+				@Override
+				protected void updateItem(String item, boolean empty) {
+					
+					super.updateItem(item, empty);
+					// String item_ = "" + item;
+					setText(empty ? "" : item);
+				}
+			};
+			// maybe choose a more suitable name Class here
+			cell.setFont(font_column); 
+			return cell ;
+		}); 
+	}
+	
+	public void  passTableColumnDate(TableColumn table_column){
+		table_column.setCellFactory(callback -> {
+			TableCell<Table_View, Date> cell =new TableCell<Table_View, Date>() {
+				@Override
+				protected void updateItem(Date item, boolean empty) {
+					
+					super.updateItem(item, empty);
+					String item_ = "" + item;
+					setText(empty ? "" : item_);
+				}
+			};
+			// maybe choose a more suitable name Class here
+			cell.setFont(font_column); 
+			return cell ;
+		}); 
+	}
 	
 }

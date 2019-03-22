@@ -388,14 +388,17 @@ public Input_data_Controller(){
 				   sound.getSNI().play();
 				}
 				setNotification("Info","no content");
+				System.out.println("Nobon before delete from injection_db is " + nbon_from_big);
+				
+				//delete row of nbon and nnote  from Injection_db where Nbon = ?
+			    boolean result_ = con_db_savedata.createStatement().execute("delete from Injection_db where Nbon = " + nbon_from_big+";");
+			    if (result_){
+				    System.out.println("Nbon deleted from Injection_db correctly : " + nbon_from_big);
+				}
 				//clear TextField
 				clear();
-				//delete row of nbon and nnote  from Injection_db where Nbon = ?
-			    int result_ = con_db_savedata.createStatement().executeUpdate("delete from Injection_db where Nbon = " + Nbon+";");
-			    if (result_ != 0){
-				    System.out.println("Nbon deleted from Injection_db correctly : " + Nbon);
-				}
-				
+				//getNbonFrom Nnote in injection_db
+				getDefaultNbon();
 				//in the end after savedata correctly return Nbon var to zero 
 				Nbon = 0;
 			}
@@ -823,7 +826,7 @@ public Input_data_Controller(){
         dateexchange_datepicker.setValue(null);	
         namedriver_txt.clear();	
         nameresponsible_txt.clear();	
-        nnote_txt.clear();	
+        // nnote_txt.clear();	
         codemachine_txt.clear();	
 		/*  if (nbon_txt.isDisable()){
 			nbon_txt.setDisable(false);

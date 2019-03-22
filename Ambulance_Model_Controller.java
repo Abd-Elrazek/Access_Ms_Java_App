@@ -150,12 +150,6 @@ public class Ambulance_Model_Controller {
 	    ResultSet rs =con_db.createStatement().executeQuery(query);
 		while(rs.next()){
 		    table_view_list.add(new Table_View(rs.getInt("Serialn"), rs.getLong("Nbon"),rs.getDate("Dateexchange"),rs.getString("Typefuel"),rs.getInt("Quantitybon"),rs.getLong("Counter"),rs.getInt("Distance"),rs.getString("Namedriver"),rs.getLong("Nnote"),rs.getString("Nameresponsible"),rs.getString("Codemachine")));
-		   if(rs.isLast()){
-		        LocalDate date = rs.getDate("Dateexchange").toLocalDate();
-				String month = ""+ date.getMonthValue();
-				String year  = "" + date.getYear();
-				setLabel(rs.getString("Codemachine"), month, year, rs.getString("Typefuel"));
-			}
 		}
 		
 		System.out.printf("Database opened in %.3f seconds%n",((System.nanoTime()-t0)/1000000000.0));
@@ -193,83 +187,4 @@ public class Ambulance_Model_Controller {
 		label_typefuel.setText(typefuel);
 		}
 	}
-	
-	//print func 
-	public void print (LocalDate from ,LocalDate to){
-		distinct_codemachine(from, to);
-		/* String outputFile = "File.pdf";
-		try{
-		    PdfWriter.getInstance(document, new FileOutputStream(new File(".", outputFile)));
-		}catch(Exception e){
-		    e.printStackTrace();
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Œÿ√");
-			alert.setContentText("ÌÊÃœ Â‰«ﬂ „·› „› ÊÕ .. «·—Ã«¡ ﬁ›·Â ›Ï «·„—Â «·ﬁ«œ„Â ⁄‰œ ⁄„·ÌÂ «·ÿ»«⁄Â");
-			alert.showAndWait();
-		} */ 
-		// document.open();
-		for(int i = 0; i < all_name_codemachine.size(); i++){
-			String code = all_name_codemachine.get(i);
-			System.out.println(code);
-			showTable("SELECT * FROM General_db WHERE Codemachine = '" +code+ "' AND Dateexchange BETWEEN #" + from +"# AND #" + to + "# ");
-			printNod(i);
-		}
-		// document.close();
-		
-		/* try{
-			File file = new File(".\\File.pdf");
-			Desktop desktop = Desktop.getDesktop();
-			desktop.open(file);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		System.out.println("Pdf created successfully"); */
-	}
-	
-	//This func bring the all distinct codemachine and putted in List
-	@FXML
-	public void distinct_codemachine(LocalDate from , LocalDate to){
-	    // LocalDate localDate_from_Date = null;
-		//all_name_codemachine = null;
-	    Connection con = db.getConnection_F_DB();
-	    try{
-		    ResultSet rs = con.createStatement().executeQuery("SELECT DISTINCT Codemachine FROM General_db WHERE Dateexchange BETWEEN #" + from +"# AND #" + to + "# ");
-		    // ResultSet rs_ = con.createStatement().executeQuery("SELECT Typefuel, Dateexchange FROM General_db");
-		    while(rs.next()){
-			all_name_codemachine.add(rs.getString("Codemachine"));
-		    }
-
-		    rs.close();
-		    con.close();
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-
-	}
-	
-	//Print Node that i give it
-	public void printNod(int i){
-	    node_anch.setVisible(true);
-		File file = new File(".\\"+i+".png");
-		System.out.println("node of AnchorPane return  => " + node_anch);
-        WritableImage image = node_anch.snapshot(new SnapshotParameters(), null);
-		try{
-		ImageIO.write( SwingFXUtils.fromFXImage( image, null ), "png", file );
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-      /*   ByteArrayOutputStream  byteOutput = new ByteArrayOutputStream();
-		document.newPage();
-		Image image_ = Image.getInstance(".\\"+i+".png");
-		image_.setAbsolutePosition(0, 0);
-		image_.setBorderWidth(0);
-	    image_.scaleAbsoluteHeight(PageSize.A4.getHeight());
-		image_.scaleAbsoluteWidth(PageSize.A4.getWidth());   
-		document.add(image_);
-		}catch(Exception e){
-			e.printStackTrace();
-		} */
-	}
-	
-	
 }

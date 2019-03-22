@@ -15,14 +15,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="426.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Search_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Search_Controller">
    <children>
-      <Label alignment="CENTER_RIGHT" layoutX="1080.0" layoutY="12.0" prefHeight="30.0" prefWidth="193.0" text="هيئه الاسعاف المصرية " textAlignment="CENTER">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <Button fx:id="viewData" cache="true" layoutX="464.0" layoutY="340.0" mnemonicParsing="false" onMouseReleased="#showAmbulanceModel" prefHeight="40.0" prefWidth="179.0" styleClass="Search_btn" stylesheets="@css/style.css" text="عرض البيانات" textAlignment="CENTER" underline="true">
+      <Button fx:id="viewData" cache="true" layoutX="447.0" layoutY="434.0" mnemonicParsing="false" onMouseReleased="#showAmbulanceModel" prefHeight="40.0" prefWidth="179.0" styleClass="Search_btn" stylesheets="@css/style.css" text="عرض البيانات" textAlignment="CENTER" underline="true">
          <font>
             <Font size="15.0" />
          </font>
@@ -33,75 +28,70 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <CheckBox fx:id="checkbox_gas" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="195.0" layoutY="207.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="79.0" text="بنزين" textAlignment="RIGHT" textFill="#04680b">
+      <CheckBox fx:id="checkbox_gas" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="203.0" layoutY="271.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="71.0" text="بنزين" textAlignment="RIGHT" textFill="#04680b">
          <font>
             <Font size="13.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="checkbox_solar" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="80.0" layoutY="207.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="79.0" text="سولار" textAlignment="RIGHT" textFill="#ff1313">
+      <CheckBox fx:id="checkbox_solar" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="115.0" layoutY="273.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="71.0" text="سولار" textAlignment="RIGHT" textFill="#ff1313">
          <font>
             <Font size="13.0" />
          </font>
       </CheckBox>
-      <TextField fx:id="nbon_text" alignment="CENTER_RIGHT" layoutX="477.0" layoutY="111.0" prefHeight="25.0" prefWidth="208.0" />
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="700.0" layoutY="111.0" prefHeight="25.0" prefWidth="94.0" text="رقم البون      : ">
+      <TextField fx:id="nbon_text" alignment="CENTER_RIGHT" layoutX="480.0" layoutY="124.0" prefHeight="25.0" prefWidth="208.0" />
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="703.0" layoutY="124.0" prefHeight="25.0" prefWidth="94.0" text="رقم البون      : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="nameresponsible_text" alignment="CENTER_RIGHT" layoutX="476.0" layoutY="152.0" prefHeight="25.0" prefWidth="208.0" />
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="699.0" layoutY="152.0" prefHeight="25.0" prefWidth="94.0" text="اسم المسؤول : ">
+      <TextField fx:id="nameresponsible_text" alignment="CENTER_RIGHT" layoutX="480.0" layoutY="195.0" prefHeight="25.0" prefWidth="208.0" />
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="703.0" layoutY="195.0" prefHeight="25.0" prefWidth="94.0" text="اسم المسؤول : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="700.0" layoutY="246.0" prefHeight="25.0" prefWidth="94.0" text="تاريخ الصرف : ">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="702.0" layoutY="345.0" prefHeight="25.0" prefWidth="94.0" text="تاريخ الصرف : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <DatePicker fx:id="from" editable="false" layoutX="491.0" layoutY="246.0" prefHeight="25.0" prefWidth="165.0" />
-      <DatePicker fx:id="to" editable="false" layoutX="273.0" layoutY="246.0" prefHeight="25.0" prefWidth="165.0" />
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="646.0" layoutY="246.0" prefHeight="25.0" prefWidth="60.0" text="    من :  ">
+      <DatePicker fx:id="from" editable="false" layoutX="493.0" layoutY="345.0" prefHeight="25.0" prefWidth="165.0" />
+      <DatePicker fx:id="to" editable="false" layoutX="275.0" layoutY="345.0" prefHeight="25.0" prefWidth="165.0" />
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="648.0" layoutY="345.0" prefHeight="25.0" prefWidth="60.0" text="    من :  ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="446.0" layoutY="246.0" prefHeight="25.0" prefWidth="36.0" text="الى  : ">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="448.0" layoutY="345.0" prefHeight="25.0" prefWidth="36.0" text="الى  : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="namedriver_text" alignment="CENTER_RIGHT" layoutX="80.0" layoutY="111.0" prefHeight="25.0" prefWidth="193.0" />
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="277.0" layoutY="111.0" prefHeight="25.0" prefWidth="94.0" text="اسم السائق      : ">
+      <TextField fx:id="namedriver_text" alignment="CENTER_RIGHT" layoutX="89.0" layoutY="124.0" prefHeight="25.0" prefWidth="193.0" />
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="286.0" layoutY="124.0" prefHeight="25.0" prefWidth="94.0" text="اسم السائق      : ">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="nnote_text" alignment="CENTER_RIGHT" layoutX="80.0" layoutY="152.0" prefHeight="25.0" prefWidth="193.0" />
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="277.0" layoutY="152.0" prefHeight="25.0" prefWidth="94.0" text="رقم الدفتر       :">
+      <TextField fx:id="nnote_text" alignment="CENTER_RIGHT" layoutX="89.0" layoutY="195.0" prefHeight="25.0" prefWidth="193.0" />
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="286.0" layoutY="195.0" prefHeight="25.0" prefWidth="94.0" text="رقم الدفتر       :">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="277.0" layoutY="205.0" prefHeight="25.0" prefWidth="94.0" text="نوع الوقود      :">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="277.0" layoutY="269.0" prefHeight="25.0" prefWidth="94.0" text="نوع الوقود      :">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="416.0" layoutY="4.0" prefHeight="49.0" prefWidth="60.0" text="بحث">
-         <font>
-            <Font size="33.0" />
-         </font>
-      </Label>
-      <Separator layoutX="8.0" layoutY="295.0" prefHeight="8.0" prefWidth="822.0" />
+      <Separator layoutX="5.0" layoutY="401.0" prefHeight="8.0" prefWidth="822.0" />
       <Separator layoutX="3.0" layoutY="75.0" prefHeight="8.0" prefWidth="822.0" />
-      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="720.0" layoutY="193.0" prefHeight="25.0" prefWidth="79.0" text="كود ألألة  :">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="726.0" layoutY="269.0" prefHeight="25.0" prefWidth="79.0" text="كود ألألة  :">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="choicebox" layoutX="603.0" layoutY="195.0" prefHeight="25.0" prefWidth="86.0">
+      <ChoiceBox fx:id="choicebox" layoutX="609.0" layoutY="271.0" prefHeight="25.0" prefWidth="86.0">
 		  <items>
 		   <FXCollections fx:factory="observableArrayList">
 				<String fx:value="سياره" />
@@ -112,12 +102,12 @@
 		   </FXCollections>
 		</items>
 	  </ChoiceBox>
-      <TextField fx:id="nmachine_text" alignment="CENTER_RIGHT" layoutX="474.0" layoutY="193.0" prefHeight="25.0" prefWidth="122.0" promptText="رقم الكود  ">
+      <TextField fx:id="nmachine_text" alignment="CENTER_RIGHT" layoutX="480.0" layoutY="269.0" prefHeight="25.0" prefWidth="122.0" promptText="رقم الكود  ">
          <effect>
             <Reflection fraction="0.65" />
          </effect>
       </TextField>
-      <Button fx:id="data_print" cache="true" layoutX="249.0" layoutY="340.0" mnemonicParsing="false" onMouseReleased="#printData" prefHeight="40.0" prefWidth="179.0" styleClass="Search_btn" stylesheets="@css/style.css" text="طباعه " textAlignment="CENTER" underline="true">
+      <Button fx:id="data_print" cache="true" layoutX="232.0" layoutY="434.0" mnemonicParsing="false" onMouseReleased="#printData" prefHeight="40.0" prefWidth="179.0" styleClass="Search_btn" stylesheets="@css/style.css" text="طباعه " textAlignment="CENTER" underline="true">
          <font>
             <Font size="15.0" />
          </font>

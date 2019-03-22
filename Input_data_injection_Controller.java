@@ -259,7 +259,7 @@ public Input_data_injection_Controller(){
 			long nnote_from_big = nnote_big.longValue();
 			
 			//Creating JDBC PreparedStatement class 
-			ps_update = con_db_update.prepareStatement("UPDATE General_db SET Nbon = ?, Nnote = ?  WHERE Nbon = ?;");
+			ps_update = con_db_update.prepareStatement("UPDATE Injection_db SET Nbon = ?, Nnote = ?  WHERE Nbon = ?;");
 			ps_update.setLong(1, nbon_from_big);
 			ps_update.setLong(2, nnote_from_big);
 			ps_update.setLong(3,nbon_from_big);

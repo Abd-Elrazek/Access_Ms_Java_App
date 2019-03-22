@@ -38,7 +38,7 @@ public class Main extends Application {
 		//stage.initStyle(StageStyle.UTILITY);
 		//stage.initStyle(StageStyle.TRANSPARENT);
 	    //stage.initModality(Modality.WINDOW_MODAL);
-		stage.getIcons().add(new Image("images/icon.png"));
+		stage.getIcons().add(new Image("images/Stats.png"));
         stage.show();
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
         @Override

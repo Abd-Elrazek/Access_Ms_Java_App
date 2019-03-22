@@ -34,7 +34,11 @@
 .Column_X{
  -fx-alignment: CENTER_RIGHT;
  -fx-text-fill: red;
+ -fx-font-family:Arial;
+ -fx-font-size:14;
 }
+
+
 
 .Btn_Row:hover{
   -fx-text-fill:red; 

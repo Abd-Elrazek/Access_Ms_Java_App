@@ -12,33 +12,9 @@ nnote and nbon = 15
 	  -> showTable(S query);
 	  -> setLabel(String code, String month, String year, String typefuel)
 	  -> printNod(int i)
-==================================================================
-
-JobSettings	
-            The JobSettings class encapsulates most of the configuration of a print job.
-PageLayout	
-            A PageLayout encapsulates the information needed to lay out content.
-PageRange	
-			A PageRange is used to select or constrain the job print stream pages to print.
-Paper	
-			A class which encapsulates the size of paper media as used by printers.
-PaperSource	
-			A PaperSource is the input tray to be used for the Paper.
-Printer	
-			A Printer instance represents the destination for a print job.
-PrinterAttributes	
-			This class encapsulates the attributes of a printer which relate to its job printing capabilities and other attributes.
-PrinterJob	
-			PrinterJob is the starting place for JavaFX scenegraph printing.
-PrintResolution	
-			Class to represent a supported device resolution of a printer in the feed and crossfeed directionsin dots-per-inch (DPI).
-==================================================================
-
-Connected to db...
-java.io.FileNotFoundException: Temp\File.pdf (The process cannot access the file because it is being used by anoth
- process)
-        at java.io.FileOutputStream.open0(Native Method)
-        at java.io.FileOutputStream.open(FileOutputStream.java:270)
-        at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
-        at java.io.FileOutputStream.<init>(FileOutputStream.java:162)
-        at Ambulance_Model_Controller.print(Ambulance_Model_Controller.java:182)
+	  
+	 
+-- clear every Nbon once and clear every Nnote once
+-- Bug: why in Injection_db the update is not running and Delete Button of " ÕœÌÀ «·ÃœÊ·"
+-- Don't delet the button Update the table because it's found because when I press on Button that call the table one not every once
+-- Document hasn't pages

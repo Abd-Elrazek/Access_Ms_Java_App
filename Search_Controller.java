@@ -295,7 +295,7 @@ public class Search_Controller implements Initializable{
 				ScrollPane root1 = (ScrollPane) fxmlLoader.load();
 				Ambulance_Model_Controller controller=fxmlLoader.<Ambulance_Model_Controller>getController();
 				controller.showTable(getQuery());
-				//controller.setLabel(codemachine_val,month, year,typefuel);
+				controller.setLabel(codemachine_val,month, year,typefuel);
 				Stage stage = new Stage();
 				stage.initStyle(StageStyle.UTILITY);
 				stage.setTitle("‰„Ê“Ã «·«Œ—«Ã");
