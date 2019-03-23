@@ -226,6 +226,7 @@ public class Ambulance_Model_Controller_Copy implements Initializable{
 			alert.showAndWait();
 		}  
 		document.open();
+		    
 		for(int i = 0; i < all_name_codemachine.size(); i++){
 			String code = all_name_codemachine.get(i);
 			System.out.println(code);

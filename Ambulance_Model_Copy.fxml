@@ -65,7 +65,7 @@
                <font>
                   <Font name="Arial Bold" size="20.0" />
                </font></Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="598.0" layoutY="122.0" prefHeight="30.0" prefWidth="161.0" text="نوع السياره : كرافتر">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="517.0" layoutY="122.0" prefHeight="30.0" prefWidth="242.0" text="نوع السياره :(                        )">
                <font>
                   <Font name="Arial Bold" size="20.0" />
                </font></Label>
