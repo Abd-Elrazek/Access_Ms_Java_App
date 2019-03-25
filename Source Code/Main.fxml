@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="762.0" style="-fx-border-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main_Controller">
+   <children>
+      <Separator layoutX="367.0" layoutY="4.0" orientation="VERTICAL" prefHeight="564.0" prefWidth="6.0" AnchorPane.bottomAnchor="54.0" AnchorPane.topAnchor="2.0" />
+      <Pane fx:id="searchPane" layoutX="447.0" layoutY="38.0" onMouseMoved="#defaultCursor" onMouseReleased="#showSearch" prefHeight="165.0" prefWidth="253.0" styleClass="Search_main" stylesheets="@css/style.css">
+         <children>
+            <Label alignment="CENTER" layoutX="61.0" layoutY="32.0" prefHeight="26.0" prefWidth="131.0" text="بحث" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="Bell MT" size="34.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="54.0" fitWidth="77.0" layoutX="100.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Search.png" />
+               </image>
+            </ImageView>
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow height="20.995" radius="11.48125" width="26.93" />
+         </effect>
+      </Pane>
+      <Pane fx:id="inputPane" layoutX="447.0" layoutY="209.0" onMouseMoved="#defaultCursor" onMouseReleased="#showInputData" prefHeight="165.0" prefWidth="253.0" styleClass="Search_main" stylesheets="@css/style.css">
+         <children>
+            <Label alignment="CENTER" layoutX="44.0" layoutY="23.0" prefHeight="44.0" prefWidth="151.0" text="ادخل بيانات" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="Bell MT" size="34.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="54.0" fitWidth="85.0" layoutX="100.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Documents.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow radius="11.4825" width="26.93" />
+         </effect>
+      </Pane>
+      <Pane fx:id="injection" layoutX="447.0" layoutY="381.0" onMouseMoved="#defaultCursor" onMouseReleased="#showInjection" prefHeight="165.0" prefWidth="253.0" styleClass="Search_main" stylesheets="@css/style.css">
+         <children>
+            <Label alignment="CENTER" layoutX="52.0" layoutY="29.0" prefHeight="44.0" prefWidth="151.0" text="تفريغ الدفتر" textAlignment="RIGHT" textFill="WHITE">
+               <font>
+                  <Font name="Bell MT" size="34.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="54.0" fitWidth="55.0" layoutX="100.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/injection.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow radius="11.4825" width="26.93" />
+         </effect>
+      </Pane>
+      <ImageView fitHeight="254.0" fitWidth="284.0" layoutX="57.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/logo.png" />
+         </image>
+      </ImageView>
+      <Separator layoutX="104.0" layoutY="564.0" prefHeight="7.0" prefWidth="555.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Label layoutX="145.0" layoutY="571.0" text="I'm happy to take any project from small bespoke graphics work to large scale." />
+      <Label layoutX="105.0" layoutY="588.0" text="You can send me message at : (abdelrazek.n3@gmail.com ) or visit my website : (abdelrazek.dx.am)" />
+      <Label alignment="CENTER" layoutX="116.0" layoutY="352.0" prefHeight="44.0" prefWidth="151.0" text="اهداء من " textAlignment="RIGHT" textFill="#3c17b5">
+         <font>
+            <Font name="Andalus" size="34.0" />
+         </font>
+         <effect>
+            <DropShadow color="#32211f" height="15.06" radius="3.265" width="0.0" />
+         </effect>
+      </Label>
+      <Label alignment="CENTER" layoutX="38.0" layoutY="396.0" prefHeight="79.0" prefWidth="307.0" text="المحاسب : أحمد كاره" textAlignment="RIGHT" textFill="#fbfdff">
+         <font>
+            <Font name="Andalus" size="44.0" />
+         </font>
+         <effect>
+            <Bloom threshold="1.0">
+               <input>
+                  <InnerShadow />
+               </input>
+            </Bloom>
+         </effect>
+      </Label>
+   </children>
+</AnchorPane>

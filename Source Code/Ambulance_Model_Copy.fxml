@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="node_anch" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1498.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ambulance_Model_Controller_Copy">
+   <children>
+      <AnchorPane layoutX="38.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1356.0" prefWidth="1195.0" style="-fx-border-color: black; -fx-border-width: 5;">
+         <children>
+            <Label alignment="CENTER_RIGHT" layoutX="952.0" layoutY="14.0" prefHeight="30.0" prefWidth="209.0" text="هيئه الاسعاف المصرية " textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" layoutX="1003.0" layoutY="44.0" prefHeight="30.0" prefWidth="161.0" text="نموزج اسعاف اسوان " textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="850.0" layoutY="81.0" prefHeight="30.0" prefWidth="319.0" text="بيان للوقود المنصرف للسياره  رقم  : (          )" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font></Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="903.0" layoutY="95.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="777.0" layoutY="83.0" prefHeight="30.0" prefWidth="54.0" text="كود  : ">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font></Label>
+            <Label fx:id="label_code" alignment="CENTER" contentDisplay="CENTER" layoutX="646.0" layoutY="83.0" prefHeight="30.0" prefWidth="125.0" text="54545" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="525.0" layoutY="80.0" prefHeight="30.0" prefWidth="87.0" text="عن شهر :  ">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font></Label>
+            <Label fx:id="label_month" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="506.0" layoutY="82.0" prefHeight="20.0" prefWidth="17.0" text="5">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="label_year" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="400.0" layoutY="80.0" prefHeight="25.0" prefWidth="45.0" text="2019">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1039.0" layoutY="122.0" prefHeight="30.0" prefWidth="132.0" text="جهه العمل : اسوان">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font></Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="927.0" layoutY="122.0" prefHeight="30.0" prefWidth="101.0" text="نوع الوقود : ">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font></Label>
+            <Label fx:id="label_typefuel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="777.0" layoutY="122.0" prefHeight="30.0" prefWidth="147.0" text="هنا يرجع نوع الوقود ">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font></Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="517.0" layoutY="122.0" prefHeight="30.0" prefWidth="242.0" text="نوع السياره :(                        )">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font></Label>
+            <TableView fx:id="viewtable" editable="true" fixedCellSize="-10.0" layoutX="44.0" layoutY="173.0" prefHeight="899.0" prefWidth="1117.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="34.0">
+               <columns>
+                  <TableColumn fx:id="codemachine_col" minWidth="0.0" prefWidth="86.00003051757812" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="كود ألألة" visible="false" />
+                  <TableColumn fx:id="nameresponsible_col" prefWidth="156.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم المسؤول " />
+                  <TableColumn fx:id="nnote_col" prefWidth="143.99996948242188" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم الدفتر" />
+                  <TableColumn fx:id="namedriver_col" prefWidth="138.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="اسم السائق" />
+                  <TableColumn fx:id="distance_col" prefWidth="103.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="المسافه المقطوعه" />
+                  <TableColumn fx:id="counter_col" prefWidth="98.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="العداد" />
+                  <TableColumn fx:id="quantitybon_col" prefWidth="83.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="سعه البون" />
+                  <TableColumn fx:id="typefuel_col" minWidth="0.0" prefWidth="89.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="نوع الوقود" visible="false" />
+                  <TableColumn fx:id="dateexchange_col" prefWidth="153.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="تاريخ الصرف" />
+                  <TableColumn fx:id="nbon_col" minWidth="0.0" prefWidth="188.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم البون" />
+                  <TableColumn fx:id="serialn_col" minWidth="0.0" prefWidth="49.0" resizable="false" style="-fx-alignment: center;" styleClass="Column_X" text="م" />
+               </columns>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TableView>
+            <Label fx:id="label_year1" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="445.0" layoutY="80.0" prefHeight="30.0" prefWidth="45.0" text="سنه : ">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font></Label>
+            <Label fx:id="label_month1" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="376.0" layoutY="82.0" prefHeight="20.0" prefWidth="17.0" text="م">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_RIGHT" ellipsisString="" layoutX="160.0" layoutY="1086.0" prefHeight="36.0" prefWidth="875.0" text="نشهد نحن الموقعون ادناه بأن الكمية (            ) لتر  بعاليه تم صرفها فعلا للسياره رقم (              )   " textAlignment="RIGHT" textOverrun="CLIP">
+               <font>
+                  <Font name="Arial Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_RIGHT" graphicTextGap="5.0" layoutX="163.0" layoutY="1133.0" lineSpacing="8.0" prefHeight="36.0" prefWidth="869.0" text="ومطابقة لتاريخ ورقم البون ووقع السائقين باستلام البونات واستهلاكها حسب المعدلات" textAlignment="RIGHT">
+               <font>
+                  <Font name="Arial Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_RIGHT" graphicTextGap="5.0" layoutX="160.0" layoutY="1180.0" lineSpacing="8.0" prefHeight="36.0" prefWidth="875.0" text="امين مخازن الوقود                مدير المخازن             مسئول مالى                  يعتمد مدير نموزج " textAlignment="RIGHT">
+               <font>
+                  <Font name="Arial Bold" size="26.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="635.0" layoutY="83.0" prefHeight="30.0" prefWidth="10.0" text="(">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="772.0" layoutY="83.0" prefHeight="30.0" prefWidth="10.0" text=")">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="137.0" fitWidth="152.0" layoutX="43.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
