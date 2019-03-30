@@ -84,15 +84,18 @@ public class Input_data_injection_Controller implements Initializable{
 	//Declaration of TextField vars only
 		@FXML
 		private TextField nbon_txt;
+		@FXML 
+		private TextField nbon_txt_to;
 		@FXML
 		private TextField nnote_txt;
 		
 	//These vars for getText from TextField and initialize some of them
 		String nbon_txt_           = "";
+		String nbon_txt_to_        = "";
 		String nnote_txt_          = "";
 
 		//set formErrors length
-		String formErrors[] = new String[2];
+		String formErrors[] = new String[3];
 		String collectErrors = "";
 		private boolean check_update = true;
 	    private boolean confirm_delete = false;
@@ -117,6 +120,7 @@ public Input_data_injection_Controller(){
     public boolean getValidation(){
         //Validation of inputs vars
 		nbon_txt_ = nbon_txt.getText();
+		nbon_txt_to_ = nbon_txt_to.getText();
 		nnote_txt_= nnote_txt.getText();
 		System.out.println("length of formErrors are -> "+formErrors.length);	
 		collectErrors = "";
@@ -165,6 +169,14 @@ public Input_data_injection_Controller(){
 			}else{
 			formErrors[1] = null;
 			}
+			
+			if (!nbon_txt_to_.matches("[0-9]+")){
+				
+			 formErrors[2] = " ÇÏÎá ÑÞã Èæä Çáì ÕÍíÍ ÇÑÞÇã ÝÞØ";
+			 valid = false;
+			}else{
+			formErrors[2] = null;
+			}
 			break;
 		} 
 		//Concatenation every of name of machine and its number of code 
@@ -185,15 +197,26 @@ public Input_data_injection_Controller(){
 	 try{
 	    if (getValid_Func){
 		    BigInteger nbon_big = new BigInteger(nbon_txt_);
-			long nbon_from_big = nbon_big.longValue();
+			
+			
+			BigInteger nbon_big_to = new BigInteger(nbon_txt_to_);
+			long nbon_from_big_to = nbon_big_to.longValue();
+			long nbon_from_big_f = nbon_big.longValue();
+			
 			BigInteger nnote_big = new BigInteger(nnote_txt_);
 			long nnote_from_big = nnote_big.longValue();
-			//Creating JDBC PreparedStatement class 
-			ps = con_db_savedata.prepareStatement("INSERT  INTO Injection_db (Nbon, Nnote)values(?,?)");
-			ps.setLong(1, nbon_from_big);
-			ps.setLong(2, nnote_from_big);
-			//Executing SQL 
-			int result = ps.executeUpdate();
+			long index = nbon_from_big_to - nbon_from_big_f;
+			int result = 0;
+			if (index > 0){
+			        for (long nbon_from_big_from = nbon_big.longValue(); nbon_from_big_from <= nbon_from_big_to; nbon_from_big_from++){
+						//Creating JDBC PreparedStatement class 
+						ps = con_db_savedata.prepareStatement("INSERT  INTO Injection_db (Nbon, Nnote)values(?,?)");
+						ps.setLong(1, nbon_from_big_from);
+						ps.setLong(2, nnote_from_big);
+						//Executing SQL 
+						result = ps.executeUpdate();
+					}
+				}
 			if (result != 0 ){
 				System.out.println("result of ps.executeUpdate -> "  + result);
 				setViewTable();

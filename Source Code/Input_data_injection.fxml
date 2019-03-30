@@ -12,46 +12,38 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="input_data_anch" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Input_data_injection_Controller">
+<AnchorPane fx:id="input_data_anch" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="912.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Input_data_injection_Controller">
    <children>
-      <TableView fx:id="viewtable" layoutX="-1.0" layoutY="14.0" prefHeight="289.0" prefWidth="655.0" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="viewtable" layoutX="-1.0" layoutY="14.0" prefHeight="289.0" prefWidth="655.0" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0">
         <columns>
             <TableColumn fx:id="nbon_col" minWidth="0.0" prefWidth="327.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم البون" />
-            <TableColumn fx:id="nnote_col" minWidth="0.0" prefWidth="325.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم الدفتر" />
+            <TableColumn fx:id="nnote_col" minWidth="0.0" prefWidth="563.0" resizable="false" style="-fx-alignment: center-right;" styleClass="Column_X" text="رقم الدفتر" />
         </columns>
          <effect>
             <InnerShadow color="#63ffae" />
          </effect>
       </TableView>
-      <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="567.0" layoutY="352.0" prefHeight="32.0" prefWidth="76.0" text="رقم الدفتر: " textAlignment="RIGHT" textFill="#030303">
+      <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="821.0" layoutY="431.0" prefHeight="32.0" prefWidth="76.0" text="رقم الدفتر: " textAlignment="RIGHT" textFill="#030303">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="nnote_txt" alignment="CENTER_RIGHT" layoutX="382.0" layoutY="355.0" onKeyPressed="#veryfiedNnote" prefHeight="25.0" prefWidth="185.0" promptText="ارقام فقط ">
+      <TextField fx:id="nnote_txt" alignment="CENTER_RIGHT" layoutX="647.0" layoutY="434.0" onKeyPressed="#veryfiedNnote" prefHeight="25.0" prefWidth="172.0" promptText="ارقام فقط ">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
       </TextField>
-      <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="282.0" layoutY="353.0" prefHeight="30.0" prefWidth="92.0" text=" رقم البون : " textAlignment="RIGHT" textFill="#030303">
+      <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="527.0" layoutY="432.0" prefHeight="30.0" prefWidth="94.0" text=" رقم البون  : " textAlignment="RIGHT" textFill="#030303">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="save_btn" layoutX="520.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#saveData" prefHeight="31.0" prefWidth="125.0" styleClass="Save_btn" stylesheets="@css/style.css" text="حفظ" textFill="#0d22e0f7">
+      <Button fx:id="save_btn" layoutX="767.0" layoutY="509.0" mnemonicParsing="false" onMouseClicked="#saveData" prefHeight="31.0" prefWidth="125.0" styleClass="Save_btn" stylesheets="@css/style.css" text="حفظ" textFill="#0d22e0f7">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="update_btn" layoutX="374.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#updateData" prefHeight="31.0" prefWidth="117.0" styleClass="Update_btn" stylesheets="@css/style.css" text="تحديث" textFill="#008cff">
-         <font>
-            <Font size="15.0" />
-         </font>
-         <effect>
-            <Blend />
-         </effect>
-      </Button>
-      <Button fx:id="delete_btn" layoutX="228.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#deleteData" prefHeight="31.0" prefWidth="125.0" styleClass="Delete_btn" stylesheets="@css/style.css" text="حذف" textFill="#f50808">
+      <Button fx:id="update_btn" layoutX="621.0" layoutY="509.0" mnemonicParsing="false" onMouseClicked="#updateData" prefHeight="31.0" prefWidth="117.0" styleClass="Update_btn" stylesheets="@css/style.css" text="تحديث" textFill="#008cff">
          <font>
             <Font size="15.0" />
          </font>
@@ -59,17 +51,35 @@
             <Blend />
          </effect>
       </Button>
-      <Button fx:id="view_row" layoutX="64.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#setTextFG" styleClass="Btn_Row" stylesheets="@css/style.css" text="+">
+      <Button fx:id="delete_btn" layoutX="475.0" layoutY="509.0" mnemonicParsing="false" onMouseClicked="#deleteData" prefHeight="31.0" prefWidth="125.0" styleClass="Delete_btn" stylesheets="@css/style.css" text="حذف" textFill="#f50808">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="view_row" layoutX="75.0" layoutY="406.0" mnemonicParsing="false" onMouseClicked="#setTextFG" styleClass="Btn_Row" stylesheets="@css/style.css" text="+">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="18.0" layoutY="314.0" mnemonicParsing="false" onMouseClicked="#clear" prefHeight="25.0" prefWidth="25.0" styleClass="Btn_Row" stylesheets="@css/style.css" text="-" />
-      <TextField fx:id="nbon_txt" alignment="CENTER_RIGHT" layoutX="106.0" layoutY="356.0" onKeyPressed="#veryfiedNbon" prefHeight="25.0" prefWidth="185.0" promptText="ارقام فقط ">
+      <Button layoutX="29.0" layoutY="406.0" mnemonicParsing="false" onMouseClicked="#clear" prefHeight="25.0" prefWidth="25.0" styleClass="Btn_Row" stylesheets="@css/style.css" text="-" />
+      <TextField fx:id="nbon_txt" alignment="CENTER_RIGHT" layoutX="345.0" layoutY="435.0" onKeyPressed="#veryfiedNbon" prefHeight="25.0" prefWidth="182.0" promptText="ارقام فقط ">
          <effect>
             <Reflection fraction="0.65" topOpacity="0.3" />
          </effect>
       </TextField>
-      <Button layoutX="31.0" layoutY="425.0" mnemonicParsing="false" onMouseReleased="#setViewTable" prefHeight="31.0" prefWidth="125.0" text="تحديث الجدول " textFill="#000983" />
+      <Button layoutX="64.0" layoutY="501.0" mnemonicParsing="false" onMouseReleased="#setViewTable" prefHeight="31.0" prefWidth="125.0" text="تحديث الجدول " textFill="#000983" />
+      <TextField fx:id="nbon_txt_to" alignment="CENTER_RIGHT" layoutX="99.0" layoutY="436.0" onKeyPressed="#veryfiedNbon" prefHeight="25.0" prefWidth="182.0" promptText="ارقام فقط ">
+         <effect>
+            <Reflection fraction="0.65" topOpacity="0.3" />
+         </effect>
+      </TextField>
+      <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="280.0" layoutY="432.0" prefHeight="30.0" prefWidth="42.0" text="الى : " textAlignment="RIGHT" textFill="#030303">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
